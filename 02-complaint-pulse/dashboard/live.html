@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ComplaintPulse Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F3F4F8; --surface:#FFFFFF; --sunk:#ECEEF5; --ink:#121827; --muted:#58637A; --line:#D9DDE8;
+  --accent:#3D4FB8; --accent-soft:#E3E7FA; --bar:#9AA3B8;
+  --warn:#B7791F; --hot:#C2410C; --crit:#B91C1C; --good:#1E7F4F;
+  --display:"Schibsted Grotesk",system-ui,sans-serif; --body:"Public Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{color-scheme:dark;
+    --bg:#0D1119; --surface:#141A26; --sunk:#10151F; --ink:#E6EAF2; --muted:#98A2B6; --line:#262F40;
+    --accent:#8C9BFF; --accent-soft:#1F2650; --bar:#5D6780; --warn:#E0A23B; --hot:#F07A3C; --crit:#F05252; --good:#4CC38A;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-inline:16px;padding-block:16px 40px}
+.wrap{max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:26px;font-weight:800} h2{font-size:18px;font-weight:700}
+h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+header{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.led{width:9px;height:9px;border-radius:50%;background:var(--line)} .led.on{background:var(--good)} .led.err{background:var(--crit)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.btn{font:600 14px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:7px;padding:7px 14px;cursor:pointer}
+.btn:hover{border-color:var(--accent)} .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.55;cursor:progress}
+.btn:focus-visible,select:focus-visible,.card:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+label.f{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+select{font:500 13px var(--body);padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kpi{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .v{font-family:var(--display);font-size:25px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi .l{font-size:12.5px;font-weight:600} .kpi .s{font-size:12px;color:var(--muted)}
+.langbars{display:flex;flex-direction:column;gap:3px;margin-top:2px}
+.lb{display:grid;grid-template-columns:54px 1fr 40px;gap:6px;align-items:center;font-size:11.5px}
+.lb i{display:block;height:7px;border-radius:3px;background:var(--accent)}
+.main{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:16px;align-items:start}
+@media (max-width:980px){.main{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.radar{display:flex;flex-direction:column;gap:8px;max-height:620px;overflow:auto}
+.card{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1px solid var(--line);border-left:4px solid var(--hot);border-radius:8px;background:var(--surface)}
+.card:hover{background:var(--sunk)} .card[aria-selected="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.card .t{font-weight:600} .card .m{font-size:12.5px;color:var(--muted)}
+.card .c{font-size:13px} .card .c b{font-family:var(--mono);font-weight:600}
+.pill{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;color:#fff;background:var(--hot);white-space:nowrap}
+.pill.new{background:var(--crit)}
+.supp{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:4px;border-top:1px dashed var(--line);padding-top:8px}
+.empty{color:var(--muted);font-size:14px;padding:14px 4px}
+.chart{width:100%;max-width:100%;height:200px}
+.chart text{fill:var(--muted);font:11px var(--body)}
+.feed{display:flex;flex-direction:column;gap:6px;max-height:330px;overflow:auto}
+.fi{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;padding:7px 9px;border-radius:7px;background:var(--sunk);font-size:13px}
+.fi .tag{font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);height:fit-content}
+.fi .meta{font-size:11.5px;color:var(--muted)}
+.fi.rp{opacity:.55}
+.detail{display:flex;flex-direction:column;gap:12px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px} @media (max-width:1000px){.cols{grid-template-columns:1fr}}
+.rc{display:grid;grid-template-columns:minmax(150px,1.3fr) 2fr 60px;gap:6px 10px;align-items:center;font-size:13px}
+.rc .bars{position:relative;height:16px;background:var(--sunk);border-radius:4px}
+.rc .s{position:absolute;left:0;top:0;bottom:8px;background:var(--hot);border-radius:4px 4px 0 0}
+.rc .b{position:absolute;left:0;bottom:0;top:8px;background:var(--bar);border-radius:0 0 4px 4px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px} .facts b{font-family:var(--mono)}
+.ev{border-left:3px solid var(--accent);padding:6px 10px;background:var(--sunk);border-radius:0 6px 6px 0;font-size:14px}
+.brief{white-space:pre-wrap;font-size:13.5px;line-height:1.6;background:var(--sunk);border-radius:8px;padding:12px 14px;max-height:360px;overflow:auto}
+.msg{background:var(--sunk);border-radius:8px;padding:10px 12px;font-size:13.5px}
+.msg b{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
+.chip{display:inline-flex;gap:6px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--muted)}
+.samples{display:flex;flex-direction:column;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="row" style="justify-content:flex-start;gap:14px">
+      <h1>ComplaintPulse <span class="muted" style="font-weight:600">Live</span></h1>
+      <span class="status"><span class="led" id="led"></span><span id="conn">Connecting to the GPU node…</span></span>
+    </div>
+    <span class="muted" style="font-size:13px" id="engine"></span>
+  </header>
+
+  <section class="controls" aria-label="Replay controls">
+    <button class="btn primary" id="play">Play</button>
+    <button class="btn" id="reset">Reset</button>
+    <label class="f" for="speed">Stream speed
+      <select id="speed"><option value="1800">30 min per second</option><option value="3600" selected>1 hour per second</option>
+        <option value="14400">4 hours per second</option><option value="43200">12 hours per second</option></select></label>
+    <label class="f" for="jump">Jump to
+      <select id="jump"><option value="">day…</option></select></label>
+  </section>
+
+  <section class="kpis" aria-label="Live metrics">
+    <div class="kpi"><span class="v mono" id="k-clock">—</span><span class="l">Stream clock</span><span class="s">All channels, replayed in order</span></div>
+    <div class="kpi"><span class="v" id="k-24">0</span><span class="l">Complaints, last 24 h</span><span class="s" id="k-proc">—</span></div>
+    <div class="kpi"><span class="l">Languages, last 24 h</span><div class="langbars" id="k-lang"></div></div>
+    <div class="kpi"><span class="v" id="k-rep">0</span><span class="l">Reposts collapsed</span><span class="s">Viral copies counted once (K3)</span></div>
+    <div class="kpi"><span class="v" id="k-inc">0</span><span class="l">Incidents raised</span><span class="s" id="k-supp">—</span></div>
+  </section>
+
+  <section class="main">
+    <div class="panel">
+      <div class="row"><h2>Issue radar</h2><span class="muted" style="font-size:12px">Newest first</span></div>
+      <div class="radar" id="radar" role="listbox" aria-label="Raised incidents"><div class="empty">Press Play. Incidents appear here the moment the engine raises them.</div></div>
+      <div class="supp" id="supp"></div>
+    </div>
+    <div class="panel">
+      <div class="row"><h2>Complaint volume, last 48 hours</h2><span class="muted" style="font-size:12px">Markers show when an incident was raised</span></div>
+      <svg class="chart" id="chart" viewBox="0 0 800 200" preserveAspectRatio="none" role="img" aria-label="Hourly complaint volume"></svg>
+      <div class="row"><h3>Incoming complaints</h3><span class="muted" style="font-size:12px">Every channel, every language</span></div>
+      <div class="feed" id="feed"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="detail"><div class="empty">Select an incident to see its root cause, the operational event behind it, and the N-ATLaS brief.</div></section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = (n, d=0) => Number(n).toLocaleString('en-US', {maximumFractionDigits:d, minimumFractionDigits:d});
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ngn = n => n >= 1e9 ? '₦' + fmt(n/1e9, 2) + 'bn' : n >= 1e6 ? '₦' + fmt(n/1e6, 1) + 'M' : '₦' + fmt(n);
+const CH = {call_centre:'Call centre', app_chat:'App chat', social:'Social', email:'Email', app_review:'App review', branch:'Branch'};
+let S = null, selected = null;
+for (let d = 3; d <= 29; d++) $('#jump').insertAdjacentHTML('beforeend', `<option value="${d}">Day ${d}</option>`);
+
+async function control(body) {
+  try { const r = await fetch('/api/control', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)}); render(await r.json()); }
+  catch (e) { $('#conn').textContent = 'Control request failed: ' + e.message; }
+}
+$('#play').onclick = () => control({action: S && S.running ? 'pause' : 'play'});
+$('#reset').onclick = () => { selected = null; $('#detail').innerHTML = '<div class="empty">Select an incident to see its root cause, the operational event behind it, and the N-ATLaS brief.</div>'; control({action:'reset'}); };
+$('#speed').onchange = e => control({speed: +e.target.value});
+$('#jump').onchange = e => { if (e.target.value) control({jump_day: +e.target.value}); e.target.value = ''; };
+
+function chart(h, markers) {
+  const W = 800, H = 200, c = h.counts, n = Math.max(c.length, 2), mx = Math.max(...c, 10);
+  const x = i => 40 + (W - 50) * i / 47, y = v => H - 24 - (H - 40) * v / mx;
+  let s = '';
+  for (const f of [0, .5, 1]) { const v = Math.round(mx * f); s += `<line x1="40" x2="${W-10}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="34" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`; }
+  if (c.length > 1) {
+    const pts = c.map((v, i) => `${x(i)},${y(v)}`).join(' ');
+    s += `<polygon points="${x(0)},${y(0)} ${pts} ${x(c.length-1)},${y(0)}" fill="var(--accent-soft)"/><polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+    s += `<circle cx="${x(c.length-1)}" cy="${y(c[c.length-1])}" r="4" fill="var(--accent)"/>`;
+  }
+  for (const m of markers) { const xi = x(m.h - h.start_h); s += `<line x1="${xi}" x2="${xi}" y1="14" y2="${H-24}" stroke="var(--hot)" stroke-dasharray="4 3"/><text x="${xi+4}" y="24" style="fill:var(--hot);font-weight:600">I${m.id+1}</text>`; }
+  s += `<text x="40" y="${H-6}">${esc(h.start.slice(5))}</text><text x="${W-10}" y="${H-6}" text-anchor="end">now</text>`;
+  $('#chart').innerHTML = s;
+}
+
+function render(s) {
+  S = s;
+  $('#play').textContent = s.running ? 'Pause' : 'Play';
+  $('#speed').value = String(s.speed);
+  $('#engine').textContent = `Detector over 30 days of complaints: ${fmt(s.detect_seconds, 1)} s on the GPU · root-cause mining ${fmt(s.k2.pairs_scored)} attribute pairs`;
+  $('#k-clock').textContent = s.sim_time.slice(5);
+  $('#k-24').textContent = fmt(s.last24h);
+  $('#k-proc').textContent = `${fmt(s.processed)} processed so far`;
+  const L = Object.entries(s.languages_24h).sort((a, b) => b[1] - a[1]), tot = L.reduce((a, b) => a + b[1], 0) || 1;
+  $('#k-lang').innerHTML = L.map(([k, v]) => `<div class="lb"><span>${esc(k)}</span><i style="width:${100*v/L[0][1]}%"></i><span class="mono">${fmt(100*v/tot)}%</span></div>`).join('');
+  $('#k-rep').textContent = fmt(s.reposts_collapsed);
+  $('#k-inc').textContent = s.incidents.length;
+  $('#k-supp').textContent = `${s.suppressed.length} volume surges checked and not escalated`;
+  chart(s.hourly, s.markers);
+  if (s.incidents.length) $('#radar').innerHTML = s.incidents.map(i => `
+    <button class="card" role="option" data-id="${i.id}" aria-selected="${i.id === selected}">
+      <span class="row"><span class="t">I${i.id+1} · ${esc(i.title)}</span><span class="pill ${i.age_h < 2 ? 'new' : ''}">${i.age_h < 2 ? 'New' : fmt(i.age_h, 0) + ' h ago'}</span></span>
+      <span class="c">Cause: <b>${esc(i.cause)}</b> · lift ${fmt(i.lift, 1)}×</span>
+      <span class="m">${esc(i.detected.slice(5))} · ${fmt(i.n_spike)} complaints in 3 h (expected ${fmt(i.expected)}) · ${i.regions} states · ${i.channels} channels · owner: ${esc(i.owner)}</span>
+    </button>`).join('');
+  $('#supp').innerHTML = s.suppressed.length ? '<h3>Checked, not escalated</h3>' + s.suppressed.map(x => `<span>${esc(x.at.slice(5))} · ${esc(x.topic)}: +${fmt(x.excess)} complaints, no concentrated cause</span>`).join('') : '';
+  $('#feed').innerHTML = s.feed.map(f => `<div class="fi ${f.repost ? 'rp' : ''}"><span class="tag">${esc(f.language)}</span><span>${esc(f.text)}</span>
+    <span></span><span class="meta">${esc(f.time.slice(5))} · ${esc(CH[f.channel] || f.channel)} · ${esc(f.region)}${f.repost ? ' · repost, counted once' : ''}</span></div>`).join('');
+}
+$('#radar').addEventListener('click', e => { const b = e.target.closest('.card'); if (b) openIncident(+b.dataset.id); });
+
+async function openIncident(id, gen=false) {
+  selected = id;
+  document.querySelectorAll('.card').forEach(c => c.setAttribute('aria-selected', +c.dataset.id === id));
+  let r;
+  try {
+    const res = await fetch(`/api/incident/${id}${gen ? '/generate' : ''}`, gen ? {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'} : {});
+    r = await res.json(); if (!res.ok) throw new Error(r.error || res.statusText);
+  } catch (e) { $('#genmsg') ? $('#genmsg').textContent = e.message : ($('#detail').innerHTML = `<div class="empty">${esc(e.message)}</div>`); if ($('#gen')) $('#gen').disabled = false; return; }
+  const mx = Math.max(...r.root_cause.map(c => c.share_spike), .01);
+  $('#detail').innerHTML = `<div class="detail">
+    <div class="row"><h2>I${r.id+1} · ${esc(r.title)}</h2><span class="muted mono" style="font-size:12px">raised ${esc(r.detected)}</span></div>
+    <div class="facts"><span>Complaints, last 3 h <b>${fmt(r.n_spike)}</b> <span class="muted">(expected ${fmt(r.expected)})</span></span>
+      <span>States <b>${r.regions}</b></span><span>Channels <b>${r.channels}</b></span><span>Money at stake <b>${ngn(r.money)}</b></span>
+      <span>Students & pensioners <b>${fmt(r.vulnerable*100)}%</b></span><span>Owner <b>${esc(r.owner)}</b></span></div>
+    ${r.event ? `<div class="ev"><b>Linked operational event:</b> ${esc(r.event)}</div>` : '<div class="ev">No operational event matches. Treat as an external cause (e.g. fraud) and escalate.</div>'}
+    <div class="cols">
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+        <h3>Root cause: what is different about this spike (K2)</h3>
+        <div class="rc">${r.root_cause.map(c => `<span class="mono" style="font-size:12px">${esc(c.items.join(' + '))}</span>
+          <span class="bars" title="spike ${fmt(c.share_spike*100)}% vs normal ${fmt(c.share_base*100)}%"><i class="s" style="width:${100*c.share_spike/mx}%"></i><i class="b" style="width:${100*c.share_base/mx}%"></i></span>
+          <span class="mono">${fmt(c.lift, 1)}×</span>`).join('')}</div>
+        <span class="muted" style="font-size:12px">Top bar: share of the spike. Bottom bar: share normally. Number: lift.</span>
+        <h3>Who is complaining</h3>
+        <div class="facts">${r.languages.map(l => `<span>${esc(l.language)} <b>${l.count}</b></span>`).join('')}</div>
+        <h3>Sample complaints (evidence)</h3>
+        <div class="samples">${r.samples.slice(0, 6).map(x => `<div class="fi"><span class="tag">${esc(x.language)}</span><span>${esc(x.text)}</span><span></span><span class="meta mono">C${x.id} · ${esc(CH[x.channel] || x.channel)} · ${esc(x.region)}</span></div>`).join('')}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+        <div class="row"><h3>Incident brief · N-ATLaS</h3>${r.brief ? `<span class="chip">${r.brief.grounded ? 'Every citation checked against the evidence' : 'Check citations'}</span>` : ''}</div>
+        ${r.brief ? `<div class="brief">${esc(r.brief.text)}</div>` : `<div class="row" style="justify-content:flex-start"><button class="btn primary" id="gen">Write brief and customer messages</button><span class="muted" id="genmsg" style="font-size:13px"></span></div>`}
+        <h3>Proactive customer message, in their languages</h3>
+        ${Object.keys(r.messages).length ? Object.entries(r.messages).map(([k, v]) => `<div class="msg"><b>${esc(k)}</b>${esc(v)}</div>`).join('') : '<span class="muted" style="font-size:13px">Generated together with the brief.</span>'}
+      </div>
+    </div></div>`;
+  if ($('#gen')) $('#gen').onclick = () => { $('#gen').disabled = true; $('#genmsg').textContent = 'N-ATLaS is writing on the GPU…'; openIncident(id, true); };
+}
+
+function connect() {
+  const es = new EventSource('/api/stream');
+  es.onopen = () => { $('#led').className = 'led on'; $('#conn').textContent = 'Connected to the GPU node'; };
+  es.onmessage = e => render(JSON.parse(e.data));
+  es.onerror = () => { $('#led').className = 'led err'; $('#conn').textContent = 'Connection lost. Retrying…'; };
+}
+connect();
+</script>
+</body>
+</html>

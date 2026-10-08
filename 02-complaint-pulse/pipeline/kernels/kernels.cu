@@ -11,7 +11,7 @@
 // K3  near-duplicate detection: MinHash signatures over character 5-shingles, one block per document and one
 //     thread per hash function.
 
-#include <cstdint>
+typedef unsigned int uint32_t;  // NVRTC has no <cstdint>
 
 // ------------------------------------------------------------------------------------------------- K1
 // cube dims D0..D3 include the ALL member as the last index of each dim

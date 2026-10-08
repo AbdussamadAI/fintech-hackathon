@@ -100,24 +100,23 @@ def repost_cascades(df: pl.DataFrame, ops, H=64):
 
 
 # ------------------------------------------------------------------------------------------------- main replay
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default="data/synthetic")
-    ap.add_argument("--ops", default="gpu")
-    ap.add_argument("--topics", default="gold", help="'gold' (issue labels) or a parquet with complaint_id, topic")
-    ap.add_argument("--no-dedup", action="store_true")
-    ap.add_argument("--out", default=None)
-    args = ap.parse_args()
+def run(data, ops_name="gpu", topics="gold", no_dedup=False):
+    """Run the whole detector over a dataset; returns the summary dict (also used by the live server)."""
+    args = argparse.Namespace(data=data, ops=ops_name, topics=topics, no_dedup=no_dedup)
     d = Path(args.data)
     ops = get_ops(args.ops)
     xp = ops.xp
     df = pl.read_parquet(d / "complaints.parquet")
     meta = json.loads((d / "incidents.json").read_text())
     events = pl.read_parquet(d / "events.parquet")
+    topic_kw, topic_issue = {}, {}
     if args.topics == "gold":
         df = df.with_columns(topic=pl.col("issue"))
     else:
         df = df.join(pl.read_parquet(args.topics).select("complaint_id", "topic"), on="complaint_id")
+        tj = json.loads(Path(args.topics).with_suffix(".json").read_text())["topics"]
+        topic_kw = {k: v["keywords"] for k, v in tj.items()}             # used for event matching
+        topic_issue = {k: v["majority_issue"] for k, v in tj.items()}    # evaluation only
 
     timings = {}
     t0 = time.perf_counter()
@@ -299,6 +298,7 @@ def main():
         for k, ws in TOPIC_WORDS.items():
             if k in o["topic"]:
                 toks.update(ws)
+        toks.update(w for w in topic_kw.get(o["topic"], []) if len(w) >= 3)
         best = None
         for ev in ev_rows:
             if o["alert_ts"] - 18 * HOUR <= ev["ts"] <= o["alert_ts"] + HOUR:
@@ -316,6 +316,11 @@ def main():
         o["n_regions"] = sub["region"].n_unique(); o["n_channels"] = sub["channel"].n_unique()
         o["money_at_stake"] = float(sub["amount"].sum())
         o["vulnerable_share"] = float(sub["segment"].is_in(["pensioner", "student"]).mean()) if sub.height else 0.0
+        # evidence sample for the brief: up to 2 complaints per language from the spike window
+        smp = sub.sort("ts", descending=True).group_by("language", maintain_order=True).head(2).head(10)
+        o["samples"] = [{"id": int(r["complaint_id"]), "language": r["language"], "channel": r["channel"], "region": r["region"],
+                         "text": r["text"]} for r in smp.iter_rows(named=True)]
+        o["languages"] = sub["language"].value_counts().sort("count", descending=True).to_dicts()
 
     raised = [o for o in cands if o["verdict"] == "systemic incident"]
     # merge raised candidates that share their top root cause and start within 6h (e.g. OTP + login topics)
@@ -350,9 +355,10 @@ def main():
                 need.append(f"{a}={v}" in items)
         return all(need) or (len(need) > 1 and sum(need) >= len(need) - 1 and len(items) == 1 and any(need))
 
+    issues_of = lambda m: {topic_issue.get(t, t) for t in m["topics"]}  # noqa: E731
     rows, matched = [], set()
     for inc in meta["incidents"]:
-        cand_m = [m for m in merged if set(m["topics"]) & set(inc["issues"]) and inc["start_ts"] - 3 * HOUR <= m["alert_ts"] <= inc["end_ts"]]
+        cand_m = [m for m in merged if issues_of(m) & set(inc["issues"]) and inc["start_ts"] - 3 * HOUR <= m["alert_ts"] <= inc["end_ts"]]
         m = min(cand_m, key=lambda x: x["alert_ts"]) if cand_m else None
         nv = min([t for tp in inc["issues"] for t in naive.get(tp, []) if inc["start_ts"] <= t <= inc["end_ts"] + DAY], default=None)
         r = {"incident": inc["name"], "start": inc["start_ts"], "peak": inc["peak_ts"]}
@@ -374,7 +380,7 @@ def main():
     # a raised incident is a true positive if it overlaps any injected incident on topic, time and cause
     for m in merged:
         for inc in meta["incidents"]:
-            if (set(m["topics"]) & set(inc["issues"]) and inc["start_ts"] - 3 * HOUR <= m["alert_ts"] <= inc["end_ts"]
+            if (issues_of(m) & set(inc["issues"]) and inc["start_ts"] - 3 * HOUR <= m["alert_ts"] <= inc["end_ts"]
                     and m["root_cause"] and any(cause_hit(inc, e) for e in m["root_cause"][:3])):
                 matched.add(id(m))
     false_raised = [m for m in merged if id(m) not in matched]
@@ -396,10 +402,28 @@ def main():
                             for m in false_raised],
         "suppressed_surges": [{"topic": o["topic"], "at_day": o["alert_ts"] / DAY} for o in cands if o["verdict"] != "systemic incident"],
         "raised": [{k: (v if k != "linked_event" else (v["description"] if v else None)) for k, v in m.items()
-                    if k in ("topics", "alert_ts", "max_score", "root_cause", "linked_event", "n_spike", "n_regions", "n_channels",
-                             "money_at_stake", "vulnerable_share", "series")} for m in merged],
+                    if k in ("topics", "alert_ts", "first_alert_ts", "max_score", "root_cause", "linked_event", "n_spike", "expected",
+                             "n_regions", "n_channels", "money_at_stake", "vulnerable_share", "series", "samples", "languages")}
+                   for m in merged],
+        "suppressed": [{"topic": o["topic"], "alert_ts": o["alert_ts"], "n_spike": o["n_spike"], "expected": o["expected"],
+                        "root_cause": o["root_cause"][:2]} for o in cands if o["verdict"] != "systemic incident"],
     }
-    out = Path(args.out or d / f"detect_{ops.name}{'_nodedup' if args.no_dedup else ''}.json")
+    summary["_rows"] = rows
+    return summary
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--data", default="data/synthetic")
+    ap.add_argument("--ops", default="gpu")
+    ap.add_argument("--topics", default="gold", help="'gold' (issue labels) or a parquet with complaint_id, topic")
+    ap.add_argument("--no-dedup", action="store_true")
+    ap.add_argument("--out", default=None)
+    args = ap.parse_args()
+    summary = run(args.data, args.ops, args.topics, args.no_dedup)
+    rows = summary.pop("_rows")
+    dedup_info, timings = summary["dedup"], summary["timings"]
+    out = Path(args.out or Path(args.data) / f"detect_{args.ops}{'_nodedup' if args.no_dedup else ''}{'' if args.topics == 'gold' else '_topics'}.json")
     out.write_text(json.dumps(summary, indent=1, default=float))
     for r in rows:
         if r["detected"]:
