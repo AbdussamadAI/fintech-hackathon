@@ -1,0 +1,19 @@
+# data & artifacts
+**/data/
+*.parquet
+*.csv
+*.zip
+*.nsys-rep
+*.sqlite
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+# node
+node_modules/
+dist/
+# os / secrets
+.DS_Store
+kaggle.json
+.env
