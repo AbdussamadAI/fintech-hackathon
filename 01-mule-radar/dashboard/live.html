@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MuleRadar Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Public+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --sunk:#EAEEF1; --ink:#0F1B26; --muted:#56687A; --line:#D7DEE4;
+  --accent:#0B6E63; --accent-soft:#D6EEEA; --cpu:#7C8A98;
+  --t1:#6B7A89; --t2:#B7791F; --t3:#C2410C; --t4:#B91C1C; --good:#1E7F4F; --bad:#B91C1C;
+  --display:"Schibsted Grotesk",system-ui,sans-serif; --body:"Public Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{color-scheme:dark;
+    --bg:#0C141B; --surface:#121D26; --sunk:#0F1820; --ink:#E5ECF1; --muted:#94A4B2; --line:#243340;
+    --accent:#3CC2A8; --accent-soft:#143A35; --cpu:#8391A0;
+    --t1:#8B9AA8; --t2:#E0A23B; --t3:#F07A3C; --t4:#F05252; --good:#4CC38A; --bad:#F05252;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-inline:16px;padding-block:16px 40px}
+.wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:26px;font-weight:800}
+h2{font-size:18px;font-weight:700}
+h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+header{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.led{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.led.on{background:var(--good);box-shadow:0 0 0 3px color-mix(in srgb,var(--good) 25%,transparent)}
+.led.err{background:var(--bad)}
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.btn{font:600 14px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:7px;padding:7px 14px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:7px 14px;font:600 13px var(--body);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+label.f{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+select{font:500 13px var(--body);padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kpi{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .v{font-family:var(--display);font-size:26px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .l{font-size:12.5px;font-weight:600}
+.kpi .s{font-size:12px;color:var(--muted)}
+.kpi.warn .v{color:var(--bad)}
+.kpi canvas{width:100%;height:34px;margin-top:4px}
+/* main */
+.main{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:16px;align-items:start}
+@media (max-width:920px){.main{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.queue{display:flex;flex-direction:column;gap:4px;max-height:640px;overflow:auto}
+.ring{all:unset;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:9px 11px;border-radius:8px;border:1px solid transparent}
+.ring:hover{background:var(--sunk)}
+.ring:focus-visible{outline:2px solid var(--accent)}
+.ring[aria-selected="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.ring .meta{grid-column:1/3;font-size:12px;color:var(--muted)}
+.pill{font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.pill.t1{background:var(--t1)}.pill.t2{background:var(--t2)}.pill.t3{background:var(--t3)}.pill.t4{background:var(--t4)}
+.empty{color:var(--muted);font-size:14px;padding:18px 4px}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px}
+.facts b{font-family:var(--mono)}
+.action{border-left:3px solid var(--t3);padding:6px 10px;background:var(--sunk);border-radius:0 6px 6px 0;font-size:14px}
+.cols{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+@media (max-width:1100px){.cols{grid-template-columns:1fr}}
+.graph{width:100%;max-width:100%;aspect-ratio:4/3;background:var(--sunk);border-radius:8px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:50%;display:inline-block}
+ol.reasons{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.tablewrap{overflow:auto;max-height:260px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:5px 9px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{position:sticky;top:0;background:var(--surface);font-weight:600;color:var(--muted)}
+td.num{text-align:right}
+.y{color:var(--bad);font-weight:600}.n{color:var(--muted)}
+.str{white-space:pre-wrap;font-size:13.5px;line-height:1.6;background:var(--sunk);border-radius:8px;padding:12px 14px;max-height:320px;overflow:auto}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--muted)}
+@keyframes flash{from{background:var(--accent-soft)}to{background:transparent}}
+@media (prefers-reduced-motion:no-preference){tr.new td{animation:flash 1.2s ease-out}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="row" style="gap:14px;justify-content:flex-start">
+      <h1>MuleRadar <span class="muted" style="font-weight:600">Live</span></h1>
+      <span class="status"><span class="led" id="led"></span><span id="conn">Connecting to the GPU node…</span></span>
+    </div>
+    <a href="/results">Benchmark results</a>
+  </header>
+
+  <section class="controls" aria-label="Replay controls">
+    <button class="btn primary" id="play">Play</button>
+    <button class="btn" id="reset">Reset</button>
+    <span class="seg" role="group" aria-label="Detection engine">
+      <button id="eng-gpu" aria-pressed="true">GPU · CUDA kernels</button>
+      <button id="eng-cpu" aria-pressed="false">CPU · same algorithm</button>
+    </span>
+    <label class="f" for="speed">Stream speed
+      <select id="speed">
+        <option value="600">10 min of transfers per second</option>
+        <option value="3600" selected>1 hour per second</option>
+        <option value="14400">4 hours per second</option>
+        <option value="0">As fast as possible</option>
+      </select>
+    </label>
+    <label class="f" for="batch">Micro-batch
+      <select id="batch"><option>512</option><option selected>2048</option><option>8192</option></select>
+    </label>
+  </section>
+
+  <section class="kpis" aria-label="Live metrics">
+    <div class="kpi"><span class="v mono" id="k-clock">—</span><span class="l">Stream clock</span><span class="s">Held-out test period, replayed in order</span></div>
+    <div class="kpi"><span class="v" id="k-proc">0</span><span class="l">Transfers scored</span><span class="s" id="k-rem">—</span></div>
+    <div class="kpi"><span class="v" id="k-tps">0</span><span class="l">Transfers per second</span><canvas id="spark" aria-label="Throughput history"></canvas></div>
+    <div class="kpi"><span class="v" id="k-lat">—</span><span class="l">Batch latency (p50)</span><span class="s" id="k-lat99">—</span></div>
+    <div class="kpi" id="kpi-lag"><span class="v" id="k-lag">0</span><span class="l">Transfers waiting</span><span class="s" id="k-lag2">Engine is keeping up</span></div>
+    <div class="kpi"><span class="v" id="k-alerts">0</span><span class="l">Alerts raised</span><span class="s" id="k-prec">—</span></div>
+  </section>
+
+  <section class="main">
+    <div class="panel">
+      <div class="row"><h2>Ring queue</h2><span class="muted" style="font-size:12px" id="nrings"></span></div>
+      <div class="queue" id="queue" role="listbox" aria-label="Detected rings"><div class="empty">Press Play to start the stream. Rings appear here as they form.</div></div>
+    </div>
+    <div class="panel" id="detail"><div class="empty">Select a ring to see who is involved, why it was flagged and the draft STR.</div></div>
+  </section>
+
+  <section class="panel">
+    <div class="row"><h2>Latest alerts</h2><span class="muted" style="font-size:12px">Labels shown for evaluation only; the model never sees them.</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Txn</th><th>Time</th><th>From</th><th>To</th><th style="text-align:right">USD</th><th>Format</th><th style="text-align:right">Score</th><th>Label</th></tr></thead>
+      <tbody id="feed"></tbody></table></div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = (n, d=0) => Number(n).toLocaleString('en-US', {maximumFractionDigits:d, minimumFractionDigits:d});
+const usd = n => n >= 1e6 ? '$' + fmt(n/1e6, 1) + 'M' : n >= 1e3 ? '$' + fmt(n/1e3, 0) + 'k' : '$' + fmt(n);
+const ngn = n => n >= 1e9 ? '₦' + fmt(n/1e9, 2) + 'bn' : n >= 1e6 ? '₦' + fmt(n/1e6, 1) + 'M' : '₦' + fmt(n);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const big = n => n >= 1e6 ? fmt(n/1e6, 2) + 'M' : n >= 1e4 ? fmt(n/1e3, 0) + 'k' : fmt(n);
+
+let S = null, selected = null, seen = new Set();
+const hist = [];   // [tps, engine]
+
+async function control(body) {
+  try {
+    const r = await fetch('/api/control', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+    render(await r.json());
+  } catch (e) { $('#conn').textContent = 'Control request failed: ' + e.message; }
+}
+$('#play').onclick = () => control({action: S && S.running ? 'pause' : 'play'});
+$('#reset').onclick = () => { hist.length = 0; seen.clear(); selected = null; $('#feed').innerHTML = '';
+  $('#detail').innerHTML = '<div class="empty">Select a ring to see who is involved, why it was flagged and the draft STR.</div>'; control({action:'reset'}); };
+$('#eng-gpu').onclick = () => control({engine:'gpu'});
+$('#eng-cpu').onclick = () => control({engine:'cpu'});
+$('#speed').onchange = e => control({speed: +e.target.value});
+$('#batch').onchange = e => control({batch: +e.target.value});
+
+function spark() {
+  const c = $('#spark'), dpr = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w*dpr; c.height = h*dpr; const g = c.getContext('2d'); g.scale(dpr, dpr);
+  if (hist.length < 2) return;
+  const mx = Math.max(...hist.map(x => x[0]), 1), cs = getComputedStyle(document.documentElement);
+  for (let i = 1; i < hist.length; i++) {
+    const x0 = (i-1)/(hist.length-1)*w, x1 = i/(hist.length-1)*w;
+    g.strokeStyle = cs.getPropertyValue(hist[i][1] === 'gpu' ? '--accent' : '--cpu'); g.lineWidth = 2;
+    g.beginPath(); g.moveTo(x0, h-2-(h-4)*hist[i-1][0]/mx); g.lineTo(x1, h-2-(h-4)*hist[i][0]/mx); g.stroke();
+  }
+}
+
+function render(s) {
+  S = s;
+  $('#play').textContent = s.running ? 'Pause' : (s.done ? 'Finished' : 'Play');
+  $('#eng-gpu').setAttribute('aria-pressed', s.engine === 'gpu'); $('#eng-cpu').setAttribute('aria-pressed', s.engine === 'cpu');
+  $('#speed').value = String(s.speed); $('#batch').value = String(s.batch);
+  $('#k-clock').textContent = s.sim_time.slice(5);
+  $('#k-proc').textContent = big(s.processed);
+  $('#k-rem').textContent = `${big(s.remaining)} left in the test period`;
+  $('#k-tps').textContent = big(s.txn_per_s);
+  $('#k-lat').textContent = s.lat_p50 ? fmt(s.lat_p50, 1) + ' ms' : '—';
+  $('#k-lat99').textContent = s.lat_p99 ? `p99 ${fmt(s.lat_p99, 1)} ms · capacity ${big(s.capacity_txn_per_s)}/s on ${s.engine.toUpperCase()}` : '—';
+  const behind = s.backlog_txns > 0 && s.lag_minutes > 1;
+  $('#kpi-lag').classList.toggle('warn', behind);
+  $('#k-lag').textContent = big(s.backlog_txns);
+  $('#k-lag2').textContent = s.speed === 0 ? 'Running flat out' : behind ? `${fmt(s.lag_minutes, 0)} min of transfers not yet checked` : 'Engine is keeping up';
+  $('#k-alerts').textContent = fmt(s.alerts);
+  $('#k-prec').textContent = s.alert_precision == null ? 'No alerts yet' : `${fmt(s.alert_precision*100, 1)}% are true laundering`;
+  if (s.running) { hist.push([s.txn_per_s, s.engine]); if (hist.length > 160) hist.shift(); }
+  spark();
+
+  $('#nrings').textContent = s.rings.length ? `${s.rings.length} highest-priority` : '';
+  if (s.rings.length) $('#queue').innerHTML = s.rings.map(r => `
+    <button class="ring" role="option" data-root="${r.root}" aria-selected="${r.root === selected}">
+      <span><b class="mono">R${r.root}</b> · ${r.accounts} accounts · ${r.txns} txns</span><span class="pill t${r.tier}">Tier ${r.tier}</span>
+      <span class="meta">${usd(r.usd)} (${ngn(r.ngn)}) · score ${fmt(r.mean_score, 2)} · ${esc(r.first.slice(5))} → ${esc(r.last.slice(5))}</span>
+    </button>`).join('');
+
+  const rows = s.recent.map(a => { const isNew = !seen.has(a.txn); seen.add(a.txn);
+    return `<tr class="${isNew ? 'new' : ''}"><td class="mono">T${a.txn}</td><td class="mono">${esc(a.time.slice(5))}</td><td class="mono">${esc(a.from)}</td><td class="mono">${esc(a.to)}</td><td class="mono num">${fmt(a.usd)}</td><td>${esc(a.format)}</td><td class="mono num">${fmt(a.score, 3)}</td><td class="${a.label ? 'y' : 'n'}">${a.label ? 'laundering' : 'clean'}</td></tr>`; });
+  if (rows.length) $('#feed').innerHTML = rows.join('');
+}
+
+$('#queue').addEventListener('click', e => { const b = e.target.closest('.ring'); if (b) openRing(+b.dataset.root); });
+
+// ---------- ring detail ----------
+const ROLE = {source:'var(--t2)', 'pass-through':'var(--t3)', collector:'var(--t4)'};
+function layout(nodes, edges, W, H) {
+  const n = nodes.length, pos = nodes.map((_, i) => ({x: W/2 + Math.cos(i*2.4)*W*0.3, y: H/2 + Math.sin(i*2.4)*H*0.3}));
+  const idx = new Map(nodes.map((d, i) => [d.account, i]));
+  const E = edges.map(e => [idx.get(e.from), idx.get(e.to)]).filter(([a, b]) => a != null && b != null && a !== b);
+  const k = Math.sqrt(W*H/Math.max(n, 1)) * 0.6;
+  for (let it = 0; it < 300; it++) {
+    const t = 0.1*(1-it/300)*W, disp = pos.map(() => ({x:0, y:0}));
+    for (let i = 0; i < n; i++) for (let j = i+1; j < n; j++) { let dx = pos[i].x-pos[j].x, dy = pos[i].y-pos[j].y, d = Math.hypot(dx, dy) || .01, f = k*k/d;
+      disp[i].x += dx/d*f; disp[i].y += dy/d*f; disp[j].x -= dx/d*f; disp[j].y -= dy/d*f; }
+    for (const [a, b] of E) { let dx = pos[a].x-pos[b].x, dy = pos[a].y-pos[b].y, d = Math.hypot(dx, dy) || .01, f = d*d/k;
+      disp[a].x -= dx/d*f; disp[a].y -= dy/d*f; disp[b].x += dx/d*f; disp[b].y += dy/d*f; }
+    pos.forEach((p, i) => { const d = Math.hypot(disp[i].x, disp[i].y) || .01;
+      p.x = Math.min(W-30, Math.max(30, p.x + disp[i].x/d*Math.min(d, t))); p.y = Math.min(H-24, Math.max(24, p.y + disp[i].y/d*Math.min(d, t))); });
+  }
+  return {pos, idx};
+}
+function graphSVG(r) {
+  const W = 480, H = 360, nodes = r.accounts_full, edges = r.timeline_full, {pos, idx} = layout(nodes, edges, W, H), pair = new Map();
+  edges.forEach(e => { const k = e.from + '>' + e.to, p = pair.get(k) || {n:0, usd:0, from:e.from, to:e.to}; p.n++; p.usd += e.usd; pair.set(k, p); });
+  const maxU = Math.max(...[...pair.values()].map(p => p.usd));
+  let s = `<svg class="graph" viewBox="0 0 ${W} ${H}" role="img" aria-label="Money flows inside the ring"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`;
+  for (const p of pair.values()) { const a = pos[idx.get(p.from)], b = pos[idx.get(p.to)]; if (!a || !b || a === b) continue;
+    const dx = b.x-a.x, dy = b.y-a.y, d = Math.hypot(dx, dy) || 1, ux = dx/d, uy = dy/d, x1 = a.x+ux*12, y1 = a.y+uy*12, x2 = b.x-ux*14, y2 = b.y-uy*14;
+    s += `<path d="M${x1} ${y1} Q${(x1+x2)/2-uy*14} ${(y1+y2)/2+ux*14} ${x2} ${y2}" fill="none" stroke="var(--muted)" stroke-opacity=".75" stroke-width="${1+4*p.usd/maxU}" marker-end="url(#ah)"><title>${esc(p.from)} → ${esc(p.to)}: ${p.n} txn, ${usd(p.usd)}</title></path>`; }
+  nodes.forEach((nd, i) => { const p = pos[i]; s += `<circle cx="${p.x}" cy="${p.y}" r="10" fill="${ROLE[nd.role]}" stroke="var(--surface)" stroke-width="2"><title>${esc(nd.account)} · ${nd.role}</title></circle><text x="${p.x}" y="${p.y-15}" text-anchor="middle" style="font:10px var(--mono);fill:var(--ink)">${esc(nd.account.slice(-5))}</text>`; });
+  return s + '</svg>';
+}
+async function openRing(root) {
+  selected = root;
+  document.querySelectorAll('.ring').forEach(x => x.setAttribute('aria-selected', +x.dataset.root === root));
+  $('#detail').innerHTML = '<div class="empty">Building evidence and drafting the STR…</div>';
+  let r;
+  try { const res = await fetch('/api/ring/' + root); if (!res.ok) throw new Error('ring not found'); r = await res.json(); }
+  catch (e) { $('#detail').innerHTML = `<div class="empty">Could not load ring R${root}: ${esc(e.message)}</div>`; return; }
+  const nBad = r.timeline_full.filter(t => t.is_laundering).length;
+  $('#detail').innerHTML = `
+    <div class="row"><h2>Ring ${esc(r.ring_id)} <span class="pill t${r.tier}" style="vertical-align:middle;margin-left:6px">Tier ${r.tier}</span></h2>
+      <span class="row" style="gap:10px"><span class="muted mono" style="font-size:12px">${esc(r.first_seen)} → ${esc(r.last_seen)}</span><button class="btn" id="refresh">Refresh</button></span></div>
+    <div class="facts"><span>Accounts <b>${r.n_accounts}</b></span><span>Transactions <b>${r.n_transactions}</b></span>
+      <span>Value <b>${usd(r.total_usd)}</b> <span class="muted">(${ngn(r.total_ngn)})</span></span><span>Ring score <b>${fmt(r.ring_score, 2)}</b></span></div>
+    <div class="action">${esc(r.action)}</div>
+    <div class="cols">
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0">${graphSVG(r)}
+        <div class="legend"><span><i class="sw" style="background:var(--t2)"></i>Source</span><span><i class="sw" style="background:var(--t3)"></i>Pass-through</span><span><i class="sw" style="background:var(--t4)"></i>Collector</span><span>Line width = value moved</span></div></div>
+      <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+        <h3>Why it was flagged</h3><ol class="reasons">${r.reason_codes.map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+        <h3>Ground truth (evaluation only)</h3><p style="margin:0;font-size:13px">${nBad} of ${r.timeline_full.length} alerted transfers are labelled laundering.</p>
+      </div>
+    </div>
+    <div class="row"><h3>Draft STR narrative for NFIU</h3><span class="chip">Drafted by: ${esc(r.str.backend)} · grounded check ${r.str.validated ? 'passed' : 'failed'}</span></div>
+    <div class="str">${esc(r.str.text)}</div>`;
+  $('#refresh').onclick = () => openRing(root);
+}
+
+// ---------- live stream ----------
+function connect() {
+  const es = new EventSource('/api/stream');
+  es.onopen = () => { $('#led').className = 'led on'; $('#conn').textContent = 'Connected to the GPU node'; };
+  es.onmessage = e => render(JSON.parse(e.data));
+  es.onerror = () => { $('#led').className = 'led err'; $('#conn').textContent = 'Connection lost. Retrying…'; };
+}
+connect();
+addEventListener('resize', spark);
+</script>
+</body>
+</html>
