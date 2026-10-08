@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
 <title>MuleRadar Console</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -296,3 +304,6 @@ $('#method').innerHTML = `<h2>How these numbers were produced</h2>
   <p>Rings: ${rr.detected} of ${rr.known_attempts_in_test} known laundering attempts in the test period received an alert; median ${fmt(rr.median_hours_to_first_alert,1)}h after the attempt's first transfer. That early timing is partly a property of the synthetic data, where laundering is generated almost entirely as ACH payments; every published model on this dataset benefits from the same signal, so the F1 comparison is like for like, but the stoppable-value share should be read as an upper bound. By type: ${Object.entries(rr.by_typology).map(([k,v]) => `${k.toLowerCase()} ${v}`).join(', ')}.</p>
   ${D.bench ? `<p>Hardware: ${esc(D.bench.gpu)} vs ${D.bench.cpu_threads} CPU threads of the same node, running the same algorithms (CUDA kernels vs Numba). ${esc(D.bench.note)}</p>` : ''}`;
 </script>
+
+</body>
+</html>
