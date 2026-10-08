@@ -1,0 +1,46 @@
+{
+  "threshold": 0.7299374341964722,
+  "test_txns": 1015669,
+  "rings": {
+    "known_attempts_in_test": 95,
+    "detected": 90,
+    "ring_recall": 0.9473684210526315,
+    "median_hours_to_first_alert": 0.0,
+    "median_txns_before_first_alert": 0.0,
+    "stoppable_value_share": 0.9498451947380214,
+    "by_typology": {
+      "BIPARTITE": "15/17",
+      "CYCLE": "10/10",
+      "FAN-IN": "11/12",
+      "FAN-OUT": "9/10",
+      "GATHER-SCATTER": "16/16",
+      "RANDOM": "11/12",
+      "SCATTER-GATHER": "11/11",
+      "STACK": "7/7"
+    }
+  },
+  "accounts": {
+    "active_accounts": 356394,
+    "laundering_accounts": 2199,
+    "muleradar": {
+      "flagged": 1401,
+      "precision": 0.806566738044254,
+      "recall": 0.5138699408822192,
+      "innocent_flagged_per_10k": 7.603943949673676
+    },
+    "threshold_rule_same_recall": {
+      "rule": "24h outbound >= $4,754 (q=0.6666)",
+      "flagged": 70616,
+      "precision": 0.016044522487821455,
+      "recall": 0.5152341973624375,
+      "innocent_flagged_per_10k": 1949.611946329063
+    },
+    "wrongful_flags_reduction": 0.9960997654102443
+  },
+  "alert_rings": {
+    "n_rings": 370,
+    "accounts_in_rings": 1401,
+    "median_ring_size": 2.0,
+    "max_ring_size": 28
+  }
+}

@@ -140,14 +140,14 @@ const NGN = 1535;
 $('#ds').textContent = `${D.dataset} · ${fmt(D.meta.n_txns)} transactions · ${fmt(D.meta.n_accounts)} accounts`;
 
 // ---------- KPIs ----------
-const fin = D.train.final, ev = D.eval, best = D.bench ? D.bench.rows.reduce((a, r) => r.gpu_txn_s > a.gpu_txn_s ? r : a) : null;
+const fin = D.train.final, full = Object.values(D.train.ladder).at(-1), ev = D.eval, best = D.bench ? D.bench.rows.reduce((a, r) => r.gpu_txn_s > a.gpu_txn_s ? r : a) : null;
 const b2048 = D.bench ? D.bench.rows.find(r => r.batch === 2048) : null;
 const kpis = [
-  {v: fmt(fin.f1*100, 1) + '%', l: 'Laundering-transaction F1', s: `Best published: 64.8% (IBM GFP + XGBoost)`},
-  best && {v: fmt(best.gpu_txn_s/1e3, 0) + 'k/s', l: 'Transactions scored per second', s: `One A100 · ${fmt(best.speedup,0)}× the same code on ${D.bench.cpu_threads} CPU cores`},
+  {v: fmt(full.f1[0]*100, 1) + '%', l: 'Laundering-transaction F1', s: `± ${fmt(full.f1[1]*100,1)} over 3 seeds · best published 64.8% (IBM GFP + XGBoost)`},
+  best && {v: fmt(best.gpu_txn_s/1e6, 2) + 'M/s', l: 'Transactions scored per second', s: `One A100 · ${fmt(best.speedup,0)}× the same code on ${D.bench.cpu_threads} CPU cores`},
   {v: fmt(ev.rings.ring_recall*100, 0) + '%', l: 'Known laundering rings caught', s: `${ev.rings.detected} of ${ev.rings.known_attempts_in_test} attempts in the test period`},
-  {v: fmt(ev.rings.stoppable_value_share*100, 0) + '%', l: 'Ring value still stoppable at first alert', s: 'Share of laundered USD that moved after the alert'},
-  ev.accounts.wrongful_flags_reduction != null && {v: fmt(ev.accounts.wrongful_flags_reduction*100, 0) + '%', l: 'Fewer innocent accounts flagged', s: `vs a 24h amount rule at equal recall (${fmt(ev.accounts.muleradar.innocent_flagged_per_10k,1)} vs ${fmt(ev.accounts.threshold_rule_same_recall.innocent_flagged_per_10k,1)} per 10k)`},
+  {v: fmt(ev.rings.stoppable_value_share*100, 0) + '%', l: 'Ring value still stoppable at first alert', s: 'Upper bound on this synthetic benchmark: share of laundered USD that moved after the alert'},
+  ev.accounts.wrongful_flags_reduction != null && {v: fmt(ev.accounts.wrongful_flags_reduction*100, 1) + '%', l: 'Fewer innocent accounts flagged', s: `vs a 24h amount rule at equal recall (${fmt(ev.accounts.muleradar.innocent_flagged_per_10k,1)} vs ${fmt(ev.accounts.threshold_rule_same_recall.innocent_flagged_per_10k,1)} per 10k)`},
 ].filter(Boolean);
 $('#kpis').innerHTML = kpis.map(k => `<div class="kpi"><span class="v">${k.v}</span><span class="l">${k.l}</span><span class="s">${k.s}</span></div>`).join('');
 
@@ -198,7 +198,7 @@ function graphSVG(r) {
   edges.forEach(e => { const k = e.from + '>' + e.to; const p = pair.get(k) || {n:0, usd:0, from:e.from, to:e.to, bad:false}; p.n++; p.usd += e.usd; p.bad ||= e.is_laundering; pair.set(k, p); });
   const maxU = Math.max(...[...pair.values()].map(p => p.usd));
   let s = `<svg class="graph" viewBox="0 0 ${W} ${H}" role="img" aria-label="Money flows inside ring ${r.ring_id}">
-    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`;
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>`;
   for (const p of pair.values()) {
     const a = pos[idx.get(p.from)], b = pos[idx.get(p.to)]; if (!a || !b || a === b) continue;
     const dx = b.x-a.x, dy = b.y-a.y, d = Math.hypot(dx, dy) || 1, ux = dx/d, uy = dy/d;
@@ -274,7 +274,7 @@ show(0);
   const lo = Math.floor(Math.log10(Math.min(...R.map(d => d.cpu_txn_s)))), hi = Math.ceil(Math.log10(Math.max(...R.map(d => d.gpu_txn_s))));
   const x = i => l + (W-l-r) * i / (R.length-1), y = v => t + (H-t-b) * (1 - (Math.log10(v)-lo)/(hi-lo));
   let s = '';
-  for (let e = lo; e <= hi; e++) s += `<line x1="${l}" x2="${W-r}" y1="${y(10**e)}" y2="${y(10**e)}" stroke="var(--line)"/><text x="${l-8}" y="${y(10**e)+4}" text-anchor="end">${e>=6?fmt(10**e/1e6)+'M':fmt(10**e/1e3)+'k'}</text>`;
+  for (let e = lo; e <= hi; e++) s += `<line x1="${l}" x2="${W-r}" y1="${y(10**e)}" y2="${y(10**e)}" stroke="var(--line)"/><text x="${l-8}" y="${y(10**e)+4}" text-anchor="end">${e>=6?fmt(10**e/1e6)+'M':e>=3?fmt(10**e/1e3)+'k':fmt(10**e)}</text>`;
   R.forEach((d, i) => s += `<text x="${x(i)}" y="${H-18}" text-anchor="middle">${fmt(d.batch)}</text>`);
   s += `<text x="${(l+W-r)/2}" y="${H-2}" text-anchor="middle">transactions per micro-batch</text>`;
   for (const [key, col, name] of [['cpu_txn_s', 'var(--cpu)', `CPU · ${D.bench.cpu_threads} cores`], ['gpu_txn_s', 'var(--accent)', 'GPU · A100']]) {
@@ -293,6 +293,6 @@ $('#method').innerHTML = `<h2>How these numbers were produced</h2>
   <p>Stream: ${fmt(D.meta.n_txns)} transactions replayed in time order in micro-batches of ${D.features.batch_size}. Each transaction is scored only from transactions at or before its own timestamp, inside sliding windows of 6h to 96h.</p>
   <p>Split: first 60% of the stream for training, next 20% for validation (the alert threshold is chosen here), last 20% for testing, the same protocol as the published IBM AML benchmarks. Model: gradient-boosted trees on 48 features.</p>
   <p>Account view (test period): ${fmt(acc.muleradar.flagged)} accounts flagged out of ${fmt(acc.active_accounts)} active; precision ${fmt(acc.muleradar.precision*100,1)}%, recall ${fmt(acc.muleradar.recall*100,1)}%.${acc.threshold_rule_same_recall ? ` The comparison rule (${esc(acc.threshold_rule_same_recall.rule)}) needs ${fmt(acc.threshold_rule_same_recall.flagged)} flags to reach the same recall.` : ''}</p>
-  <p>Rings: ${rr.detected} of ${rr.known_attempts_in_test} known laundering attempts in the test period received an alert; median ${fmt(rr.median_hours_to_first_alert,1)}h after the attempt's first transfer. By type: ${Object.entries(rr.by_typology).map(([k,v]) => `${k.toLowerCase()} ${v}`).join(', ')}.</p>
+  <p>Rings: ${rr.detected} of ${rr.known_attempts_in_test} known laundering attempts in the test period received an alert; median ${fmt(rr.median_hours_to_first_alert,1)}h after the attempt's first transfer. That early timing is partly a property of the synthetic data, where laundering is generated almost entirely as ACH payments; every published model on this dataset benefits from the same signal, so the F1 comparison is like for like, but the stoppable-value share should be read as an upper bound. By type: ${Object.entries(rr.by_typology).map(([k,v]) => `${k.toLowerCase()} ${v}`).join(', ')}.</p>
   ${D.bench ? `<p>Hardware: ${esc(D.bench.gpu)} vs ${D.bench.cpu_threads} CPU threads of the same node, running the same algorithms (CUDA kernels vs Numba). ${esc(D.bench.note)}</p>` : ''}`;
 </script>

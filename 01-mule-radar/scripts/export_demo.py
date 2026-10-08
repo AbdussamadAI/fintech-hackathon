@@ -35,7 +35,8 @@ REASONS = {
     "dst_out_distinct_L": lambda v: f"receiver paid out to {int(v)} different accounts in 72h",
     "pt_amt_over_recv": lambda v: f"outgoing amount was {v:.0%} of what the sender received in the prior 48h",
     "pt_sent_over_recv": lambda v: f"sender forwarded {v:.0%} of its 48h inflow",
-    "pt_min_since_in": lambda v: f"sent {v / 60:.1f}h after the last inbound credit",
+    "pt_min_since_in": lambda v: (f"sent within {max(int(v), 1)} minute(s) of the last inbound credit" if v < 60
+                                  else f"sent {v / 60:.1f}h after the last inbound credit"),
     "src_out_cnt_S": lambda v: f"sender made {int(v)} transfers in 6h",
     "dst_in_cnt_S": lambda v: f"receiver got {int(v)} transfers in 6h",
     "src_net_flow_L": lambda v: f"sender is a {'collector' if v > 0.3 else 'distributor' if v < -0.3 else 'pass-through'} account (net flow {v:+.2f})",

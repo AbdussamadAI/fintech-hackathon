@@ -1,0 +1,63 @@
+{
+  "name": "HI-Small",
+  "t0": "2022-09-01 00:00:00",
+  "span_seconds": 1527480,
+  "n_txns": 5078345,
+  "n_accounts": 515088,
+  "n_laundering_txns": 5177,
+  "laundering_rate": 0.0010194266045335635,
+  "n_laundering_accounts": 6357,
+  "n_attempts": 370,
+  "laundering_txns_in_attempts": 3209,
+  "currencies": [
+    "Australian Dollar",
+    "Bitcoin",
+    "Brazil Real",
+    "Canadian Dollar",
+    "Euro",
+    "Mexican Peso",
+    "Ruble",
+    "Rupee",
+    "Saudi Riyal",
+    "Shekel",
+    "Swiss Franc",
+    "UK Pound",
+    "US Dollar",
+    "Yen",
+    "Yuan"
+  ],
+  "usd_rates": {
+    "US Dollar": 1.0,
+    "Bitcoin": 11881.623158438873,
+    "Australian Dollar": 0.7078142491486866,
+    "UK Pound": 1.2916559025928573,
+    "Mexican Peso": 0.04729675451311959,
+    "Euro": 1.1717834513422054,
+    "Rupee": 0.013615817215022722,
+    "Yen": 0.009487666813824899,
+    "Shekel": 0.2961206892175486,
+    "Swiss Franc": 1.0928961748302577,
+    "Saudi Riyal": 0.26658846778824696,
+    "Yuan": 0.14930721013174814,
+    "Ruble": 0.012852759882340985,
+    "Brazil Real": 0.17710086114617118,
+    "Canadian Dollar": 0.7579776359860626
+  },
+  "formats": [
+    "ACH",
+    "Bitcoin",
+    "Cash",
+    "Cheque",
+    "Credit Card",
+    "Reinvestment",
+    "Wire"
+  ],
+  "split": {
+    "train_end_ts": 480960,
+    "val_end_ts": 663120,
+    "fractions": [
+      0.6,
+      0.2
+    ]
+  }
+}

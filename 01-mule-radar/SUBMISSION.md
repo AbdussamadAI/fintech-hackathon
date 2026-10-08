@@ -76,27 +76,27 @@ seen during training.
 
 | Result | MuleRadar | Reference |
 |---|---|---|
-| Laundering-transaction F1 (minority class) | **__F1__** | IBM Graph Feature Preprocessor + XGBoost (ICAIF'24): 63.2–64.8%; PNA graph neural network: 56.8%; GIN: 28.7%; plain XGBoost: 19.8% |
-| Precision of alerts | **__PREC__** | |
-| Known laundering rings flagged (test period) | **89 of 95 (94%)**; all cycle, scatter-gather, gather-scatter and stack rings | |
-| Innocent accounts flagged per 10,000 active accounts | **8.6** | 1,906 for a "24h outbound ≥ $4,927" rule at the *same* recall → **99.6% fewer wrongful flags** |
-| Throughput, one A100 GPU | **__GPU_TPUT__ transfers/s** (__SPEEDUP__× the same algorithms on __CPU_THREADS__ CPU cores) | IBM GFP: ≈14k transfers/s on 64 CPU threads (batch 2048) |
-| Latency per micro-batch of 2,048 transfers | **__LAT__ ms** | IBM GFP: 148 ms |
+| Laundering-transaction F1 (minority class) | **66.6% ± 0.3 (3 seeds)** | IBM Graph Feature Preprocessor + XGBoost (ICAIF'24): 63.2–64.8%; PNA graph neural network: 56.8%; GIN: 28.7%; plain XGBoost: 19.8% |
+| Precision of alerts | **84.8% (recall 54.9%)** | |
+| Known laundering rings flagged (test period) | **90 of 95 (95%)**; all cycle, scatter-gather, gather-scatter and stack rings | |
+| Innocent accounts flagged per 10,000 active accounts | **7.6** | 1,950 for a "24h outbound ≥ $4,754" rule at the *same* recall → **99.6% fewer wrongful flags** |
+| Throughput, one A100 GPU | **1.28 million transfers/s** at batch 32,768 (15× the same algorithms on 8 CPU cores; 23× at batch 2,048) | IBM GFP: ≈14k transfers/s on 64 CPU threads (batch 2048) |
+| Latency per micro-batch of 2,048 transfers | **15.2 ms** | IBM GFP: 148 ms |
 
 Ablation (each detector family adds accuracy):
 
 | Features | F1 |
 |---|---|
-| Transfer fields only | __A0__ |
-| + account velocity | __A1__ |
-| + pass-through | __A2__ |
-| + scatter-gather | __A3__ |
-| + temporal cycles (full) | __A4__ |
+| Transfer fields only | 21.7 ± 0.1 |
+| + account velocity | 63.4 ± 0.2 |
+| + pass-through | 65.7 ± 0.5 |
+| + scatter-gather | 66.5 ± 0.1 |
+| + temporal cycles (full) | **66.6 ± 0.3** |
 
 **What this means for a Nigerian bank**
 
 - **Fewer wrongful freezes → inclusion.** To catch the same half of the mule accounts, a typical amount rule
-  would put 69,057 accounts under suspicion; MuleRadar flags 1,414, of which 78% are truly involved.
+  would put 70,616 accounts under suspicion; MuleRadar flags 1,401, of which 81% are truly involved.
   For students and small traders that is the difference between a working account and a frozen one.
 - **Capacity to spare.** Nigeria's 2024 national average is ~355 e-payments per second; one GPU sustains
   hundreds of thousands per second, so a single server covers a tier-1 bank's peak load with large headroom,
@@ -109,7 +109,7 @@ mostly generated as one payment format, which lets every model, ours included, a
 transfer; our measured "95% of ring value still stoppable at first alert" is therefore an upper bound. On
 real data the first alert will come a few hops in; the network detectors (velocity, pass-through,
 scatter-gather, cycles) are what carry detection once that shortcut is gone, and the ablation shows they lift
-F1 from 21.7% to __A4__.
+F1 from 21.7% to 66.6%.
 
 ## 4. Target Users & Implementation
 
@@ -140,10 +140,16 @@ for MFBs that have no GPU infrastructure.
 
 ## 5. Team & Expertise
 
-> **TO FILL IN:** name, role and one line of relevant experience for each member, e.g.
-> - *Name* — GPU/CUDA engineer: wrote the streaming graph engine and kernels.
-> - *Name* — ML/data: features, model, evaluation.
-> - *Name* — product/compliance: Nigerian AML context (CBN, NFIU), pitch.
+| Member | Role | Contribution to MuleRadar |
+|---|---|---|
+| **Abdussamad Ali** | CEO | Leads the venture and the GPU/AI build: problem framing, the CUDA detection engine and model evaluation; owns bank partnerships and the go-to-market plan. *[add one line of prior experience]* |
+| **Abubakar Abdullahi** | CTO | Owns the technical architecture and deployment path: streaming ingestion from NIP / core-banking feeds, on-premises GPU server, security and integration with case-management tools. *[add one line of prior experience]* |
+| **Umar Mohammed Bashir** | Product Manager | Turns detections into analyst workflow: tiered actions, the STR drafting flow for NFIU, CBN/NFIU compliance requirements, rollout plan with pilot banks. *[add one line of prior experience]* |
+| **Abdulbasit Idris Ali** | UI Designer | Designs the analyst console: alert queue, ring visualisation, plain-English reason codes and the review-and-approve STR screen. *[add one line of prior experience]* |
+
+Together the team covers the three things a bank needs to adopt this: a detection engine that works at
+national scale (CEO/CTO), a workflow that fits compliance obligations (PM), and an interface analysts can
+act on in seconds (design).
 
 ---
 

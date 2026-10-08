@@ -106,7 +106,7 @@ def main():
     res, clf, p_te = fit_eval(X, y, splits, cols, 0, args.device, args.lr)
     te = splits[2]
     pl.DataFrame({"txn_id": tx["txn_id"].to_numpy()[te], "score": p_te}).write_parquet(d / "test_scores.parquet")
-    clf.save_model(d / "model.json")
+    clf.get_booster().save_model(d / "model.json")
     imp = sorted(zip(names, clf.feature_importances_), key=lambda t: -t[1])[:15]
     print("top features:", ", ".join(f"{n} {v:.3f}" for n, v in imp))
     (d / "train_results.json").write_text(json.dumps({"ladder": results, "final": res,
