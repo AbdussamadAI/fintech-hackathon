@@ -21,6 +21,7 @@ import polars as pl
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pipeline import genai  # noqa: E402
+from pipeline.redact import redact  # noqa: E402
 
 HOUR, DAY = 3600, 86400
 
@@ -54,24 +55,32 @@ def main():
     ap.add_argument("--k", type=int, default=40)
     ap.add_argument("--tau", type=float, default=0.75)
     ap.add_argument("--warmup-days", type=float, default=3)
+    ap.add_argument("--source", choices=["text", "summary"], default="text",
+                    help="embed the redacted complaint, or N-ATLaS's English summary of it (language-independent)")
     args = ap.parse_args()
     d = Path(args.data)
     df = pl.read_parquet(d / "complaints.parquet").sort("ts")
 
     # ---- embeddings (cached per distinct text) ----
-    texts = df["text"].unique(maintain_order=True).to_list()
-    cache = d / "embeddings.npy"
+    red = [redact(t) for t in df["text"].to_list()]          # embed redacted text only (no PII leaves this step)
+    if args.source == "summary":                             # N-ATLaS English summary of each redacted complaint
+        nm = pl.read_parquet(d / "normalized.parquet").select("redacted", "summary_en")
+        smap = dict(zip(nm["redacted"].to_list(), nm["summary_en"].to_list()))
+        red = [smap.get(r) or r for r in red]
+    texts = list(dict.fromkeys(red))
+    cache = d / f"embeddings_{args.source}.npy"
     t0 = time.perf_counter()
-    if cache.exists() and json.loads((d / "embeddings.json").read_text())["n"] == len(texts):
+    meta_f = d / f"embeddings_{args.source}.json"
+    if cache.exists() and json.loads(meta_f.read_text())["n"] == len(texts):
         E = np.load(cache)
     else:
         E = np.asarray(genai.embed(texts), np.float32)
         E /= np.linalg.norm(E, axis=1, keepdims=True) + 1e-9
         np.save(cache, E)
-        (d / "embeddings.json").write_text(json.dumps({"n": len(texts), "seconds": time.perf_counter() - t0}))
+        meta_f.write_text(json.dumps({"n": len(texts), "seconds": time.perf_counter() - t0}))
     emb_s = time.perf_counter() - t0
     idx = {t: i for i, t in enumerate(texts)}
-    row_e = np.array([idx[t] for t in df["text"].to_list()])
+    row_e = np.array([idx[t] for t in red])
     ts = df["ts"].to_numpy()
 
     # ---- bootstrap topics on warm-up days ----
@@ -138,7 +147,7 @@ def main():
     import re
     from collections import Counter
     tok = lambda t: set(re.findall(r"[a-z][a-z0-9.]+", t.lower()))  # noqa: E731
-    all_txt = df["text"].to_list()
+    all_txt = red
     df_count = Counter(w for t in all_txt[::7] for w in tok(t))
     n_all = len(all_txt[::7])
     names = {}
@@ -149,12 +158,13 @@ def main():
         kw = sorted(((cw[w] / len(mem)) / ((df_count[w] + 1) / n_all), w) for w in cw if cw[w] >= max(5, 0.15 * len(mem)))[::-1][:8]
         names[int(tp)] = {"size": int((topic == tp).sum()), "keywords": [w for _, w in kw],
                           "majority_issue": str(g[c.argmax()]), "purity": float(c.max() / c.sum()),
-                          "samples": df.filter(pl.Series(topic == tp))["text"].head(5).to_list()}
+                          "samples": [red[i] for i in np.where(topic == tp)[0][:5]]}
     metrics = {"n_topics": int(len(np.unique(topic))), "bootstrap_topics": len(keep), "purity": purity(topic, gold),
                "nmi": nmi(topic, gold), "by_language": by_lang, "embed_seconds": emb_s, "distinct_texts": len(texts)}
     out = df.select("complaint_id").with_columns(topic=pl.Series(["T%02d" % t for t in topic]))
-    out.write_parquet(d / "topics.parquet")
-    (d / "topics.json").write_text(json.dumps({"metrics": metrics, "topics": {"T%02d" % k: v for k, v in names.items()}},
+    suffix = "" if args.source == "text" else "_summary"
+    out.write_parquet(d / f"topics{suffix}.parquet")
+    (d / f"topics{suffix}.json").write_text(json.dumps({"metrics": metrics, "topics": {"T%02d" % k: v for k, v in names.items()}},
                                               indent=1, ensure_ascii=False))
     print(json.dumps(metrics, indent=1))
 

@@ -14,7 +14,7 @@ start() { # port model extra-args...
     > "$HOME/models/server-$port.log" 2>&1 &
   echo "starting $model on $NODE:$port"
 }
-start 8081 N-ATLaS.Q4_K_M.gguf -c 32768 --parallel 16 -fa on --jinja
+start 8081 N-ATLaS.Q4_K_M.gguf -c 65536 --parallel 32 -fa on --jinja
 start 8082 bge-m3-q8_0.gguf --embedding --pooling cls -c 16384 -b 8192 -ub 8192 --parallel 8
 for p in 8081 8082; do
   for i in $(seq 1 90); do up $p && { echo "port $p ready"; break; }; sleep 2; done

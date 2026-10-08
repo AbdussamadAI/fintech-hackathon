@@ -131,11 +131,14 @@ def customer_message(evidence: dict, language: str):
 
 
 # --------------------------------------------------------------------------------------------- embeddings
-def embed(texts, batch=256):
-    out = []
-    for i in range(0, len(texts), batch):
+def embed(texts, batch=128, workers=8):
+    """Batches are sent concurrently so every server slot stays busy."""
+    def one(i):
         r = _post(f"{EMB_URL}/v1/embeddings", {"input": texts[i:i + batch]}, timeout=600)
-        out.extend(d["embedding"] for d in sorted(r["data"], key=lambda d: d["index"]))
+        return [d["embedding"] for d in sorted(r["data"], key=lambda d: d["index"])]
+    out = []
+    for chunk in pmap(one, list(range(0, len(texts), batch)), workers):
+        out.extend(chunk)
     return out
 
 

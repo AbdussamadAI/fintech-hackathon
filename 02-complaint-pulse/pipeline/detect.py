@@ -360,7 +360,8 @@ def run(data, ops_name="gpu", topics="gold", no_dedup=False):
     for inc in meta["incidents"]:
         cand_m = [m for m in merged if issues_of(m) & set(inc["issues"]) and inc["start_ts"] - 3 * HOUR <= m["alert_ts"] <= inc["end_ts"]]
         m = min(cand_m, key=lambda x: x["alert_ts"]) if cand_m else None
-        nv = min([t for tp in inc["issues"] for t in naive.get(tp, []) if inc["start_ts"] <= t <= inc["end_ts"] + DAY], default=None)
+        nv = min([t for tp, times in naive.items() if topic_issue.get(tp, tp) in inc["issues"] for t in times
+                  if inc["start_ts"] <= t <= inc["end_ts"] + DAY], default=None)
         r = {"incident": inc["name"], "start": inc["start_ts"], "peak": inc["peak_ts"]}
         if m:
             matched.add(id(m))
