@@ -1,0 +1,685 @@
+{
+ "ops": "cpu",
+ "topics": "gold",
+ "dedup": {
+  "social_posts": 45658,
+  "cascades": 2,
+  "dropped_reposts": 896,
+  "minhash_seconds": 0.44331787497503683
+ },
+ "timings": {
+  "dedup_s": 0.5883597499923781,
+  "k1_replay_s": 1.025874124985421,
+  "n_series": 33516,
+  "n_buckets": 2880
+ },
+ "k2": {
+  "seconds": 4.327661170100328,
+  "pairs_scored": 2526370,
+  "values": 386,
+  "candidates": 17
+ },
+ "incidents": [
+  {
+   "incident": "OTP failure after app 4.2.1 release (Android)",
+   "start": 276480.0,
+   "peak": 334080.0,
+   "detected": true,
+   "hours_to_detect": 4.7,
+   "hours_before_peak": 11.3,
+   "top1": true,
+   "top3": true,
+   "top_cause": "app_version=4.2.1 + device_os=Android",
+   "lift": 44.333807491702224,
+   "support": 0.5964912280701754,
+   "event_ok": true,
+   "linked_event": "Mobile app 4.2.1 rolled out to Android",
+   "naive_hours_to_detect": null
+  },
+  {
+   "incident": "Reversals stuck on Switch C",
+   "start": 651230.0,
+   "peak": 741230.0,
+   "detected": true,
+   "hours_to_detect": 10.352777777777778,
+   "hours_before_peak": 14.647222222222222,
+   "top1": true,
+   "top3": true,
+   "top_cause": "switch=Switch C",
+   "lift": 2.5242888638677448,
+   "support": 0.5492957746478874,
+   "event_ok": true,
+   "linked_event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)",
+   "naive_hours_to_detect": 35.102777777777774
+  },
+  {
+   "incident": "ATM cluster in Kano debiting without dispensing",
+   "start": 996273.0,
+   "peak": 1035873.0,
+   "detected": true,
+   "hours_to_detect": 3.5075,
+   "hours_before_peak": 7.4925,
+   "top1": true,
+   "top3": true,
+   "top_cause": "region=Kano",
+   "lift": 3.692255308611404,
+   "support": 0.2471264367816092,
+   "event_ok": true,
+   "linked_event": "Cash-recycler firmware pushed to Kano ATM fleet",
+   "naive_hours_to_detect": 11.2575
+  },
+  {
+   "incident": "USSD timeouts on Telco 2",
+   "start": 1086886.0,
+   "peak": 1113886.0,
+   "detected": true,
+   "hours_to_detect": 4.0872222222222225,
+   "hours_before_peak": 3.412777777777778,
+   "top1": true,
+   "top3": true,
+   "top_cause": "telco=Telco 2",
+   "lift": 2.756949662839981,
+   "support": 0.7345971563981043,
+   "event_ok": true,
+   "linked_event": "USSD gateway link to Telco 2 flapping",
+   "naive_hours_to_detect": 10.087222222222222
+  },
+  {
+   "incident": "Card declines after Card scheme B maintenance",
+   "start": 1382097.0,
+   "peak": 1401897.0,
+   "detected": true,
+   "hours_to_detect": 2.8341666666666665,
+   "hours_before_peak": 2.6658333333333335,
+   "top1": true,
+   "top3": true,
+   "top_cause": "card_scheme=Card scheme B",
+   "lift": 2.3014329489700125,
+   "support": 0.8148148148148148,
+   "event_ok": true,
+   "linked_event": "Card scheme B planned maintenance window",
+   "naive_hours_to_detect": 24.08416666666667
+  },
+  {
+   "incident": "POS debit-without-value in Lagos (one acquirer)",
+   "start": 1565439.0,
+   "peak": 1623039.0,
+   "detected": true,
+   "hours_to_detect": 6.905833333333334,
+   "hours_before_peak": 9.094166666666666,
+   "top1": true,
+   "top3": true,
+   "top_cause": "region=Lagos + switch=Switch E",
+   "lift": 14.915673289183223,
+   "support": 0.3904761904761905,
+   "event_ok": true,
+   "linked_event": "Switch E acquiring host latency alarm",
+   "naive_hours_to_detect": 21.155833333333334
+  },
+  {
+   "incident": "Unauthorised debits via app in Rivers (fraud campaign)",
+   "start": 1849400.0,
+   "peak": 1925000.0,
+   "detected": true,
+   "hours_to_detect": 7.027777777777778,
+   "hours_before_peak": 13.972222222222221,
+   "top1": true,
+   "top3": true,
+   "top_cause": "channel=app_chat + region=Rivers",
+   "lift": 19.414802065404473,
+   "support": 0.25301204819277107,
+   "event_ok": true,
+   "linked_event": null,
+   "naive_hours_to_detect": 38.27777777777778
+  },
+  {
+   "incident": "SMS charge rule error for student accounts",
+   "start": 2332800.0,
+   "peak": 2404800.0,
+   "detected": true,
+   "hours_to_detect": 7.5,
+   "hours_before_peak": 12.5,
+   "top1": true,
+   "top3": true,
+   "top_cause": "segment=student",
+   "lift": 5.441751929635612,
+   "support": 0.8148148148148148,
+   "event_ok": true,
+   "linked_event": "SMS alert billing rule updated",
+   "naive_hours_to_detect": 24.0
+  }
+ ],
+ "detected": "8/8",
+ "median_hours_to_detect": 5.8029166666666665,
+ "median_hours_before_peak": 10.197083333333333,
+ "naive_detected": "7/8",
+ "naive_median_hours_to_detect": 24.0,
+ "root_cause_top1": "8/8",
+ "root_cause_top3": "8/8",
+ "event_linked": "8/8",
+ "false_incidents": [],
+ "suppressed_surges": [
+  {
+   "topic": "pos_debited_no_value",
+   "at_day": 20.416666666666668
+  },
+  {
+   "topic": "transfer_debited_not_received",
+   "at_day": 24.927083333333332
+  },
+  {
+   "topic": "otp_not_received",
+   "at_day": 24.958333333333332
+  },
+  {
+   "topic": "ussd_session_timeout",
+   "at_day": 25.395833333333332
+  },
+  {
+   "topic": "sms_charges",
+   "at_day": 25.364583333333332
+  },
+  {
+   "topic": "atm_debited_no_cash",
+   "at_day": 25.375
+  },
+  {
+   "topic": "reversal_delayed",
+   "at_day": 25.385416666666668
+  }
+ ],
+ "raised": [
+  {
+   "max_score": 255.77047729492188,
+   "series": {
+    "segment=student": 84.665771484375,
+    "channel=app_review": 150.77313232421875,
+    "all channels/regions": 255.77047729492188,
+    "channel=app_chat": 109.1070327758789,
+    "channel=app_review / segment=retail": 86.63420104980469,
+    "segment=retail": 144.1517333984375,
+    "channel=app_chat / segment=retail": 31.053123474121094,
+    "channel=social / segment=retail": 24.0908145904541,
+    "channel=social": 29.494611740112305,
+    "region=Lagos": 24.38027572631836,
+    "region=Lagos / segment=retail": 9.17678451538086,
+    "segment=sme": 23.410940170288086,
+    "region=Kano": 10.330864906311035,
+    "segment=trader": 14.496912002563477,
+    "channel=call_centre": 7.73661994934082,
+    "channel=app_review / segment=pensioner": 7.197796821594238,
+    "channel=social / region=Lagos / segment=retail": 7.157598972320557
+   },
+   "root_cause": [
+    {
+     "items": [
+      "app_version=4.2.1",
+      "device_os=Android"
+     ],
+     "support_spike": 0.5964912280701754,
+     "support_base": 0.013100436681222707,
+     "lift": 44.333807491702224,
+     "explained": 0.7208535683867727,
+     "score": 3.943310767956744
+    },
+    {
+     "items": [
+      "app_version=4.2.1"
+     ],
+     "support_spike": 0.5964912280701754,
+     "support_base": 0.016739446870451237,
+     "lift": 34.90108249346771,
+     "explained": 0.7200778348129002,
+     "score": 3.6905428316429236
+    },
+    {
+     "items": [
+      "app_version=4.2.1",
+      "segment=retail"
+     ],
+     "support_spike": 0.38596491228070173,
+     "support_base": 0.010189228529839884,
+     "lift": 36.60012099213551,
+     "explained": 0.46606961080373643,
+     "score": 2.4206613978497478
+    }
+   ],
+   "n_spike": 114,
+   "alert_ts": 293400.0,
+   "linked_event": "Mobile app 4.2.1 rolled out to Android",
+   "n_regions": 28,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.17543859649122806,
+   "topics": [
+    "otp_not_received",
+    "app_login_failure"
+   ]
+  },
+  {
+   "max_score": 57.02181625366211,
+   "series": {
+    "all channels/regions": 57.02181625366211,
+    "segment=retail": 24.730518341064453,
+    "channel=call_centre": 7.871705055236816
+   },
+   "root_cause": [
+    {
+     "items": [
+      "switch=Switch C"
+     ],
+     "support_spike": 0.5492957746478874,
+     "support_base": 0.21754532194207127,
+     "lift": 2.5242888638677448,
+     "explained": 1.0,
+     "score": 1.335877012786339
+    },
+    {
+     "items": [
+      "switch=Switch C",
+      "segment=retail"
+     ],
+     "support_spike": 0.3380281690140845,
+     "support_base": 0.1387789122733903,
+     "lift": 2.4344114197563473,
+     "explained": 0.6197372468631882,
+     "score": 0.7954780012726794
+    },
+    {
+     "items": [
+      "language=English",
+      "switch=Switch C"
+     ],
+     "support_spike": 0.2746478873239437,
+     "support_base": 0.10981454469681183,
+     "lift": 2.4991656097723784,
+     "explained": 0.5076979358403398,
+     "score": 0.6708956635510721
+    }
+   ],
+   "n_spike": 142,
+   "alert_ts": 688500.0,
+   "linked_event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)",
+   "n_regions": 30,
+   "n_channels": 6,
+   "money_at_stake": 11178500.0,
+   "vulnerable_share": 0.19014084507042253,
+   "topics": [
+    "reversal_delayed",
+    "transfer_debited_not_received"
+   ]
+  },
+  {
+   "max_score": 158.5029296875,
+   "series": {
+    "region=Kano": 158.5029296875,
+    "region=Kano / segment=retail": 93.09049987792969,
+    "channel=app_chat / region=Kano": 9.250337600708008,
+    "channel=call_centre / region=Kano": 30.121660232543945,
+    "channel=call_centre / region=Kano / segment=retail": 14.499608039855957,
+    "all channels/regions": 17.616777420043945,
+    "segment=retail": 13.551960945129395
+   },
+   "root_cause": [
+    {
+     "items": [
+      "region=Kano"
+     ],
+     "support_spike": 0.2471264367816092,
+     "support_base": 0.06682692307692308,
+     "lift": 3.692255308611404,
+     "explained": 0.6745933994682681,
+     "score": 1.2712728226835661
+    },
+    {
+     "items": [
+      "language=Hausa",
+      "region=Kano"
+     ],
+     "support_spike": 0.14367816091954022,
+     "support_base": 0.03389423076923077,
+     "lift": 4.225051785061533,
+     "explained": 0.40396174243835936,
+     "score": 0.8398239494665147
+    },
+    {
+     "items": [
+      "language=Hausa"
+     ],
+     "support_spike": 0.23563218390804597,
+     "support_base": 0.14591346153846155,
+     "lift": 1.6139350078047396,
+     "explained": 0.4483437379185051,
+     "score": 0.3096183319131679
+    }
+   ],
+   "n_spike": 174,
+   "alert_ts": 1008900.0,
+   "linked_event": "Cash-recycler firmware pushed to Kano ATM fleet",
+   "n_regions": 33,
+   "n_channels": 6,
+   "money_at_stake": 3838600.0,
+   "vulnerable_share": 0.21264367816091953,
+   "topics": [
+    "atm_debited_no_cash"
+   ]
+  },
+  {
+   "max_score": 59.77088928222656,
+   "series": {
+    "all channels/regions": 59.77088928222656,
+    "segment=retail": 43.26768112182617,
+    "channel=call_centre": 27.160499572753906,
+    "channel=call_centre / segment=retail": 13.47885513305664,
+    "segment=sme": 7.0709075927734375
+   },
+   "root_cause": [
+    {
+     "items": [
+      "telco=Telco 2"
+     ],
+     "support_spike": 0.7345971563981043,
+     "support_base": 0.26638772663877264,
+     "lift": 2.756949662839981,
+     "explained": 1.0,
+     "score": 1.4630729264579707
+    },
+    {
+     "items": [
+      "telco=Telco 2",
+      "segment=retail"
+     ],
+     "support_spike": 0.46919431279620855,
+     "support_base": 0.1601115760111576,
+     "lift": 2.928687216165716,
+     "explained": 0.7551200272917981,
+     "score": 1.170627934607802
+    },
+    {
+     "items": [
+      "language=English",
+      "telco=Telco 2"
+     ],
+     "support_spike": 0.3412322274881517,
+     "support_base": 0.13361227336122733,
+     "lift": 2.551947378044863,
+     "explained": 0.5332969294665301,
+     "score": 0.7208033728974989
+    }
+   ],
+   "n_spike": 211,
+   "alert_ts": 1101600.0,
+   "linked_event": "USSD gateway link to Telco 2 flapping",
+   "n_regions": 33,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.1895734597156398,
+   "topics": [
+    "ussd_session_timeout"
+   ]
+  },
+  {
+   "max_score": 69.12015533447266,
+   "series": {
+    "all channels/regions": 69.12015533447266,
+    "segment=retail": 41.26300811767578,
+    "channel=call_centre": 9.83702278137207
+   },
+   "root_cause": [
+    {
+     "items": [
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.8148148148148148,
+     "support_base": 0.35399728997289975,
+     "lift": 2.3014329489700125,
+     "explained": 1.0,
+     "score": 1.2025324110182036
+    },
+    {
+     "items": [
+      "language=English",
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.4444444444444444,
+     "support_base": 0.17073170731707318,
+     "lift": 2.6014756084131703,
+     "explained": 0.7285983103825652,
+     "score": 1.004977639034117
+    },
+    {
+     "items": [
+      "channel=call_centre",
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.2962962962962963,
+     "support_base": 0.10060975609756098,
+     "lift": 2.9410519763460936,
+     "explained": 0.49944755441129757,
+     "score": 0.7773063514845203
+    },
+    {
+     "items": [
+      "card_scheme=Card scheme B",
+      "segment=retail"
+     ],
+     "support_spike": 0.4444444444444444,
+     "support_base": 0.2090108401084011,
+     "lift": 2.125416104363473,
+     "explained": 0.688858970220427,
+     "score": 0.7493031163265508
+    }
+   ],
+   "n_spike": 27,
+   "alert_ts": 1392300.0,
+   "linked_event": "Card scheme B planned maintenance window",
+   "n_regions": 17,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.25925925925925924,
+   "topics": [
+    "card_declined"
+   ]
+  },
+  {
+   "max_score": 141.08741760253906,
+   "series": {
+    "region=Lagos": 141.08741760253906,
+    "region=Lagos / segment=retail": 68.0870361328125,
+    "channel=social / region=Lagos": 13.076204299926758,
+    "channel=call_centre / region=Lagos": 37.89298629760742,
+    "all channels/regions": 19.76487922668457,
+    "channel=call_centre / region=Lagos / segment=retail": 15.068897247314453
+   },
+   "root_cause": [
+    {
+     "items": [
+      "region=Lagos",
+      "switch=Switch E"
+     ],
+     "support_spike": 0.3904761904761905,
+     "support_base": 0.026014568158168574,
+     "lift": 14.915673289183223,
+     "explained": 0.633749766036119,
+     "score": 2.470836461346543
+    },
+    {
+     "items": [
+      "switch=Switch E"
+     ],
+     "support_spike": 0.42857142857142855,
+     "support_base": 0.10267082899757198,
+     "lift": 4.168634064080944,
+     "explained": 0.6461060036282115,
+     "score": 1.3307036001438162
+    },
+    {
+     "items": [
+      "region=Lagos"
+     ],
+     "support_spike": 0.5333333333333333,
+     "support_base": 0.21678806798473813,
+     "lift": 2.4590460964561687,
+     "explained": 0.7446233397766572,
+     "score": 0.9665946485263358
+    },
+    {
+     "items": [
+      "switch=Switch E",
+      "segment=retail"
+     ],
+     "support_spike": 0.2761904761904762,
+     "support_base": 0.05827263267429761,
+     "lift": 4.727200791295747,
+     "explained": 0.4216479118275022,
+     "score": 0.9449071286930454
+    },
+    {
+     "items": [
+      "language=English",
+      "region=Lagos"
+     ],
+     "support_spike": 0.3238095238095238,
+     "support_base": 0.1130766562608394,
+     "lift": 2.8602348136804494,
+     "explained": 0.4644710778313402,
+     "score": 0.7042002032774759
+    }
+   ],
+   "n_spike": 105,
+   "alert_ts": 1590300.0,
+   "linked_event": "Switch E acquiring host latency alarm",
+   "n_regions": 27,
+   "n_channels": 6,
+   "money_at_stake": 3226600.0,
+   "vulnerable_share": 0.19047619047619047,
+   "topics": [
+    "pos_debited_no_value"
+   ]
+  },
+  {
+   "max_score": 48.78618240356445,
+   "series": {
+    "channel=app_chat / region=Rivers": 48.78618240356445,
+    "channel=app_chat / region=Rivers / segment=retail": 12.392414093017578,
+    "region=Rivers": 35.12176513671875,
+    "channel=app_chat": 26.719499588012695,
+    "channel=app_chat / segment=retail": 12.479701042175293,
+    "all channels/regions": 7.152154922485352
+   },
+   "root_cause": [
+    {
+     "items": [
+      "channel=app_chat",
+      "region=Rivers"
+     ],
+     "support_spike": 0.25301204819277107,
+     "support_base": 0.012772751463544438,
+     "lift": 19.414802065404473,
+     "explained": 0.7320395017777972,
+     "score": 3.1324593201899047
+    },
+    {
+     "items": [
+      "region=Rivers",
+      "device_os=Android"
+     ],
+     "support_spike": 0.1927710843373494,
+     "support_base": 0.011176157530601383,
+     "lift": 16.856262258335672,
+     "explained": 0.5548640331451409,
+     "score": 2.261188988224438
+    },
+    {
+     "items": [
+      "region=Rivers"
+     ],
+     "support_spike": 0.30120481927710846,
+     "support_base": 0.05534858967535923,
+     "lift": 5.418804404219751,
+     "explained": 0.7914322101226701,
+     "score": 1.9294916044625512
+    },
+    {
+     "items": [
+      "region=Rivers",
+      "segment=retail"
+     ],
+     "support_spike": 0.1927710843373494,
+     "support_base": 0.028738690792974985,
+     "lift": 6.649718138609484,
+     "explained": 0.5198450512312063,
+     "score": 1.4208889386147863
+    },
+    {
+     "items": [
+      "language=Pidgin",
+      "region=Rivers"
+     ],
+     "support_spike": 0.1566265060240964,
+     "support_base": 0.022352315061202766,
+     "lift": 6.928419560595322,
+     "explained": 0.4243638190068287,
+     "score": 1.1850471241658993
+    }
+   ],
+   "n_spike": 83,
+   "alert_ts": 1874700.0,
+   "linked_event": null,
+   "n_regions": 27,
+   "n_channels": 6,
+   "money_at_stake": 5359500.0,
+   "vulnerable_share": 0.1686746987951807,
+   "topics": [
+    "unauthorised_debit"
+   ]
+  },
+  {
+   "max_score": 280.2769775390625,
+   "series": {
+    "segment=student": 280.2769775390625,
+    "channel=call_centre / segment=student": 65.74259948730469,
+    "all channels/regions": 91.35240173339844,
+    "channel=email / segment=student": 7.049681663513184,
+    "region=Lagos / segment=student": 46.407108306884766,
+    "channel=app_chat / segment=student": 11.719412803649902,
+    "channel=branch / segment=student": 21.72406768798828,
+    "channel=branch": 12.236113548278809,
+    "region=Lagos": 8.33299732208252
+   },
+   "root_cause": [
+    {
+     "items": [
+      "segment=student"
+     ],
+     "support_spike": 0.8148148148148148,
+     "support_base": 0.14956437560503388,
+     "lift": 5.441751929635612,
+     "explained": 1.0,
+     "score": 2.4440711906850114
+    },
+    {
+     "items": [
+      "language=English",
+      "segment=student"
+     ],
+     "support_spike": 0.3333333333333333,
+     "support_base": 0.07357212003872217,
+     "lift": 4.518032786885246,
+     "explained": 0.46018194908210963,
+     "score": 1.0012154461777996
+    }
+   ],
+   "n_spike": 27,
+   "alert_ts": 2359800.0,
+   "linked_event": "SMS alert billing rule updated",
+   "n_regions": 17,
+   "n_channels": 6,
+   "money_at_stake": 21990.0,
+   "vulnerable_share": 0.8148148148148148,
+   "topics": [
+    "sms_charges"
+   ]
+  }
+ ]
+}

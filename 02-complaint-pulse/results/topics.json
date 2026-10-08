@@ -1,0 +1,1017 @@
+{
+ "metrics": {
+  "n_topics": 45,
+  "bootstrap_topics": 37,
+  "purity": 0.8937540322095907,
+  "nmi": 0.8079667900245998,
+  "by_language": {
+   "English": {
+    "n": 125377,
+    "same_topic_as_majority": 0.9659825964889892
+   },
+   "Hausa": {
+    "n": 37336,
+    "same_topic_as_majority": 0.3729644311120634
+   },
+   "Igbo": {
+    "n": 8474,
+    "same_topic_as_majority": 0.23932027377861695
+   },
+   "Pidgin": {
+    "n": 54067,
+    "same_topic_as_majority": 0.3321989383542642
+   },
+   "Yoruba": {
+    "n": 24299,
+    "same_topic_as_majority": 0.17523354870570806
+   }
+  },
+  "embed_seconds": 99.57500610407442,
+  "distinct_texts": 27511
+ },
+ "topics": {
+  "T00": {
+   "size": 4139,
+   "keywords": [
+    "savings.",
+    "maintenance",
+    "fee",
+    "savings",
+    "remove",
+    "account.",
+    "charged",
+    "on"
+   ],
+   "majority_issue": "maintenance_fee",
+   "purity": 1.0,
+   "samples": [
+    "I was charged a maintenance fee of <AMOUNT> on a savings account. Kindly look into it.",
+    "Hello, I was charged a maintenance fee of <AMOUNT> on a savings account. Fix this now!",
+    "I am very disappointed. I was charged a maintenance fee of <AMOUNT> on a savings account. Fix this now!",
+    "Hello, I was charged a maintenance fee of <AMOUNT> on a savings account. Kindly look into it.",
+    "I was charged a maintenance fee of <AMOUNT> on a savings account."
+   ]
+  },
+  "T01": {
+   "size": 8292,
+   "keywords": [
+    "restricted",
+    "withdraw.",
+    "restrict",
+    "been",
+    "cannot",
+    "fit",
+    "has",
+    "account"
+   ],
+   "majority_issue": "account_restricted",
+   "purity": 1.0,
+   "samples": [
+    "Hello, My account has been restricted and I cannot withdraw. I need my money back.",
+    "Una restrict my account, I no fit withdraw. I want my money back o. 🙄",
+    "Ehn, Una restrict my account, I no fit withdraw.",
+    "Please help, My account has been restricted and I cannot withdraw.",
+    "Una restrict my account, I no fit withdraw. Make una fix am."
+   ]
+  },
+  "T02": {
+   "size": 4529,
+   "keywords": [
+    "says",
+    "every",
+    "time.",
+    "login",
+    "failed",
+    "app",
+    "the",
+    "need"
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 1.0,
+   "samples": [
+    "Please help, The app says login failed every time. I have complained twice already.",
+    "Please help, The app says login failed every time.",
+    "Please help, The app says login failed every time. Fix this now!",
+    "Please help, The app says login failed every time. !!!",
+    "Hi, The app says login failed every time. Fix this now!"
+   ]
+  },
+  "T03": {
+   "size": 14091,
+   "keywords": [
+    "receiving",
+    "complete",
+    "app.",
+    "transactions",
+    "arrives",
+    "otp",
+    "transfer.",
+    "never"
+   ],
+   "majority_issue": "otp_not_received",
+   "purity": 1.0,
+   "samples": [
+    "Una OTP no dey land for my phoe. Una no dey try at all.",
+    "OTP ko de, mi o le transfer.",
+    "E jowo e ran mi lowo, Mi o ri OTP gba lati pari idunadura. E tete yanju re.",
+    "Na wa for una o. Una OTP no dey land for my phone. Abeg make una sort am quick quick.",
+    "Unu, biko nyere m aka, Anaghị m enweta OTP iji mechaa azụmahịa. Biko dozie ya ngwa ngwa."
+   ]
+  },
+  "T04": {
+   "size": 20640,
+   "keywords": [
+    "transferred",
+    "receive",
+    "beneficiary",
+    "received.",
+    "recipient",
+    "debited",
+    "has",
+    "morning"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 1.0,
+   "samples": [
+    "Hi, Transfer of <AMOUNT> debited since morning, recipient has not received. Please resolve urgently.",
+    "Hello, Transfer of <AMOUNT> debited since morning, recipient has not received. I have complained twice already.",
+    "I am very disappointed. Transfer of <AMOUNT> debited since morning, recipient has not received. Fix this now!",
+    "Hi, I transferred <AMOUNT> and my account was debited but the beneficiary did not receive it. I have complained twice already.",
+    "I am very disappointed. I transferred <AMOUNT> and my account was debited but the beneficiary did not receive it. I have complained twice already."
+   ]
+  },
+  "T05": {
+   "size": 1300,
+   "keywords": [
+    "well",
+    "well.",
+    "staff",
+    "rude",
+    "branch",
+    "me",
+    "for",
+    "una"
+   ],
+   "majority_issue": "staff_attitude",
+   "purity": 1.0,
+   "samples": [
+    "Wetin dey happen? Una staff for branch rude me well well. Una no dey try at all.",
+    "Abeg, Una staff for branch rude me well well. I want my money back o.",
+    "Na wa for una o. Una staff for branch rude me well well. Make una fix am.",
+    "Una staff for branch rude me well well. Ku gyara wannan da sauri.",
+    "Na wa for una o. Una staff for branch rude me well well. Abeg make una sort am quick quick."
+   ]
+  },
+  "T06": {
+   "size": 2595,
+   "keywords": [
+    "one",
+    "pick.",
+    "pass",
+    "line",
+    "wait",
+    "hour",
+    "nobody",
+    "don"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 1.0,
+   "samples": [
+    "Una good morning o, I don wait for line pass one hour, nobody pick. I want my money back o.",
+    "Abeg una help me, I don wait for line pass one hour, nobody pick. Una no dey try at all.",
+    "Na wa for una o. I don wait for line pass one hour, nobody pick. Abeg make una sort am quick quick.",
+    "Wetin dey happen? I don wait for line pass one hour, nobody pick. I want my money back o.",
+    "Abeg, I don wait for line pass one hour, nobody pick. Make una fix am."
+   ]
+  },
+  "T07": {
+   "size": 10947,
+   "keywords": [
+    "updated",
+    "incomplete",
+    "kyc.",
+    "complete.",
+    "say",
+    "nin",
+    "bvn",
+    "kyc"
+   ],
+   "majority_issue": "bvn_nin_update",
+   "purity": 1.0,
+   "samples": [
+    "I have updated my BVN and NIN but my account still shows incomplete KYC. Fix this now!",
+    "E jowo e ran mi lowo, Mo ti se imudojuiwon BVN ati NIN sugbon account mi si n fi KYC ti ko pe han. E tete yanju re.",
+    "Sannu, Na sabunta BVN da NIN amma har yanzu asusuna yana nuna KYC bai cika ba.",
+    "Hi, I have updated my BVN and NIN but my account still shows incomplete KYC. Fix this now!",
+    "Wetin dey happen? I don update my BVN and NIN but una still dey talk say my KYC no complete. I want my money back o."
+   ]
+  },
+  "T08": {
+   "size": 10254,
+   "keywords": [
+    "daga",
+    "kuma",
+    "isa",
+    "asusuna.",
+    "masa",
+    "tura",
+    "kudin",
+    "wanda"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.4657694558221182,
+   "samples": [
+    "Biko, Ezigara m <AMOUNT> n'akaụntụ ezighi ezi. Achoro m ego m.",
+    "Ndewo, Ewepuru <AMOUNT> ma transfer ahu erughi. Achoro m ego m.",
+    "Ina kwana, Na tura <AMOUNT> amma bai isa ba, kuma an cire kudin daga asusuna. Na kai kara sau biyu.",
+    "Don Allah, An cire <AMOUNT> na bashin da na riga na biya. Ina son a mayar min da kudina.",
+    "Unu, biko nyere m aka, Reversal nke <AMOUNT> abiabeghi. Achoro m ego m."
+   ]
+  },
+  "T09": {
+   "size": 4337,
+   "keywords": [
+    "soon",
+    "crashes",
+    "as",
+    "open",
+    "app",
+    "it.",
+    "the",
+    "look"
+   ],
+   "majority_issue": "app_crash",
+   "purity": 1.0,
+   "samples": [
+    "This is unacceptable. The app crashes as soon as I open it. Please resolve urgently.",
+    "The app crashes as soon as I open it. Mo fe owo mi pada.",
+    "Hello, The app crashes as soon as I open it. I have complained twice already.",
+    "Hello, The app crashes as soon as I open it. I need my money back.",
+    "Good day, The app crashes as soon as I open it. Kindly look into it."
+   ]
+  },
+  "T10": {
+   "size": 14370,
+   "keywords": [
+    "yo",
+    "fun",
+    "sugbon",
+    "won",
+    "fi",
+    "owo",
+    "lowo",
+    "ko"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.2847599164926931,
+   "samples": [
+    "E ba mi, Won ti di account mi, mi o le gba owo. Mo fe owo mi pada. smh",
+    "Eleyi ko dara rara. Won yo <AMOUNT> fun gbese ti mo ti san tan. Mo ti so tele.",
+    "E kaaro, Won gba <AMOUNT> lowo mi fun USSD ti ko sise. Mo ti so tele.",
+    "E kaaro, Owo <AMOUNT> ti mo transfer ko de. Mo ti so tele.",
+    "Biko, Ewepuru <AMOUNT> ma transfer ahu erughi."
+   ]
+  },
+  "T11": {
+   "size": 2310,
+   "keywords": [
+    "sanarwa",
+    "toshe",
+    "katina",
+    "kudi.",
+    "duk",
+    "ina.",
+    "karbarsa",
+    "ana"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 0.6571428571428571,
+   "samples": [
+    "Don Allah ku taimaka, An toshe katina ba tare da sanarwa ba. Ina son a mayar min da kudina.",
+    "Sannu, Katina bata aiki duk da ina da kudi.",
+    "Wannan ba daidai ba ne. An toshe katina ba tare da sanarwa ba. Na kai kara sau biyu.",
+    "Sannu, Katina ana kin karbarsa ko ina. Ku gyara wannan da sauri.",
+    "Don Allah ku taimaka, Katina bata aiki duk da ina da kudi. Na kai kara sau biyu."
+   ]
+  },
+  "T12": {
+   "size": 4213,
+   "keywords": [
+    "telling",
+    "block",
+    "notice.",
+    "blocked",
+    "without",
+    "me.",
+    "card",
+    "was"
+   ],
+   "majority_issue": "card_blocked",
+   "purity": 1.0,
+   "samples": [
+    "Una block my card without telling me. Abeg make una sort am quick quick.",
+    "Una block my card without telling me. Make una fix am.",
+    "Hello, My card was blocked without notice.",
+    "Na wa for una o. Una block my card without telling me. Abeg make una sort am quick quick. !!!",
+    "Una good morning o, Una block my card without telling me. Make una fix am."
+   ]
+  },
+  "T13": {
+   "size": 4836,
+   "keywords": [
+    "mistakenly",
+    "enter",
+    "collect",
+    "wrong",
+    "mistake",
+    "sent",
+    "recover",
+    "by"
+   ],
+   "majority_issue": "wrong_beneficiary",
+   "purity": 1.0,
+   "samples": [
+    "Hi, I sent <AMOUNT> to a wrong account by mistake, please help recover it. I have complained twice already.",
+    "Abeg, I mistakenly send <AMOUNT> enter wrong account, abeg help me collect am back. Abeg make una sort am quick quick.",
+    "I sent <AMOUNT> to a wrong account by mistake, please help recover it. Fix this now!",
+    "I sent <AMOUNT> to a wrong account by mistake, please help recover it.",
+    "Don Allah, I mistakenly send <AMOUNT> enter wrong account, abeg help me collect am back."
+   ]
+  },
+  "T14": {
+   "size": 5073,
+   "keywords": [
+    "kasuwa",
+    "biya",
+    "dan",
+    "dem",
+    "ta",
+    "see",
+    "samu",
+    "pos"
+   ],
+   "majority_issue": "pos_debited_no_value",
+   "purity": 1.0,
+   "samples": [
+    "Don Allah ku taimaka, Na biya <AMOUNT> ta POS, an cire amma dan kasuwa bai samu ba. Ku gyara wannan da sauri.",
+    "Abeg, I pay <AMOUNT> for POS, dem debit me but the merchant no see am.",
+    "Na wa for una o. I pay <AMOUNT> for POS, dem debit me but the merchant no see am. Abeg make una sort am quick quick.",
+    "Don Allah ku taimaka, Na biya <AMOUNT> ta POS, an cire amma dan kasuwa bai samu ba. Ku gyara wannan da sauri.",
+    "Una good morning o, I pay <AMOUNT> for POS, dem debit me but the merchant no see am. I want my money back o."
+   ]
+  },
+  "T15": {
+   "size": 1856,
+   "keywords": [
+    "itself",
+    "once",
+    "close",
+    "by",
+    "open",
+    "am.",
+    "app",
+    "dey"
+   ],
+   "majority_issue": "app_crash",
+   "purity": 1.0,
+   "samples": [
+    "Na wa for una o. App dey close by itself once I open am. Abeg make una sort am quick quick.",
+    "Ehn, App dey close by itself once I open am. Abeg make una sort am quick quick.",
+    "Na wa for una o. App dey close by itself once I open am. Make una fix am.",
+    "Una good morning o, App dey close by itself once I open am. Una no dey try at all.",
+    "Ehn, App dey close by itself once I open am. Una no dey try at all."
+   ]
+  },
+  "T16": {
+   "size": 7441,
+   "keywords": [
+    "even",
+    "though",
+    "funds.",
+    "declined",
+    "pos.",
+    "getting",
+    "online",
+    "card"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 1.0,
+   "samples": [
+    "Card declined even though I have funds. Fix this now!",
+    "Hello, Card declined even though I have funds. I have complained twice already.",
+    "Please help, My card keeps getting declined online and at POS. Kindly look into it.",
+    "Hello, My card keeps getting declined online and at POS. Kindly look into it.",
+    "E jowo e ran mi lowo, My card keeps getting declined online and at POS. E tete yanju re."
+   ]
+  },
+  "T17": {
+   "size": 4727,
+   "keywords": [
+    "comot",
+    "land",
+    "account.",
+    "transfer",
+    "don",
+    "money",
+    "of",
+    "no"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.9997884493336154,
+   "samples": [
+    "Ehn, Transfer of <AMOUNT> no land, but money don comot for my account.",
+    "Transfer of <AMOUNT> no land, but money don comot for my account. Make una fix am.",
+    "Transfer of <AMOUNT> no land, but money don comot for my account. Ina son a mayar min da kudina.",
+    "Na wa for una o. Transfer of <AMOUNT> no lad, but money don comot for my account. Make una fix am.",
+    "Wetin dey happen? Transfer of <AMOUNT> no land, but money don comot for my accoun. Abeg make una sort am quick quick."
+   ]
+  },
+  "T18": {
+   "size": 7447,
+   "keywords": [
+    "value.",
+    "terminal",
+    "paid",
+    "get",
+    "merchant",
+    "pos",
+    "at",
+    "did"
+   ],
+   "majority_issue": "pos_debited_no_value",
+   "purity": 1.0,
+   "samples": [
+    "I am very disappointed. I paid <AMOUNT> at a POS terminal, I was debited but the merchant did not get value. Kindly look into it.",
+    "Good day, I paid <AMOUNT> at a POS terminal, I was debited but the merchant did not get value. I need my money back.",
+    "I am very disappointed. I paid <AMOUNT> at a POS terminal, I was debited but the merchant did not get value. I need my money back.",
+    "Please help, I paid <AMOUNT> at a POS terminal, I was debited but the merchant did not get value. Kindly look into it.",
+    "Hi, I paid <AMOUNT> at a POS terminal, I was debited but the merchant did not get value. Please resolve urgently."
+   ]
+  },
+  "T19": {
+   "size": 10264,
+   "keywords": [
+    "debited.",
+    "dispense",
+    "cash.",
+    "out",
+    "atm",
+    "pay",
+    "did",
+    "not"
+   ],
+   "majority_issue": "atm_debited_no_cash",
+   "purity": 1.0,
+   "samples": [
+    "Hi, ATM did not pay out 33 but I was debited. I have complained twice already.",
+    "Wannan ba daidai ba ne. ATM did not pay out <AMOUNT> but I was debited.",
+    "I am very disappointed. ATM did not pay out <AMOUNT> but I was debited.",
+    "Good day, ATM did not pay out <AMOUNT> but I was debited. I need my money back.",
+    "The ATM debited me <AMOUNT> but did not dispense cash."
+   ]
+  },
+  "T20": {
+   "size": 7769,
+   "keywords": [
+    "just",
+    "timeout.",
+    "pari.",
+    "work.",
+    "ended.",
+    "cut",
+    "work",
+    "ussd"
+   ],
+   "majority_issue": "ussd_session_timeout",
+   "purity": 0.7793795855322435,
+   "samples": [
+    "E ba mi, Koodu USSD n so pe session ti pari.",
+    "Biko, USSD na-akwusi tupu m mechaa. Biko dozie ya ngwa ngwa.",
+    "Unu, biko nyere m aka, USSD na-ekwu na session agwula. Biko dozie ya ngwa ngwa.",
+    "Wetin dey happen? Una USSD no dey work, e just dey timeout. Abeg make una sort am quick quick.",
+    "Unu, biko nyere m aka, Ha ji USSD na-adighi aru oru chaja m <AMOUNT>. Biko dozie ya ngwa ngwa."
+   ]
+  },
+  "T21": {
+   "size": 4014,
+   "keywords": [
+    "failed.",
+    "login",
+    "update",
+    "fit",
+    "talk",
+    "app",
+    "am.",
+    "dey"
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 0.9997508719481814,
+   "samples": [
+    "Na wa for una o. I no fit login for una app since una update am.",
+    "Abeg, I no fit login for una app since una update am. Abeg make una sort am quick quick.",
+    "Ehn, I no fit login for una app since una update am. Una no dey try at all.",
+    "E jowo, App dey talk login failed. E tete yanju re.",
+    "Abeg, App dey talk login failed. Abeg make una sort am quick quick."
+   ]
+  },
+  "T22": {
+   "size": 7271,
+   "keywords": [
+    "awa",
+    "sama",
+    "waya",
+    "jira",
+    "phone",
+    "daya",
+    "amsa.",
+    "over"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 0.9998624673359923,
+   "samples": [
+    "Hello, I waited over an hour on the phone and nobody answered. I need my money back.",
+    "Hello, I waited over an hour on the phone and nobody answered. I need my money back.",
+    "Wannan ba daidai ba ne. I waited over an hour on the phone and nobody answered.",
+    "Sannu, Na jira sama da awa daya a waya ba wanda ya amsa. Ku gyara wannan da sauri.",
+    "Good day, I waited over an hour on the phone and nobody answered. Fix this now!"
+   ]
+  },
+  "T23": {
+   "size": 2910,
+   "keywords": [
+    "were",
+    "rude",
+    "staff",
+    "branch",
+    "me.",
+    "to",
+    "at",
+    "the"
+   ],
+   "majority_issue": "staff_attitude",
+   "purity": 1.0,
+   "samples": [
+    "The staffat the branch were rude to me.",
+    "Hello, The staff at the branch were rude to me.",
+    "The staff at the branch were rude to me.",
+    "This is unacceptable. The staff at the branch were rude to me. Pls resolve urgently.",
+    "Hi, The staff at the branch were rude to me."
+   ]
+  },
+  "T24": {
+   "size": 8044,
+   "keywords": [
+    "it",
+    "alerts",
+    "month",
+    "much.",
+    "too",
+    "you",
+    "sms",
+    "charge"
+   ],
+   "majority_issue": "sms_charges",
+   "purity": 1.0,
+   "samples": [
+    "Abeg una help me, Una charge me <AMOUNT> for SMS alert, e too much. Abeg make una sort am quick quick.",
+    "This is unacceptable. You charged me <AMOUNT> for SMS alerts this month, it is too much. Pls resolve urgently.",
+    "Ina kwana, An caje ni <AMOUNT> na sakon SMS a wannan wata. Na kai kara sau biyu.",
+    "Hello, You charged me <AMOUNT> for SMS alerts this month, it is too much. Fix this now!",
+    "You charged me <AMOUNT> for SMS alerts this month, it is too much. Kindly look into it."
+   ]
+  },
+  "T25": {
+   "size": 4892,
+   "keywords": [
+    "reach.",
+    "send",
+    "debit",
+    "morning",
+    "since",
+    "don",
+    "me",
+    "no"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.9683156173344235,
+   "samples": [
+    "Una good morning o, I send <AMOUNT> since morning, una don debit me but e no reach. Una no dey try at all.",
+    "Abeg, I send <AMOUNT> since morning, una don debit me but e no reach. I want my money back o.",
+    "Ehn, I send <AMOUNT> since morning, una don debit me but e no reach. I want my money back o.",
+    "Na wa for una o. I send <AMOUNT> since morning, una don debit me but e no reach. Una no dey try at all.",
+    "Na wa for una o. I send <AMOUNT> since morning, una don debit me but e no reach. I want my money back o."
+   ]
+  },
+  "T26": {
+   "size": 1717,
+   "keywords": [
+    "everywhere.",
+    "decline",
+    "card",
+    "dey",
+    "for",
+    "want",
+    "back",
+    "all."
+   ],
+   "majority_issue": "card_declined",
+   "purity": 1.0,
+   "samples": [
+    "Wetin dey happen? My card dey decline for everywhere. Abeg make una sort am quick quick.",
+    "Abeg, My card dey decline for everywhere. Una no dey try at all.",
+    "Wetin dey happen? My card dey decline for everywhere.",
+    "Wannan ba daidai ba ne. My card dey decline for everywhere. Ku gyara wannan da sauri.",
+    "Abeg una help me, My card dey decline for everywhere. Make una fix am."
+   ]
+  },
+  "T27": {
+   "size": 2590,
+   "keywords": [
+    "nibi",
+    "gbogbo.",
+    "kaadi",
+    "kaad",
+    "tile",
+    "je",
+    "sise",
+    "bo"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 0.572972972972973,
+   "samples": [
+    "Nke a adighi mma. Ndị oru na alaka ahu kparịrị m. Agwala  unu ugboro abuo.",
+    "Unu, biko nyere m aka, Kaadị m anaghi aru oru. Agwala m unu ugboro abuo.",
+    "E ba mi, Won ti di kaadi mi lai so fun mi. Mo ti so tele.",
+    "Biko, Kaadị m anaghi aru oru. Achoro m ego m.",
+    "Ma'aikatan reshen sun yi min rashin kunya. Na kai kara sau biyu."
+   ]
+  },
+  "T28": {
+   "size": 1688,
+   "keywords": [
+    "gree",
+    "declined.",
+    "work",
+    "talk",
+    "card",
+    "dey",
+    "no",
+    "wa"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 1.0,
+   "samples": [
+    "Wetin dey happen? Card no gree work, e dey talk declined. I want my money back o.",
+    "Nke a adighi mma. Card no gree work, e dey talk declined. Biko dozie ya ngwa ngwa.",
+    "Wetin dey happen? Card no gree work, e dey talk declined. Una no dey try at all.",
+    "Card no gree work, e dey talk declined.",
+    "Card no gree work, e dey talk declined. Abeg make una sort am quick quick."
+   ]
+  },
+  "T29": {
+   "size": 1206,
+   "keywords": [
+    "banye",
+    "sabunta.",
+    "din",
+    "kemgbe",
+    "shiga",
+    "tun",
+    "zan",
+    "iya"
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 1.0,
+   "samples": [
+    "Don Allah ku taimaka, Ba zan iya shiga app din ba tun da aka sabunta. Ku gyara wannan da sauri.",
+    "Wannan ba daidai ba ne. Ba zan iya shiga app din ba tun da aka sabunta. Ku gyara wannan da sauri.",
+    "Ba zan iya shiga app din ba tun da aka sabunta.",
+    "Ndewo, Enweghi m ike ịbanye n'app kemgbe update. Agwala m unu ugboro abuo.",
+    "Wannan ba daidai ba ne. Ba zan iya shiga app din ba tun da aka sabunta. Ku gyara wannan da sauri."
+   ]
+  },
+  "T30": {
+   "size": 7987,
+   "keywords": [
+    "money.",
+    "bring",
+    "bayar",
+    "withdraw",
+    "enter.",
+    "alert",
+    "atm",
+    "ta"
+   ],
+   "majority_issue": "atm_debited_no_cash",
+   "purity": 0.9974959308876925,
+   "samples": [
+    "Wetin dey happen? I try withdraw <AMOUNT>, ATM no pay bt alert don enter. I want my money back o. #fixit",
+    "ATM debit me <AMOUNT> but e no bring money. Una no dey try at all.",
+    "Ina kwana, ATM ta cire min <AMOUNT> amma bata bayar da kudi ba. Ina son a mayar min da kudina.",
+    "Wetin dey happen? ATM debit me <AMOUNT> but e no bring money. Una no dey try at all.",
+    "Wetin dey happen? ATM debit me <AMOUNT> but e no bring money. Abeg make una sort am quick quick."
+   ]
+  },
+  "T31": {
+   "size": 9599,
+   "keywords": [
+    "repaid.",
+    "loan",
+    "deducted",
+    "already",
+    "authorisation.",
+    "make.",
+    "from",
+    "see"
+   ],
+   "majority_issue": "unauthorised_debit",
+   "purity": 0.5580789665590166,
+   "samples": [
+    "Hello, I see a debit of <AMOUNT> I did not make. Fix this now! !!!",
+    "This is unacceptable. I see a debit of <AMOUNT> I did not make. I need my money back.",
+    "Una deduct <AMOUNT> for loan wey I don pay finish. Abeg make una sort am quick quick. 🙄",
+    "I am very disappointed. <AMOUNT> was debited from my account without my authorisation. Kindly look into it.",
+    "Hello, <AMOUNT> was debited from my account without my authorisation. Please resolve urgently."
+   ]
+  },
+  "T32": {
+   "size": 4511,
+   "keywords": [
+    "mobile",
+    "log",
+    "update.",
+    "in",
+    "cannot",
+    "to",
+    "since",
+    "app"
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 1.0,
+   "samples": [
+    "I cannot log in to the mobile app since the update. Please resolve urgently.",
+    "This is unacceptable. I cannot log in to the mobile app since the update. Pls resolve urgently. smh",
+    "I am very disappointed. I cannot log in to the mobile app since the update. Please resolve urgently.",
+    "Hi, I cannot log in to the mobile app since the update. I have complained twice already.",
+    "Wannan ba daidai ba ne. I cannot log in to the mobile app since the update. Ku gyara wannan da sauri."
+   ]
+  },
+  "T33": {
+   "size": 16591,
+   "keywords": [
+    "reversed",
+    "after",
+    "waiting",
+    "days.",
+    "three",
+    "reversal",
+    "failed",
+    "been"
+   ],
+   "majority_issue": "reversal_delayed",
+   "purity": 1.0,
+   "samples": [
+    "Na wa for una o. Una never reverse my <AMOUNT> wey fail since three days. Abeg make una sort am quick quick.",
+    "Please help, Still waiting for reversal of <AMOUNT>. Fix this now!",
+    "E kaaro, Reversal of <AMOUNT> never come till now.",
+    "Please help, Still waiting for reversal of <AMOUNT>.",
+    "I am very disappointed. Still waiting for reversal of <AMOUNT>. Please resolve urgently. #fixit"
+   ]
+  },
+  "T34": {
+   "size": 4285,
+   "keywords": [
+    "bude",
+    "shi.",
+    "rufewa",
+    "zarar",
+    "kasa.",
+    "igba",
+    "wole",
+    "sise."
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 0.5992998833138856,
+   "samples": [
+    "Ina kwana, App yana rufewa da zarar na bude shi. Ina son a mayar min da kudina.",
+    "Ndewo, App na-ekwu na login adaala. Biko dozie ya ngwa ngwa. #fixit",
+    "E jowo, Mi o le wole si app lati igba ti won update re. Mo ti so tele.",
+    "Don Allah, App yana cewa shiga ya kasa.",
+    "E jowo e ran mi lowo, Mi o le wole si app lati igba ti won update re. Mo fe owo mi pada."
+   ]
+  },
+  "T35": {
+   "size": 3101,
+   "keywords": [
+    "sessions",
+    "that",
+    "failed.",
+    "charged",
+    "ussd",
+    "was",
+    "for",
+    "now"
+   ],
+   "majority_issue": "ussd_wrong_charges",
+   "purity": 1.0,
+   "samples": [
+    "I am very disappointed. I was charged <AMOUNT> for USSD sessions that failed. I have complained twice already.",
+    "I am very disappointed. I was charged <AMOUNT> for USSD sessions that failed.",
+    "Please help, I was charged <AMOUNT> or USSD sessions that failed. Kindly look into it.",
+    "I am very disappointed. I was charged <AMOUNT> for USSD sessions that failed. Kindly look into it.",
+    "Good day, I was charged <AMOUNT> for USSD sessions that failed. Please resolve urgently."
+   ]
+  },
+  "T36": {
+   "size": 10596,
+   "keywords": [
+    "timing",
+    "transaction.",
+    "ended",
+    "code",
+    "before",
+    "session",
+    "finish",
+    "keeps"
+   ],
+   "majority_issue": "ussd_session_timeout",
+   "purity": 1.0,
+   "samples": [
+    "Wannan ba daidai ba ne. Lambar USSD tana cewa session ya kare.",
+    "The USSD code shows session ended every time. I need my money back.",
+    "This is unacceptable. USSD keeps timing out before I finish the transaction. Kindly look into it.",
+    "Good day, USSD keeps timing out before I finish the transaction. I need my money back.",
+    "I am very disappointed. USSD keeps timing out before I finish the transaction. Kindly look into it."
+   ]
+  },
+  "T37": {
+   "size": 1633,
+   "keywords": [
+    "idunadura.",
+    "pari",
+    "wakati",
+    "lo.",
+    "kan",
+    "ju",
+    "ibanisoro",
+    "ero"
+   ],
+   "majority_issue": "otp_not_received",
+   "purity": 0.5958358848744642,
+   "samples": [
+    "E kaaro, Mo duro lori ero ibanisoro ju wakati kan lo.",
+    "Don Allah, An takaita asusuna, ba zan iya cire kudi ba.",
+    "Don Allah ku taimaka, An takaita asusuna, ba zan iya cire kudi ba.",
+    "Don Allah ku taimaka, Ma'aikatan reshen sun yi min rashin kunya.",
+    "Eleyi ko dara rara. Mi o ri OTP gba lati pari idunadura. Mo ti so tele."
+   ]
+  },
+  "T38": {
+   "size": 1090,
+   "keywords": [
+    "takaita",
+    "zan",
+    "iya",
+    "kudi",
+    "asusuna",
+    "ike",
+    "ego.",
+    "enweghi"
+   ],
+   "majority_issue": "account_restricted",
+   "purity": 0.8550458715596331,
+   "samples": [
+    "Reversal of <AMOUNT> never come till now. E tete yanju re.",
+    "E kaaro, Awon osise ni eka naa ko bo mi daadaa.",
+    "Biko, Ha alaghachibeghi ₦,500 m kemgbe ubochi ato. Biko dozie ya ngwa ngwa.",
+    "Ina kwana, An takaita asusuna, ba zan iya cire kudi ba.",
+    "Don Allah ku taimaka, An takaita asusuna, ba zan iya cire kudi ba."
+   ]
+  },
+  "T39": {
+   "size": 2989,
+   "keywords": [
+    "till",
+    "now.",
+    "reverse",
+    "fail",
+    "come",
+    "never",
+    "wey",
+    "reversal"
+   ],
+   "majority_issue": "reversal_delayed",
+   "purity": 0.9909668785547006,
+   "samples": [
+    "Abeg, Reversal of <AMOUNT> never come till now. Abeg make una sort am quick quick.",
+    "Don Allah, Ma'aikatan reshen sun yi min rashin kunya.",
+    "Reversal of <AMOUNT> never come till now. Abeg make una sort am quick quick.",
+    "Ehn, UnaOTP no dey land for my phone. Abeg make una sort am quick quick.",
+    "Don Allah ku taimaka, Ma'aikatan reshen sun yi min rashin kunya."
+   ]
+  },
+  "T40": {
+   "size": 432,
+   "keywords": [
+    "eka",
+    "daadaa.",
+    "awon",
+    "osise",
+    "naa",
+    "bo",
+    "ina.",
+    "kin"
+   ],
+   "majority_issue": "staff_attitude",
+   "purity": 0.7152777777777778,
+   "samples": [
+    "Sannu, Katina ana kin krbarsa ko ina.",
+    "Ina kwana, Ancire min <AMOUNT> kudin kulawa. #fixit",
+    "Ndewo, Echere m ihe kariri otu awa n'ekwentị, onweghi onye zara. Biko dozie ya ngwa ngwa. #fixit",
+    "Unu, biko nyere m aka, Echere m ihe kariri otu awa n'ekwentị,onweghi onye zara. Biko dozie ya ngwa ngwa.",
+    "Ehn, Una never reverse my 147 wey fail since three days. 🙄"
+   ]
+  },
+  "T41": {
+   "size": 229,
+   "keywords": [
+    "retweet",
+    "suffer",
+    "if",
+    "endbadservice",
+    "calls",
+    "bank",
+    "answer",
+    "dem"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 1.0,
+   "samples": [
+    "This bank don finish o!! dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. Pls retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. Pls retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. Pls retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService"
+   ]
+  },
+  "T42": {
+   "size": 128,
+   "keywords": [
+    "rt",
+    "suffer",
+    "if",
+    "endbadservice",
+    "calls",
+    "bank",
+    "answer",
+    "dem"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 1.0,
+   "samples": [
+    "This bank don finish o!! dem no dey answer calls at all. RT if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. RT if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. RT if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. RT if you don suffer am too!! #EndBadService",
+    "This bank don finish o!! dem no dey answer calls at all. RT if you don suffer am too!! #EndBadService"
+   ]
+  },
+  "T43": {
+   "size": 543,
+   "keywords": [
+    "retweet",
+    "suffer",
+    "if",
+    "endbadservice",
+    "calls",
+    "bank",
+    "answer",
+    "dem"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 1.0,
+   "samples": [
+    "This bank don finish o, dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o, dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o, dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o, dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService",
+    "This bank don finish o, dem no dey answer calls at all. Retweet if you don suffer am too!! #EndBadService"
+   ]
+  },
+  "T44": {
+   "size": 77,
+   "keywords": [
+    "amount"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 0.4675324675324675,
+   "samples": [
+    "Sannu, pp yana cewa shiga ya kasa.",
+    "Nke a adighi mma. Echere m ihe kariri otu awa n'ekwentị, onweghi onye zara. Agwala m unu ugboro abuo.",
+    "Nke a adighi mma. Anaghị m enweta OTP iji mechaa azụmahịa. Agwala m unu ugbor abuo.",
+    "Nke a adighi mma. Echere m ihe kariri otu awa n'ekwentị, onweghi onye zara. Agwala m unu ugboro abuo.",
+    "Don Allah, An toshe katina ba tare da saarwa ba."
+   ]
+  }
+ }
+}

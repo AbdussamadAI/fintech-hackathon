@@ -34,6 +34,7 @@ NICE = {"transfer_debited_not_received": "Transfer debited, not received", "reve
         "app_crash": "App crash", "bvn_nin_update": "BVN/NIN update", "account_restricted": "Account restricted",
         "unauthorised_debit": "Unauthorised debit", "sms_charges": "SMS charges", "maintenance_fee": "Maintenance fee",
         "loan_deduction": "Loan deduction", "long_wait_time": "Long wait time", "staff_attitude": "Staff attitude"}
+OWNER_PRIORITY = ["app_version", "switch", "telco", "atm_id", "card_scheme", "segment", "channel", "device_os", "region"]
 OWNER_HINT = {"app_version": "Mobile app team", "device_os": "Mobile app team", "switch": "Switch / payments operations",
               "telco": "Digital channels (USSD)", "atm_id": "ATM operations", "card_scheme": "Card operations",
               "segment": "Product & billing", "region": "Regional operations", "channel": "Fraud & digital channels"}
@@ -100,7 +101,9 @@ class Console:
     def incident_view(self, i, inc, now):
         rc = inc["root_cause"]
         top = rc[0] if rc else None
-        owner = OWNER_HINT.get(top["items"][0].split("=")[0], "Operations") if top else "Operations"
+        # owner = the most operational attribute among the top explanations (a switch beats a state, etc.)
+        attrs = [it.split("=")[0] for e in rc[:2] for it in e["items"]]
+        owner = next((OWNER_HINT[a] for a in OWNER_PRIORITY if a in attrs), "Operations")
         return {"id": i, "title": " + ".join(self.topic_label(t) for t in inc["topics"]),
                 "detected": self.fmt(inc["alert_ts"]), "age_h": (now - inc["alert_ts"]) / HOUR,
                 "cause": " + ".join(top["items"]) if top else None, "lift": top["lift"] if top else None,

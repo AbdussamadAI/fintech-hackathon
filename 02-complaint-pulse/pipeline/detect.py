@@ -339,8 +339,9 @@ def run(data, ops_name="gpu", topics="gold", no_dedup=False):
     naive = {}
     for tp, g in daily.group_by("topic"):
         arr = np.zeros(meta["days"]); arr[g["day"].to_numpy()] = g["len"].to_numpy()
-        for dd in range(7, meta["days"]):
-            mu, sd = arr[dd - 7:dd].mean(), arr[dd - 7:dd].std()
+        for dd in range(P.warmup_days, meta["days"]):       # same warm-up as the detector; up to 7 days of history
+            hist = arr[max(0, dd - 7):dd]
+            mu, sd = hist.mean(), hist.std()
             if arr[dd] > mu + 3 * max(sd, 1):
                 naive.setdefault(tp[0], []).append((dd + 1) * DAY)
 
@@ -399,6 +400,10 @@ def run(data, ops_name="gpu", topics="gold", no_dedup=False):
         "root_cause_top1": f"{sum(r.get('top1', False) for r in rows)}/{len(rows)}",
         "root_cause_top3": f"{sum(r.get('top3', False) for r in rows)}/{len(rows)}",
         "event_linked": f"{sum(r.get('event_ok', False) for r in rows)}/{len(rows)}",
+        "naive_false_alarms": sum(1 for tp, times in naive.items() for t in times
+                                  if not any(topic_issue.get(tp, tp) in inc["issues"] and inc["start_ts"] <= t <= inc["end_ts"] + DAY
+                                             for inc in meta["incidents"])),
+        "naive_alerts": sum(len(v) for v in naive.values()),
         "false_incidents": [{"topic": m["topics"], "at_day": m["alert_ts"] / DAY, "cause": m["root_cause"][0]["items"] if m["root_cause"] else None}
                             for m in false_raised],
         "suppressed_surges": [{"topic": o["topic"], "at_day": o["alert_ts"] / DAY} for o in cands if o["verdict"] != "systemic incident"],
@@ -434,7 +439,8 @@ def main():
         else:
             print(f"  ✘ {r['incident'][:48]:48s} not detected; naive {r['naive_hours_to_detect']}")
     print({k: summary[k] for k in ("detected", "median_hours_to_detect", "median_hours_before_peak", "naive_detected",
-                                   "naive_median_hours_to_detect", "root_cause_top1", "root_cause_top3", "event_linked")})
+                                   "naive_median_hours_to_detect", "naive_false_alarms", "naive_alerts", "root_cause_top1",
+                                   "root_cause_top3", "event_linked")})
     print("false incidents:", summary["false_incidents"])
     print("suppressed surges:", len(summary["suppressed_surges"]), "| dedup:", dedup_info, "| timings:", {k: round(v, 3) if isinstance(v, float) else v for k, v in timings.items()},
           "| k2:", {k: round(v, 3) if isinstance(v, float) else v for k, v in summary["k2"].items()})

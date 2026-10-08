@@ -1,0 +1,1349 @@
+{
+ "ops": "gpu",
+ "topics": "data/synthetic/topics.parquet",
+ "dedup": {
+  "social_posts": 45661,
+  "cascades": 2,
+  "dropped_reposts": 895,
+  "minhash_seconds": 0.013530842959880829
+ },
+ "timings": {
+  "dedup_s": 0.31158278975635767,
+  "k1_replay_s": 0.8137134835124016,
+  "n_series": 73416,
+  "n_buckets": 2880
+ },
+ "k2": {
+  "seconds": 0.015081626363098621,
+  "pairs_scored": 2823590,
+  "values": 386,
+  "candidates": 20
+ },
+ "incidents": [
+  {
+   "incident": "OTP failure after app 4.2.1 release (Android)",
+   "start": 293760.0,
+   "peak": 351360.0,
+   "detected": true,
+   "hours_to_detect": 4.4,
+   "hours_before_peak": 11.6,
+   "top1": true,
+   "top3": true,
+   "top_cause": "app_version=4.2.1 + device_os=Android",
+   "lift": 24.685481820493262,
+   "support": 0.5614035087719298,
+   "event_ok": true,
+   "linked_event": "Mobile app 4.2.1 rolled out to Android",
+   "naive_hours_to_detect": 14.4
+  },
+  {
+   "incident": "Reversals stuck on Switch C",
+   "start": 652320.0,
+   "peak": 742320.0,
+   "detected": true,
+   "hours_to_detect": 12.55,
+   "hours_before_peak": 12.45,
+   "top1": true,
+   "top3": true,
+   "top_cause": "switch=Switch C",
+   "lift": 2.8460028222590346,
+   "support": 0.6111111111111112,
+   "event_ok": true,
+   "linked_event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)",
+   "naive_hours_to_detect": 10.8
+  },
+  {
+   "incident": "ATM cluster in Kano debiting without dispensing",
+   "start": 889920.0,
+   "peak": 929520.0,
+   "detected": true,
+   "hours_to_detect": 3.05,
+   "hours_before_peak": 7.95,
+   "top1": true,
+   "top3": true,
+   "top_cause": "region=Kano",
+   "lift": 4.356862745098039,
+   "support": 0.36666666666666664,
+   "event_ok": true,
+   "linked_event": "Cash-recycler firmware pushed to Kano ATM fleet",
+   "naive_hours_to_detect": 16.8
+  },
+  {
+   "incident": "USSD timeouts on Telco 2",
+   "start": 1183680.0,
+   "peak": 1210680.0,
+   "detected": true,
+   "hours_to_detect": 3.95,
+   "hours_before_peak": 3.55,
+   "top1": true,
+   "top3": true,
+   "top_cause": "language=English + telco=Telco 2",
+   "lift": 3.185418960244648,
+   "support": 0.688,
+   "event_ok": true,
+   "linked_event": "USSD gateway link to Telco 2 flapping",
+   "naive_hours_to_detect": 31.2
+  },
+  {
+   "incident": "Card declines after Card scheme B maintenance",
+   "start": 1416959.0,
+   "peak": 1436759.0,
+   "detected": true,
+   "hours_to_detect": 2.6502777777777777,
+   "hours_before_peak": 2.8497222222222223,
+   "top1": true,
+   "top3": true,
+   "top_cause": "card_scheme=Card scheme B",
+   "lift": 1.870626460514101,
+   "support": 0.6759259259259259,
+   "event_ok": true,
+   "linked_event": "Card scheme B planned maintenance window",
+   "naive_hours_to_detect": 14.400277777777777
+  },
+  {
+   "incident": "POS debit-without-value in Lagos (one acquirer)",
+   "start": 1663200.0,
+   "peak": 1720800.0,
+   "detected": true,
+   "hours_to_detect": 7.25,
+   "hours_before_peak": 8.75,
+   "top1": true,
+   "top3": true,
+   "top_cause": "region=Lagos + switch=Switch E",
+   "lift": 17.205720572057206,
+   "support": 0.5555555555555556,
+   "event_ok": true,
+   "linked_event": "Switch E acquiring host latency alarm",
+   "naive_hours_to_detect": 18.0
+  },
+  {
+   "incident": "Unauthorised debits via app in Rivers (fraud campaign)",
+   "start": 1952640.0,
+   "peak": 2028240.0,
+   "detected": false,
+   "naive_hours_to_detect": 33.6
+  },
+  {
+   "incident": "SMS charge rule error for student accounts",
+   "start": 2263680.0,
+   "peak": 2335680.0,
+   "detected": true,
+   "hours_to_detect": 5.2,
+   "hours_before_peak": 14.8,
+   "top1": true,
+   "top3": true,
+   "top_cause": "segment=student",
+   "lift": 3.5775749674054755,
+   "support": 0.4745762711864407,
+   "event_ok": true,
+   "linked_event": "SMS alert billing rule updated",
+   "naive_hours_to_detect": 19.2
+  }
+ ],
+ "detected": "7/8",
+ "median_hours_to_detect": 4.4,
+ "median_hours_before_peak": 8.75,
+ "naive_detected": "8/8",
+ "naive_median_hours_to_detect": 17.4,
+ "root_cause_top1": "7/8",
+ "root_cause_top3": "7/8",
+ "event_linked": "7/8",
+ "naive_false_alarms": 29,
+ "naive_alerts": 57,
+ "false_incidents": [
+  {
+   "topic": [
+    "T02"
+   ],
+   "at_day": 24.333333333333332,
+   "cause": [
+    "language=English",
+    "device_os=iOS"
+   ]
+  }
+ ],
+ "suppressed_surges": [
+  {
+   "topic": "T37",
+   "at_day": 4.239583333333333
+  },
+  {
+   "topic": "T40",
+   "at_day": 11.114583333333334
+  },
+  {
+   "topic": "T31",
+   "at_day": 24.354166666666668
+  },
+  {
+   "topic": "T30",
+   "at_day": 24.40625
+  },
+  {
+   "topic": "T04",
+   "at_day": 24.958333333333332
+  },
+  {
+   "topic": "T36",
+   "at_day": 25.0
+  },
+  {
+   "topic": "T23",
+   "at_day": 25.020833333333332
+  },
+  {
+   "topic": "T24",
+   "at_day": 29.875
+  }
+ ],
+ "raised": [
+  {
+   "max_score": 261.00439453125,
+   "series": {
+    "channel=app_review": 136.2315673828125,
+    "all channels/regions": 261.00439453125,
+    "channel=app_review / segment=retail": 91.57173919677734,
+    "channel=social": 60.07062530517578,
+    "region=FCT": 18.468584060668945,
+    "segment=retail": 155.26327514648438,
+    "channel=app_chat": 95.4723129272461,
+    "channel=social / segment=retail": 31.631309509277344,
+    "region=Lagos / segment=retail": 27.2023868560791,
+    "channel=app_chat / segment=retail": 44.13789749145508,
+    "region=FCT / segment=retail": 7.354530334472656,
+    "region=Lagos": 37.537235260009766,
+    "segment=student": 23.90874481201172,
+    "channel=app_chat / region=Lagos": 12.846192359924316,
+    "region=Kano": 13.002737045288086,
+    "segment=trader": 7.595919609069824,
+    "segment=sme": 13.451827049255371,
+    "channel=app_review / region=Lagos": 7.444448471069336,
+    "channel=call_centre": 9.60323715209961
+   },
+   "first_alert_ts": 309600.0,
+   "root_cause": [
+    {
+     "items": [
+      "app_version=4.2.1",
+      "device_os=Android"
+     ],
+     "support_spike": 0.5614035087719298,
+     "support_base": 0.022427440633245383,
+     "lift": 24.685481820493262,
+     "explained": 0.766591148485262,
+     "score": 3.5459370399205232
+    },
+    {
+     "items": [
+      "app_version=4.2.1"
+     ],
+     "support_spike": 0.5847953216374269,
+     "support_base": 0.02704485488126649,
+     "lift": 21.376735010216304,
+     "explained": 0.7971303557659892,
+     "score": 3.5216976900029042
+    },
+    {
+     "items": [
+      "app_version=4.2.1",
+      "segment=retail"
+     ],
+     "support_spike": 0.3391812865497076,
+     "support_base": 0.01912928759894459,
+     "lift": 17.44196649816632,
+     "explained": 0.46102475629230694,
+     "score": 1.9014923664193755
+    }
+   ],
+   "n_spike": 171,
+   "expected": 47.14968765711049,
+   "alert_ts": 309600.0,
+   "linked_event": "Mobile app 4.2.1 rolled out to Android",
+   "n_regions": 31,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.25146198830409355,
+   "samples": [
+    {
+     "id": 28857,
+     "language": "Pidgin",
+     "channel": "social",
+     "region": "Bayelsa",
+     "text": "Una good morning o, Una OTP no dey land for my phone. Make una fix am. \ud83d\ude21"
+    },
+    {
+     "id": 28828,
+     "language": "Pidgin",
+     "channel": "social",
+     "region": "Kano",
+     "text": "Ehn, OTP no dey come at all, I no fit transfer. !!!"
+    },
+    {
+     "id": 28851,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Anambra",
+     "text": "Good day, I am not receiving the OTP to complete transactions on the app. I have complained twice already."
+    },
+    {
+     "id": 28818,
+     "language": "English",
+     "channel": "app_chat",
+     "region": "Ogun",
+     "text": "This is unacceptable. OTP never arrives, I cannot transfer. I have complained twice already."
+    },
+    {
+     "id": 28836,
+     "language": "Yoruba",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "E jowo, Mi o ri OTP gba lati pari idunadura. E tete yanju re."
+    },
+    {
+     "id": 28790,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "E ba mi, Mi o ri OTP gba lati pari idunadura. Mo fe owo mi pada."
+    },
+    {
+     "id": 28760,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "FCT",
+     "text": "Wannan ba daidai ba ne. Ba na samun OTP domin kammala ciniki. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 28742,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Katsina",
+     "text": "Don Allah ku taimaka, OTP never arrives, I cannot transfer. Na kai kara sau biyu."
+    },
+    {
+     "id": 28219,
+     "language": "Igbo",
+     "channel": "call_centre",
+     "region": "Imo",
+     "text": "Nke a adighi mma. Anagh\u1ecb m enweta OTP iji mechaa az\u1ee5mah\u1ecba. Biko dozie ya ngwa ngwa."
+    },
+    {
+     "id": 28176,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Enugu",
+     "text": "Anagh\u1ecb m enweta OTP iji mechaa az\u1ee5mah\u1ecba. Achoro m ego m. smh"
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 75
+    },
+    {
+     "language": "Pidgin",
+     "count": 46
+    },
+    {
+     "language": "Hausa",
+     "count": 28
+    },
+    {
+     "language": "Yoruba",
+     "count": 14
+    },
+    {
+     "language": "Igbo",
+     "count": 8
+    }
+   ],
+   "topics": [
+    "T03"
+   ]
+  },
+  {
+   "max_score": 30.415616989135742,
+   "series": {
+    "all channels/regions": 30.415616989135742,
+    "segment=retail": 9.965812683105469
+   },
+   "first_alert_ts": 697500.0,
+   "root_cause": [
+    {
+     "items": [
+      "switch=Switch C"
+     ],
+     "support_spike": 0.6111111111111112,
+     "support_base": 0.2146584440227704,
+     "lift": 2.8460028222590346,
+     "explained": 1.0,
+     "score": 1.5089370925239507
+    },
+    {
+     "items": [
+      "language=English",
+      "switch=Switch C"
+     ],
+     "support_spike": 0.35185185185185186,
+     "support_base": 0.12784629981024667,
+     "lift": 2.7502488586825935,
+     "explained": 0.741982625329699,
+     "score": 1.0829697692974014
+    },
+    {
+     "items": [
+      "switch=Switch C",
+      "segment=student"
+     ],
+     "support_spike": 0.16666666666666666,
+     "support_base": 0.03249525616698292,
+     "lift": 5.111515151515151,
+     "explained": 0.4003412148186397,
+     "score": 0.9423035335779963
+    },
+    {
+     "items": [
+      "switch=Switch C",
+      "segment=retail"
+     ],
+     "support_spike": 0.3148148148148148,
+     "support_base": 0.12594876660341556,
+     "lift": 2.497787533535417,
+     "explained": 0.6437462042418605,
+     "score": 0.8501639163478305
+    },
+    {
+     "items": [
+      "segment=student"
+     ],
+     "support_spike": 0.24074074074074073,
+     "support_base": 0.1442125237191651,
+     "lift": 1.668370918165495,
+     "explained": 0.40885544872829255,
+     "score": 0.3019152459919666
+    }
+   ],
+   "n_spike": 54,
+   "expected": 34.30355914867059,
+   "alert_ts": 697500.0,
+   "linked_event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)",
+   "n_regions": 23,
+   "n_channels": 6,
+   "money_at_stake": 4732800.0,
+   "vulnerable_share": 0.2777777777777778,
+   "samples": [
+    {
+     "id": 64390,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "Plateau",
+     "text": "Ina kwana, Ba a mayar min da 55k ba tun kwana uku."
+    },
+    {
+     "id": 64385,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "Nasarawa",
+     "text": "Har yanzu ba a dawo min da N7,800 da ya fadi ba. smh"
+    },
+    {
+     "id": 64382,
+     "language": "English",
+     "channel": "social",
+     "region": "Kaduna",
+     "text": "Please help, Still waiting for reversal of 85,800 naira. I have complained twice already."
+    },
+    {
+     "id": 64381,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Borno",
+     "text": "I am very disappointed. My failed transfer of N2,200 has not been reversed after three days."
+    },
+    {
+     "id": 64377,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Lagos",
+     "text": "Una good morning o, Reversal of \u20a6183,600 never come till now. Make una fix am."
+    },
+    {
+     "id": 64376,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Delta",
+     "text": "Wetin dey happen? Una never reverse my N11,300 wey fail since three days. Abeg make una sort am quick quick."
+    },
+    {
+     "id": 64153,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Ebonyi",
+     "text": "Biko, Reversal nke 24k abiabeghi. \ud83d\ude44"
+    },
+    {
+     "id": 64044,
+     "language": "Yoruba",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "E jowo e ran mi lowo, Still waiting for reversal of \u20a662,000. Mo ti so tele."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 32
+    },
+    {
+     "language": "Pidgin",
+     "count": 15
+    },
+    {
+     "language": "Hausa",
+     "count": 5
+    },
+    {
+     "language": "Igbo",
+     "count": 1
+    },
+    {
+     "language": "Yoruba",
+     "count": 1
+    }
+   ],
+   "topics": [
+    "T33",
+    "T04"
+   ]
+  },
+  {
+   "max_score": 146.04920959472656,
+   "series": {
+    "region=Kano": 146.04920959472656,
+    "region=Kano / segment=retail": 72.66940307617188,
+    "channel=call_centre / region=Kano": 21.78351593017578,
+    "all channels/regions": 12.184450149536133,
+    "segment=retail": 7.652240753173828
+   },
+   "first_alert_ts": 900900.0,
+   "root_cause": [
+    {
+     "items": [
+      "region=Kano"
+     ],
+     "support_spike": 0.36666666666666664,
+     "support_base": 0.08391608391608392,
+     "lift": 4.356862745098039,
+     "explained": 0.7167066721156848,
+     "score": 1.5217758694030927
+    },
+    {
+     "items": [
+      "language=Hausa",
+      "region=Kano"
+     ],
+     "support_spike": 0.3,
+     "support_base": 0.07109557109557109,
+     "lift": 4.204897959183673,
+     "explained": 0.5833794603058002,
+     "score": 1.2088035396717765
+    },
+    {
+     "items": [
+      "region=Kano",
+      "segment=retail"
+     ],
+     "support_spike": 0.25,
+     "support_base": 0.050699300699300696,
+     "lift": 4.905714285714286,
+     "explained": 0.49673058916645546,
+     "score": 1.1397300632018652
+    },
+    {
+     "items": [
+      "language=Hausa",
+      "segment=retail"
+     ],
+     "support_spike": 0.4,
+     "support_base": 0.20279720279720279,
+     "lift": 1.9707317073170731,
+     "explained": 0.6441334250699665,
+     "score": 0.6304335981139366
+    },
+    {
+     "items": [
+      "language=Hausa"
+     ],
+     "support_spike": 0.5333333333333333,
+     "support_base": 0.32400932400932403,
+     "lift": 1.6455226115603474,
+     "explained": 0.7924725954052362,
+     "score": 0.5694278955005702
+    }
+   ],
+   "n_spike": 60,
+   "expected": 33.19012753760539,
+   "alert_ts": 900900.0,
+   "linked_event": "Cash-recycler firmware pushed to Kano ATM fleet",
+   "n_regions": 20,
+   "n_channels": 6,
+   "money_at_stake": 1492600.0,
+   "vulnerable_share": 0.1,
+   "samples": [
+    {
+     "id": 84763,
+     "language": "Hausa",
+     "channel": "email",
+     "region": "Kano",
+     "text": "Don Allah ku taimaka, ATM ta cire min 55k amma bata bayar da kudi ba."
+    },
+    {
+     "id": 84754,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Kano",
+     "text": "Sannu, Na cire N8,200 a ATM, kudin bai fito ba. Na kai kara sau biyu."
+    },
+    {
+     "id": 84678,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Oyo",
+     "text": "Ehn, ATM debit me N41,900 but e no bring money. Una no dey try at all."
+    },
+    {
+     "id": 84618,
+     "language": "Pidgin",
+     "channel": "social",
+     "region": "Kano",
+     "text": "Abeg una help me, I try withdraw 12k, ATM no pay but alert don enter. Make una fix am."
+    },
+    {
+     "id": 84653,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "E kaaro, Mo gba N35,700 ni ATM, owo ko jae. Mo ti so tele. smh"
+    },
+    {
+     "id": 84301,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "Eleyi ko dara rara. Mo gba N59,100 ni ATM, owo ko jade. E tete yanju re."
+    }
+   ],
+   "languages": [
+    {
+     "language": "Hausa",
+     "count": 32
+    },
+    {
+     "language": "Pidgin",
+     "count": 25
+    },
+    {
+     "language": "Yoruba",
+     "count": 3
+    }
+   ],
+   "topics": [
+    "T30",
+    "T19"
+   ]
+  },
+  {
+   "max_score": 46.50251007080078,
+   "series": {
+    "all channels/regions": 46.50251007080078,
+    "segment=retail": 18.271757125854492
+   },
+   "first_alert_ts": 1197900.0,
+   "root_cause": [
+    {
+     "items": [
+      "language=English",
+      "telco=Telco 2"
+     ],
+     "support_spike": 0.688,
+     "support_base": 0.21585903083700442,
+     "lift": 3.185418960244648,
+     "explained": 1.0,
+     "score": 1.67148313452766
+    },
+    {
+     "items": [
+      "telco=Telco 2"
+     ],
+     "support_spike": 0.776,
+     "support_base": 0.26123348017621145,
+     "lift": 2.9693277169334458,
+     "explained": 1.0,
+     "score": 1.5701363285900218
+    },
+    {
+     "items": [
+      "telco=Telco 2",
+      "segment=retail"
+     ],
+     "support_spike": 0.496,
+     "support_base": 0.15286343612334802,
+     "lift": 3.241484892086331,
+     "explained": 0.8122185578274801,
+     "score": 1.3780545544402365
+    }
+   ],
+   "n_spike": 125,
+   "expected": 59.948453310372315,
+   "alert_ts": 1197900.0,
+   "linked_event": "USSD gateway link to Telco 2 flapping",
+   "n_regions": 32,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.192,
+   "samples": [
+    {
+     "id": 111786,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "FCT",
+     "text": "Ina kwana, USSD yana katsewa kafin in gama. Na kai kara sau biyu."
+    },
+    {
+     "id": 111771,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "FCT",
+     "text": "Don Allah ku taimaka, Lambar USSD tana cewa session ya kare. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 111785,
+     "language": "English",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "This is unacceptable. USSD keeps timing out before I finish the transaction. I nee my money back."
+    },
+    {
+     "id": 111782,
+     "language": "English",
+     "channel": "social",
+     "region": "Oyo",
+     "text": "Hi, The USSD code shows session ended every time. Pls resolve urgently."
+    },
+    {
+     "id": 111657,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "Lagos",
+     "text": "The USSD code shows session ended every time. Mo fe owo mi pada."
+    },
+    {
+     "id": 111454,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "E jowo, The USSD code shows session ended every time. E tete yanju re."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 103
+    },
+    {
+     "language": "Hausa",
+     "count": 19
+    },
+    {
+     "language": "Yoruba",
+     "count": 3
+    }
+   ],
+   "topics": [
+    "T36",
+    "T20"
+   ]
+  },
+  {
+   "max_score": 47.256656646728516,
+   "series": {
+    "all channels/regions": 47.256656646728516,
+    "segment=retail": 23.036001205444336,
+    "region=Lagos": 7.017820358276367,
+    "channel=branch": 7.042774200439453,
+    "channel=app_review": 7.587488174438477,
+    "segment=student": 9.812450408935547,
+    "channel=email": 11.50613021850586
+   },
+   "first_alert_ts": 1426500.0,
+   "root_cause": [
+    {
+     "items": [
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.6759259259259259,
+     "support_base": 0.36125,
+     "lift": 1.870626460514101,
+     "explained": 0.8957565414086537,
+     "score": 0.8093352940406113
+    },
+    {
+     "items": [
+      "language=English",
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.6296296296296297,
+     "support_base": 0.34125,
+     "lift": 1.8445325471857952,
+     "explained": 0.8310898185132417,
+     "score": 0.734064442041849
+    },
+    {
+     "items": [
+      "card_scheme=Card scheme B",
+      "segment=retail"
+     ],
+     "support_spike": 0.39814814814814814,
+     "support_base": 0.215,
+     "lift": 1.8503198408858785,
+     "explained": 0.5260942883349469,
+     "score": 0.4670531844520769
+    }
+   ],
+   "n_spike": 108,
+   "expected": 44.41799048813328,
+   "alert_ts": 1426500.0,
+   "linked_event": "Card scheme B planned maintenance window",
+   "n_regions": 26,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.16666666666666666,
+   "samples": [
+    {
+     "id": 132308,
+     "language": "English",
+     "channel": "social",
+     "region": "Rivers",
+     "text": "Pls help, My card keeps getting declined online and at POS. I have complained twice already. \ud83d\ude21"
+    },
+    {
+     "id": 132302,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Ogun",
+     "text": "Please help, My card keeps getting declined online and at POS. Fix this now!"
+    },
+    {
+     "id": 132278,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Ogun",
+     "text": "E jowo e ran mi lowo, My card keeps getting declined online and at POS."
+    },
+    {
+     "id": 131794,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "Oyo",
+     "text": "My card keeps getting declined online and at POS."
+    },
+    {
+     "id": 131932,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Kaduna",
+     "text": "Don Allah ku taimaka, Card declined even though I have funds. Ina son a mayar min da kudina."
+    },
+    {
+     "id": 131858,
+     "language": "Hausa",
+     "channel": "email",
+     "region": "FCT",
+     "text": "Don Allah, My card keeps getting declined online and at POS."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 103
+    },
+    {
+     "language": "Hausa",
+     "count": 3
+    },
+    {
+     "language": "Yoruba",
+     "count": 2
+    }
+   ],
+   "topics": [
+    "T16"
+   ]
+  },
+  {
+   "max_score": 75.65029907226562,
+   "series": {
+    "region=Lagos": 75.65029907226562,
+    "region=Lagos / segment=retail": 43.807464599609375
+   },
+   "first_alert_ts": 1689300.0,
+   "root_cause": [
+    {
+     "items": [
+      "region=Lagos",
+      "switch=Switch E"
+     ],
+     "support_spike": 0.5555555555555556,
+     "support_base": 0.03198976327575176,
+     "lift": 17.205720572057206,
+     "explained": 1.0,
+     "score": 4.104816408000608
+    },
+    {
+     "items": [
+      "language=English",
+      "switch=Switch E"
+     ],
+     "support_spike": 0.5925925925925926,
+     "support_base": 0.09596928982725528,
+     "lift": 6.1582379721914595,
+     "explained": 1.0,
+     "score": 2.6225176183841814
+    },
+    {
+     "items": [
+      "switch=Switch E"
+     ],
+     "support_spike": 0.6049382716049383,
+     "support_base": 0.10236724248240563,
+     "lift": 5.894850198069305,
+     "explained": 1.0,
+     "score": 2.5594551514156327
+    },
+    {
+     "items": [
+      "switch=Switch E",
+      "segment=retail"
+     ],
+     "support_spike": 0.37037037037037035,
+     "support_base": 0.05886116442738324,
+     "lift": 6.262262262262262,
+     "explained": 0.8048327956840445,
+     "score": 2.1301380262835368
+    },
+    {
+     "items": [
+      "switch=Switch E",
+      "card_scheme=Card scheme B"
+     ],
+     "support_spike": 0.25925925925925924,
+     "support_base": 0.03326935380678183,
+     "lift": 7.723456790123456,
+     "explained": 0.5744477690885997,
+     "score": 1.6941881870400064
+    }
+   ],
+   "n_spike": 81,
+   "expected": 47.17532809005645,
+   "alert_ts": 1689300.0,
+   "linked_event": "Switch E acquiring host latency alarm",
+   "n_regions": 21,
+   "n_channels": 6,
+   "money_at_stake": 2712800.0,
+   "vulnerable_share": 0.13580246913580246,
+   "samples": [
+    {
+     "id": 158782,
+     "language": "English",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "This is unacceptable. I paid 3,000 naira at a POS terminal, I was debited but the merchant did not get value. I need my money back."
+    },
+    {
+     "id": 158764,
+     "language": "English",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "Hello, I paid N63,700 at a POS terminal, I was debited but the merchant did not get value. I need my money back."
+    },
+    {
+     "id": 158649,
+     "language": "Yoruba",
+     "channel": "branch",
+     "region": "FCT",
+     "text": "E jowo e ran mi lowo, I paid \u20a65,500 at a POS terminal, I was debited but the merchant did not get value. Mo ti so tele."
+    },
+    {
+     "id": 158619,
+     "language": "Yoruba",
+     "channel": "branch",
+     "region": "Lagos",
+     "text": "E jowo e ran mi lowo, I paid N55,200 at a POS terminal, I was debited but the merchant did not get value. Mo ti so tele."
+    },
+    {
+     "id": 157298,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "Yobe",
+     "text": "I paid N125,900 at a POS terminal, I was debited but the merchant did not get value."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 78
+    },
+    {
+     "language": "Yoruba",
+     "count": 2
+    },
+    {
+     "language": "Hausa",
+     "count": 1
+    }
+   ],
+   "topics": [
+    "T18",
+    "T14"
+   ]
+  },
+  {
+   "max_score": 7.449005126953125,
+   "series": {
+    "all channels/regions": 7.449005126953125
+   },
+   "first_alert_ts": 2102400.0,
+   "root_cause": [
+    {
+     "items": [
+      "language=English",
+      "device_os=iOS"
+     ],
+     "support_spike": 0.6666666666666666,
+     "support_base": 0.20717948717948717,
+     "lift": 3.2131687242798352,
+     "explained": 0.9566151729078107,
+     "score": 1.6109368317213917
+    },
+    {
+     "items": [
+      "device_os=iOS"
+     ],
+     "support_spike": 0.6666666666666666,
+     "support_base": 0.22153846153846155,
+     "lift": 3.0053887605850655,
+     "explained": 0.947554282087775,
+     "score": 1.5042913375704665
+    },
+    {
+     "items": [
+      "channel=call_centre",
+      "device_os=iOS"
+     ],
+     "support_spike": 0.3333333333333333,
+     "support_base": 0.052307692307692305,
+     "lift": 6.31715210355987,
+     "explained": 0.5106679108111759,
+     "score": 1.3580060559871443
+    },
+    {
+     "items": [
+      "device_os=iOS",
+      "segment=retail"
+     ],
+     "support_spike": 0.38095238095238093,
+     "support_base": 0.14461538461538462,
+     "lift": 2.6276291435302035,
+     "explained": 0.5300872472046021,
+     "score": 0.7388152879444485
+    },
+    {
+     "items": [
+      "channel=call_centre",
+      "language=English"
+     ],
+     "support_spike": 0.42857142857142855,
+     "support_base": 0.24307692307692308,
+     "lift": 1.761203007518797,
+     "explained": 0.5456233446751557,
+     "score": 0.44553486017349714
+    }
+   ],
+   "n_spike": 21,
+   "expected": 8.124671332065855,
+   "alert_ts": 2102400.0,
+   "linked_event": null,
+   "n_regions": 14,
+   "n_channels": 6,
+   "money_at_stake": 0.0,
+   "vulnerable_share": 0.14285714285714285,
+   "samples": [
+    {
+     "id": 194511,
+     "language": "English",
+     "channel": "social",
+     "region": "Kano",
+     "text": "The app says login failed every time. Kindly look into it."
+    },
+    {
+     "id": 194497,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Lagos",
+     "text": "Hello, The app says login failed every time."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 21
+    }
+   ],
+   "topics": [
+    "T02"
+   ]
+  },
+  {
+   "max_score": 348.2722473144531,
+   "series": {
+    "segment=student": 348.2722473144531,
+    "channel=call_centre / segment=student": 89.56096649169922,
+    "region=Lagos / segment=student": 42.938961029052734,
+    "all channels/regions": 76.44192504882812,
+    "channel=app_chat / segment=student": 23.929683685302734,
+    "channel=social / segment=student": 16.71259117126465,
+    "channel=app_review / segment=student": 9.300627708435059,
+    "channel=call_centre": 13.927989959716797
+   },
+   "first_alert_ts": 2282400.0,
+   "root_cause": [
+    {
+     "items": [
+      "segment=student"
+     ],
+     "support_spike": 0.4745762711864407,
+     "support_base": 0.13245033112582782,
+     "lift": 3.5775749674054755,
+     "explained": 0.9751573518899475,
+     "score": 1.793296815996202
+    },
+    {
+     "items": [
+      "language=English",
+      "segment=student"
+     ],
+     "support_spike": 0.288135593220339,
+     "support_base": 0.07339955849889625,
+     "lift": 3.9130324382657276,
+     "explained": 0.6023263158174083,
+     "score": 1.1855510993110747
+    }
+   ],
+   "n_spike": 59,
+   "expected": 35.046917889359534,
+   "alert_ts": 2282400.0,
+   "linked_event": "SMS alert billing rule updated",
+   "n_regions": 28,
+   "n_channels": 6,
+   "money_at_stake": 42480.0,
+   "vulnerable_share": 0.5084745762711864,
+   "samples": [
+    {
+     "id": 217607,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Akwa Ibom",
+     "text": "Ehn, Una charge me 1k for SMS alert, e too much. Una no dey try at all."
+    },
+    {
+     "id": 217493,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "Ehn, Una charge me \u20a6700 for SMS alert, e too much. I want my money back o."
+    },
+    {
+     "id": 217598,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "FCT",
+     "text": "Don Allah, You charged me 290 naira for SMS alerts this month, it is too much. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 217573,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Kogi",
+     "text": "Ina kwana, An caje ni \u20a6200 na sakon SMS a wannan wata."
+    },
+    {
+     "id": 217567,
+     "language": "English",
+     "channel": "social",
+     "region": "Anambra",
+     "text": "I am very disappointed. You charged me \u20a6230 for SMS alerts this month, it is too much. Please resolve urgently."
+    },
+    {
+     "id": 217553,
+     "language": "English",
+     "channel": "social",
+     "region": "Plateau",
+     "text": "Please help, You charged me N230 for SMS alerts this month, it is too much. I have complained twice already."
+    },
+    {
+     "id": 216387,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Lagos",
+     "text": "E kaaro, You charged me 410 naira for SMS alerts this month, it is too much. Mo fe owo mi pada."
+    }
+   ],
+   "languages": [
+    {
+     "language": "English",
+     "count": 37
+    },
+    {
+     "language": "Pidgin",
+     "count": 13
+    },
+    {
+     "language": "Hausa",
+     "count": 8
+    },
+    {
+     "language": "Yoruba",
+     "count": 1
+    }
+   ],
+   "topics": [
+    "T24"
+   ]
+  }
+ ],
+ "suppressed": [
+  {
+   "topic": "T37",
+   "alert_ts": 366300.0,
+   "n_spike": 2,
+   "expected": 0.15856963715060068,
+   "root_cause": [
+    {
+     "items": [
+      "language=Pidgin",
+      "region=Oyo"
+     ],
+     "support_spike": 0.5,
+     "support_base": 0.0,
+     "lift": 57.0,
+     "explained": 0.543056104740565,
+     "score": 3.1675865304724433
+    },
+    {
+     "items": [
+      "region=Oyo",
+      "app_version=4.2.0"
+     ],
+     "support_spike": 0.5,
+     "support_base": 0.0,
+     "lift": 57.0,
+     "explained": 0.543056104740565,
+     "score": 3.1675865304724433
+    }
+   ]
+  },
+  {
+   "topic": "T40",
+   "alert_ts": 960300.0,
+   "n_spike": 1,
+   "expected": 0.04425965200205724,
+   "root_cause": [
+    {
+     "items": [
+      "region=Abia"
+     ],
+     "support_spike": 1.0,
+     "support_base": 0.0,
+     "lift": 20.0,
+     "explained": 1.0,
+     "score": 4.321928094887363
+    },
+    {
+     "items": [
+      "channel=call_centre",
+      "language=Igbo"
+     ],
+     "support_spike": 1.0,
+     "support_base": 0.0,
+     "lift": 20.0,
+     "explained": 1.0,
+     "score": 4.321928094887363
+    }
+   ]
+  },
+  {
+   "topic": "T31",
+   "alert_ts": 2104200.0,
+   "n_spike": 52,
+   "expected": 19.27422029853161,
+   "root_cause": []
+  },
+  {
+   "topic": "T30",
+   "alert_ts": 2108700.0,
+   "n_spike": 66,
+   "expected": 25.055453142787794,
+   "root_cause": []
+  },
+  {
+   "topic": "T04",
+   "alert_ts": 2156400.0,
+   "n_spike": 128,
+   "expected": 80.32774910862366,
+   "root_cause": []
+  },
+  {
+   "topic": "T36",
+   "alert_ts": 2160000.0,
+   "n_spike": 51,
+   "expected": 29.68861060867856,
+   "root_cause": []
+  },
+  {
+   "topic": "T23",
+   "alert_ts": 2161800.0,
+   "n_spike": 16,
+   "expected": 8.203262697417463,
+   "root_cause": [
+    {
+     "items": [
+      "language=English",
+      "region=Lagos"
+     ],
+     "support_spike": 0.4375,
+     "support_base": 0.21786833855799373,
+     "lift": 2.0040322580645165,
+     "explained": 0.6685833551981096,
+     "score": 0.6705260786966698
+    },
+    {
+     "items": [
+      "region=Lagos"
+     ],
+     "support_spike": 0.4375,
+     "support_base": 0.22727272727272727,
+     "lift": 1.9213917525773194,
+     "explained": 0.6586886174197785,
+     "score": 0.6205846007361352
+    }
+   ]
+  },
+  {
+   "topic": "T24",
+   "alert_ts": 2581200.0,
+   "n_spike": 44,
+   "expected": 72.80551526463908,
+   "root_cause": []
+  }
+ ]
+}
