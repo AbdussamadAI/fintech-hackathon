@@ -23,3 +23,4 @@ models/
 **/models/
 *.gguf
 02-complaint-pulse/data/
+02-complaint-pulse/report/report.md
