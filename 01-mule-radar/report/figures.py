@@ -15,21 +15,21 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10, "axes.edgeco
                      "axes.labelcolor": MUTED, "xtick.color": MUTED, "ytick.color": MUTED, "text.color": INK})
 
 # ---- 1. pipeline -------------------------------------------------------------------------------
-fig, ax = plt.subplots(figsize=(10, 2.5), dpi=200)
-ax.set_xlim(0, 100); ax.set_ylim(0, 25); ax.axis("off")
-boxes = [("Transfer stream", "NIP / ISO 20022\ncopy of the feed", "#EAEEF1"),
-         ("GPU window graph", "last 96 h, rebuilt\nper micro-batch (~1 ms)", "#EAEEF1"),
-         ("4 CUDA detectors", "velocity · pass-through\nscatter-gather · cycles", "#D6EEEA"),
-         ("AI risk model", "gradient-boosted trees\non GPU + SHAP reasons", "#D6EEEA"),
-         ("Rings & actions", "connected rings, tiers,\nGenAI STR draft", "#FBE9DD")]
-w, gap, y = 16.4, 4.1, 5
-for i, (t, s, c) in enumerate(boxes):
+fig, ax = plt.subplots(figsize=(11, 2.5), dpi=200)
+ax.set_xlim(0, 110); ax.set_ylim(0, 24); ax.axis("off")
+boxes = [("Transfer stream", "NIP / ISO 20022\ncopy of the\npayment feed", "#EAEEF1"),
+         ("GPU window graph", "last 96 hours,\nrebuilt every\nmicro-batch (~1 ms)", "#EAEEF1"),
+         ("4 CUDA detectors", "velocity, pass-through,\nscatter-gather,\ncycles", "#D6EEEA"),
+         ("AI risk model", "gradient-boosted\ntrees on GPU,\nSHAP reasons", "#D6EEEA"),
+         ("Rings & actions", "linked rings, tiers,\nGenAI STR\ndraft", "#FBE9DD")]
+w, gap, y, h = 18.6, 3.6, 2, 20
+for i, (title, sub, c) in enumerate(boxes):
     x = 1 + i * (w + gap)
-    ax.add_patch(FancyBboxPatch((x, y), w, 15, boxstyle="round,pad=0.3,rounding_size=1.2", fc=c, ec=LINE, lw=1))
-    ax.text(x + w / 2, y + 10.6, t, ha="center", va="center", fontsize=10.5, weight="bold", color=INK)
-    ax.text(x + w / 2, y + 4.6, s, ha="center", va="center", fontsize=8.3, color=MUTED, linespacing=1.4)
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.25,rounding_size=1.2", fc=c, ec=LINE, lw=1))
+    ax.text(x + w / 2, y + h - 4, title, ha="center", va="center", fontsize=9.2, weight="bold", color=INK)
+    ax.text(x + w / 2, y + (h - 6.5) / 2, sub, ha="center", va="center", fontsize=8.4, color=MUTED, linespacing=1.45)
     if i < len(boxes) - 1:
-        ax.add_patch(FancyArrowPatch((x + w + 0.6, y + 7.5), (x + w + gap - 0.6, y + 7.5),
+        ax.add_patch(FancyArrowPatch((x + w + 0.5, y + h / 2), (x + w + gap - 0.5, y + h / 2),
                                      arrowstyle="-|>", mutation_scale=12, color=MUTED, lw=1.3))
 fig.savefig(OUT / "pipeline.png", bbox_inches="tight", facecolor="white")
 plt.close(fig)
