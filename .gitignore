@@ -17,3 +17,9 @@ dist/
 .DS_Store
 kaggle.json
 .env
+
+# models / build trees
+models/
+**/models/
+*.gguf
+02-complaint-pulse/data/
