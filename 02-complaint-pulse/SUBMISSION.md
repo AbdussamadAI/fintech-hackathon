@@ -79,8 +79,10 @@ times shifted by up to ±1.5 days, no retuning).
 
 - **Repost storm:** K3 collapsed 895 of the 900 viral copies. Without it, the storm raises a false incident.
 - **Salary-week surge and other blips:** 6 volume rises were checked and correctly not escalated.
-- **Fully unsupervised topics** (no labels at all): 7 of 8 incidents detected with correct cause and event, 1 false
-  alarm. The miss is the smallest incident, a fraud campaign; see the language finding below.
+- **Fully unsupervised topics** (no labels at all, topics discovered from embeddings): on the held-out stream
+  **8 of 8 incidents, 0 false alarms**, root cause and event correct for all 8 (the daily-count rule on the same topics:
+  35 false alarms out of 57 alerts). On the main stream 7 of 8 with 1 false alarm; the miss is the smallest incident,
+  a fraud campaign, which the language finding below explains.
 
 **GPU acceleration (A100 vs the same algorithms on CPU, outputs identical):**
 
