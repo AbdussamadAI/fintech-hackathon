@@ -1,0 +1,317 @@
+{
+ "n": 300,
+ "template": {
+  "English": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.95,
+   "issue_macro_f1": 0.9592086834733894,
+   "amount_accuracy": 0.8823529411764706,
+   "language_id_accuracy": 0.5
+  },
+  "Pidgin": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.9166666666666666,
+   "issue_macro_f1": 0.8458952811893988,
+   "amount_accuracy": 0.5625,
+   "language_id_accuracy": 0.0
+  },
+  "Hausa": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.8833333333333333,
+   "issue_macro_f1": 0.7867327117327118,
+   "amount_accuracy": 0.53125,
+   "language_id_accuracy": 0.38333333333333336
+  },
+  "Yoruba": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.8666666666666667,
+   "issue_macro_f1": 0.7789705745846097,
+   "amount_accuracy": 0.5161290322580645,
+   "language_id_accuracy": 0.7666666666666667
+  },
+  "Igbo": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.8333333333333334,
+   "issue_macro_f1": 0.7320833333333333,
+   "amount_accuracy": 0.5128205128205128,
+   "language_id_accuracy": 0.0
+  },
+  "ALL": {
+   "n": 300,
+   "parsed": 300,
+   "issue_accuracy": 0.89,
+   "issue_macro_f1": 0.8328062229021981,
+   "amount_accuracy": 0.6011904761904762,
+   "language_id_accuracy": 0.33
+  }
+ },
+ "rewritten": {
+  "English": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.8333333333333334,
+   "issue_macro_f1": 0.7861297419685578,
+   "amount_accuracy": 0.7352941176470589,
+   "language_id_accuracy": 0.36666666666666664
+  },
+  "Pidgin": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.7333333333333333,
+   "issue_macro_f1": 0.6461538461538462,
+   "amount_accuracy": 0.28125,
+   "language_id_accuracy": 0.0
+  },
+  "Hausa": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.8166666666666667,
+   "issue_macro_f1": 0.6966804029304029,
+   "amount_accuracy": 0.5625,
+   "language_id_accuracy": 0.35
+  },
+  "Yoruba": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.7333333333333333,
+   "issue_macro_f1": 0.629614067849362,
+   "amount_accuracy": 0.45161290322580644,
+   "language_id_accuracy": 0.9166666666666666
+  },
+  "Igbo": {
+   "n": 60,
+   "parsed": 60,
+   "issue_accuracy": 0.6333333333333333,
+   "issue_macro_f1": 0.6099542124542124,
+   "amount_accuracy": 0.5128205128205128,
+   "language_id_accuracy": 0.0
+  },
+  "ALL": {
+   "n": 300,
+   "parsed": 300,
+   "issue_accuracy": 0.75,
+   "issue_macro_f1": 0.6969320508437814,
+   "amount_accuracy": 0.5119047619047619,
+   "language_id_accuracy": 0.32666666666666666
+  }
+ },
+ "extract_per_s": 8.91139776209908,
+ "paraphrase_per_s": 12.73846080399054,
+ "examples": [
+  {
+   "language": "English",
+   "original": "Hello, I paid ₦2,400 at a POS terminal, I was debited but the merchant did not get value.",
+   "rewritten": "Hi, I used to pay ₦2,400 ni POS, a debited si mi but the merchant no gba kudi.",
+   "gold_issue": "pos_debited_no_value",
+   "pred_on_rewritten": {
+    "issue": "pos_debited_no_value",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer debited for POS transaction but merchant did not receive payment",
+    "amount_naira": 2400.0
+   }
+  },
+  {
+   "language": "English",
+   "original": "This is unacceptable. The ATM debited me ₦13,600 but did not dispense cash. Kindly look into it.",
+   "rewritten": "Wahala buruju! ATM dina naira 13,600, babu kudi! Don Allah ku lepa okwu yi.",
+   "gold_issue": "atm_debited_no_cash",
+   "pred_on_rewritten": {
+    "issue": "atm_debited_no_cash",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer's ATM debited 13,600 naira but no cash was dispensed. They are requesting urgent assistance.",
+    "amount_naira": 13600.0
+   }
+  },
+  {
+   "language": "English",
+   "original": "The app crashes as soon as I open it.",
+   "rewritten": "The app is crashing as soon as I try to open it.",
+   "gold_issue": "app_crash",
+   "pred_on_rewritten": {
+    "issue": "app_crash",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "The app crashes when opened.",
+    "amount_naira": null
+   }
+  },
+  {
+   "language": "Pidgin",
+   "original": "Abeg, I send 13k since morning, una don debit me but e no reach. Abeg make una sort am quick quick.",
+   "rewritten": "Egbe, naa, I sent 13k this morning, una dey keep deducting but e no meet. Jowo make una settle am sharp sharp.",
+   "gold_issue": "transfer_debited_not_received",
+   "pred_on_rewritten": {
+    "issue": "transfer_debited_not_received",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer sent 13,000 Naira this morning, but the transaction has not been credited to their account. They request immediate resolution.",
+    "amount_naira": 13000.0
+   }
+  },
+  {
+   "language": "Pidgin",
+   "original": "Abeg una help me, I pay 25k for POS, dem debit me but the merchant no see am. Una no dey try at all.",
+   "rewritten": "Oga, please help, I pay 25k for POS, dem take me money but the merchant no see am. You no dey try at all.",
+   "gold_issue": "pos_debited_no_value",
+   "pred_on_rewritten": {
+    "issue": "pos_debited_no_value",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer paid 25,000 Naira for POS but the merchant did not receive the money. They are requesting help.",
+    "amount_naira": null
+   }
+  },
+  {
+   "language": "Pidgin",
+   "original": "Abeg, Una deduct ₦5,200 for loan wey I don pay finish.",
+   "rewritten": "Na, una collect ₦5,200 fun iya owo aji wey I don pay finish.",
+   "gold_issue": "loan_deduction",
+   "pred_on_rewritten": {
+    "issue": "transfer_debited_not_received",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer complains that they were debited ₦5,200 without receiving the transfer.",
+    "amount_naira": 5200.0
+   }
+  },
+  {
+   "language": "Hausa",
+   "original": "Don Allah ku taimaka, An cire min N210 kudin kulawa. Ina son a mayar min da kudina.",
+   "rewritten": "A cikin waɗannan makonni, an cire min N210 don kulawa. Don Allah a dawo da kuɗina.",
+   "gold_issue": "maintenance_fee",
+   "pred_on_rewritten": {
+    "issue": "reversal_delayed",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer is requesting their money back as they feel their account has been debited in error.",
+    "amount_naira": null
+   }
+  },
+  {
+   "language": "Hausa",
+   "original": "Wannan ba daidai ba ne. Na biya ₦54,100 ta POS, an cire amma dan kasuwa bai samu ba. Ina son a mayar min da kudina. #fixit",
+   "rewritten": "Wannan ba daidai ba ne. Na biya ₦54,100 ta POS, an cire amma dan kasuwa bai samu ba. Ina so a mayar min da kudina. #fixit",
+   "gold_issue": "pos_debited_no_value",
+   "pred_on_rewritten": {
+    "issue": "pos_debited_no_value",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer paid ₦54,100 via POS, debited but merchant did not receive. They want their money refunded.",
+    "amount_naira": 54100.0
+   }
+  },
+  {
+   "language": "Hausa",
+   "original": "Don Allah, Transfer of ₦325,300 no land, but money don comot for my account. Na kai kara sau biyu.",
+   "rewritten": "Ji, da fatan za a mayar da ₦325,300 da ba ta da fili, amma kudi tana son fita daga asusun nawa. Na yi karin kira sau biyu.",
+   "gold_issue": "transfer_debited_not_received",
+   "pred_on_rewritten": {
+    "issue": "transfer_debited_not_received",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer wants ₦325,300 debited from their account but not received. They have made two additional calls.",
+    "amount_naira": 325300.0
+   }
+  },
+  {
+   "language": "Yoruba",
+   "original": "E ba mi, ATM yo 7k lowo mi sugbon ko fun mi lowo. E tete yanju re.",
+   "rewritten": "Àwa, ATM mi ti yọ 7k kuro lọdọ mi, ṣugbọn ko fun mi ni. E tete yanju re.",
+   "gold_issue": "atm_debited_no_cash",
+   "pred_on_rewritten": {
+    "issue": "atm_debited_no_cash",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "ATM debited without dispensing cash",
+    "amount_naira": 7000.0
+   }
+  },
+  {
+   "language": "Yoruba",
+   "original": "E jowo, ATM yo N22,900 lowo mi sugbon ko fun mi lowo. E tete yanju re.",
+   "rewritten": "Ẹ jọ̀wọ́, ATM gba mi 22,900 naira lọ́wọ́ ṣùgbọ́n kò fún mi ní rẹ̀. Ó ṣe é ní kánjúkánjú.",
+   "gold_issue": "atm_debited_no_cash",
+   "pred_on_rewritten": {
+    "issue": "atm_debited_no_cash",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer's ATM debited 22,900 naira but did not dispense cash",
+    "amount_naira": 22900.0
+   }
+  },
+  {
+   "language": "Yoruba",
+   "original": "Eleyi ko dara rara. Mo san N4,700 lori POS, won yo owo sugbon onisowo ko ri i gba. Mo ti so tele. !!!",
+   "rewritten": "Báwo ni yóò ṣe rí lára ​​ẹ? Mo san N4,700 lori POS, wọ́n yo owó náà ṣùgbọ́n alábàáṣiṣẹ́pọ̀ kò tíì rí i. Mo ti so tele. !!!",
+   "gold_issue": "pos_debited_no_value",
+   "pred_on_rewritten": {
+    "issue": "transfer_debited_not_received",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer paid N4,700 on POS, money credited but not received by merchant, contacted customer service multiple times.",
+    "amount_naira": 4700.0
+   }
+  },
+  {
+   "language": "Igbo",
+   "original": "Unu, biko nyere m aka, Ha ji USSD na-adighi aru oru chaja m ₦140. Agwala m unu ugboro abuo.",
+   "rewritten": "Unu, biko nyere m aka, Ha ji USSD na-adighi aru oru chaja m ₦140. Agwala m unu ugboro abuo.",
+   "gold_issue": "ussd_wrong_charges",
+   "pred_on_rewritten": {
+    "issue": "ussd_session_timeout",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "USSD transaction timed out, no charge received",
+    "amount_naira": null
+   }
+  },
+  {
+   "language": "Igbo",
+   "original": "Ndewo, Ezigara m 26k ma o rughi onye m zigara ya, ma ewepuola ego n'akaụntụ m. Agwala m unu ugboro abuo. !!!",
+   "rewritten": "Ndewo, Ezigbo m 26k na ọ pụtara na onye m na-ezigara ya, ma ewepuola ego n'akaụntụ m. Agwala m unu ugboro abuo. !!!",
+   "gold_issue": "transfer_debited_not_received",
+   "pred_on_rewritten": {
+    "issue": "transfer_debited_not_received",
+    "language": null,
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer claims they have been debited 26k but the recipient has not received the money and has been informed twice.",
+    "amount_naira": 26000.0
+   }
+  },
+  {
+   "language": "Igbo",
+   "original": "Unu, biko nyere m aka, The ATM debited me N21,800 but did not dispense cash. Agwala m unu ugboro abuo.",
+   "rewritten": "Ọ ga-amasị m, gaa nwetaghachi ego nkeji iri abụọ na otu na nari asatọ na iri asatọ bụ nke ewepụrụ n’aka m mgbe m na-eji ATM, ma ọ nweghị ego e nyere m. Enwere m ike ịkọrọ gị ugboro abụọ ugbu a.",
+   "gold_issue": "atm_debited_no_cash",
+   "pred_on_rewritten": {
+    "issue": "atm_debited_no_cash",
+    "language": "Yoruba",
+    "sentiment": "negative",
+    "urgency": "high",
+    "summary_en": "Customer debited N21,180 but no cash was given",
+    "amount_naira": null
+   }
+  }
+ ]
+}

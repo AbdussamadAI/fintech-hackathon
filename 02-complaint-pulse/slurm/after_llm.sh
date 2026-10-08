@@ -12,12 +12,12 @@ print(genai.health())
 print(json.dumps(genai.extract_one("Abeg, I send 50k since morning, una don debit me but e no reach."), ensure_ascii=False))
 print(json.dumps(genai.extract_one("Na tura N20,000 amma bai isa ba, kuma an cire kudin daga asusuna."), ensure_ascii=False))
 PY
+echo "== rewritten-complaint evaluation + briefs"
+$R python -u pipeline/eval_llm.py --data data/synthetic --per-lang 60 --workers 32
 echo "== normalise all complaints with N-ATLaS"
 $R python -u pipeline/normalize.py --data data/synthetic --workers 32
 echo "== topics from N-ATLaS English summaries"
 $R python -u pipeline/topics.py --data data/synthetic --source summary
 echo "== detection on summary topics"
 $R python -u pipeline/detect.py --data data/synthetic --ops gpu --topics data/synthetic/topics_summary.parquet --out data/synthetic/detect_gpu_summary.json
-echo "== rewritten-complaint evaluation + briefs"
-$R python -u pipeline/eval_llm.py --data data/synthetic --per-lang 60 --workers 32
 echo AFTER_LLM_DONE

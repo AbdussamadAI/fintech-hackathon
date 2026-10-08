@@ -21,6 +21,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pipeline import genai  # noqa: E402
 
 HOUR = 3600
+OWNERS = [("app_version", "Mobile app team"), ("switch", "Switch / payments operations"), ("telco", "Digital channels (USSD)"),
+          ("atm_id", "ATM operations"), ("card_scheme", "Card operations"), ("segment", "Product & billing"),
+          ("channel", "Fraud & digital channels"), ("device_os", "Mobile app team"), ("region", "Regional operations")]
+
+
+def owner_for(rc):
+    attrs = [it.split("=")[0] for e in rc[:2] for it in e["items"]]
+    return next((o for a, o in OWNERS if a in attrs), "Operations")
 
 
 def macro_f1(y, p):
@@ -93,16 +101,18 @@ def main():
                               "share_of_excess_explained": round(e["explained"], 2)} for e in rc],
               "correlated_event": inc["linked_event"], "regions_affected": inc["n_regions"], "channels_affected": inc["n_channels"],
               "money_at_stake_naira": round(inc["money_at_stake"]), "vulnerable_customer_share": round(inc["vulnerable_share"], 2),
-              "languages": inc["languages"][:5],
+              "languages": inc["languages"][:5], "recommended_owner": owner_for(rc),
               "sample_complaints": [{"id": s["id"], "language": s["language"], "channel": s["channel"], "region": s["region"], "text": s["text"]}
                                     for s in inc["samples"]],
               "customer_facts": {"problem": " / ".join(inc["topics"]), "cause_attributes": rc[0]["items"] if rc else [],
                                  "event": inc["linked_event"]}}
         t0 = time.perf_counter()
         b = genai.incident_brief(ev)
-        msgs = {L["language"]: genai.customer_message(ev, L["language"]) for L in inc["languages"][:3]}
+        msgs = {(L["language"] if L["language"] != "Pidgin" else "Pidgin speakers (in English)"): genai.customer_message(ev, L["language"])
+                for L in inc["languages"][:3]}
         briefs.append({"evidence": ev, "brief": b, "customer_messages": msgs, "seconds": time.perf_counter() - t0})
-        print(f"I{k + 1} brief grounded={b['grounded']} cited={len(b['cited'])} langs={list(msgs)} ({briefs[-1]['seconds']:.1f}s)", flush=True)
+        print(f"I{k + 1} brief grounded={b['grounded']} unsupported={b['unsupported_numbers']} unknown_ids={b['unknown_ids']} "
+              f"attempts={len(b['attempts'])} langs={list(msgs)} ({briefs[-1]['seconds']:.1f}s)", flush=True)
     (d / "briefs.json").write_text(json.dumps(briefs, indent=1, ensure_ascii=False))
 
 

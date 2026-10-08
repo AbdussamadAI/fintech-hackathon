@@ -1,0 +1,1352 @@
+[
+ {
+  "evidence": {
+   "incident_id": "I1",
+   "topics": [
+    "otp_not_received",
+    "app_login_failure"
+   ],
+   "detected_at_sim_hours": 86.0,
+   "complaints_last_3h": 176,
+   "expected_last_3h": 47.4,
+   "root_cause": [
+    {
+     "attributes": [
+      "app_version=4.2.1"
+     ],
+     "share_of_spike": 0.58,
+     "share_normally": 0.03,
+     "lift": 20.8,
+     "share_of_excess_explained": 0.78
+    },
+    {
+     "attributes": [
+      "app_version=4.2.1",
+      "device_os=Android"
+     ],
+     "share_of_spike": 0.55,
+     "share_normally": 0.02,
+     "lift": 23.7,
+     "share_of_excess_explained": 0.75
+    },
+    {
+     "attributes": [
+      "app_version=4.2.1",
+      "segment=retail"
+     ],
+     "share_of_spike": 0.34,
+     "share_normally": 0.02,
+     "lift": 17.6,
+     "share_of_excess_explained": 0.46
+    }
+   ],
+   "correlated_event": "Mobile app 4.2.1 rolled out to Android",
+   "regions_affected": 31,
+   "channels_affected": 6,
+   "money_at_stake_naira": 0,
+   "vulnerable_customer_share": 0.24,
+   "languages": [
+    {
+     "language": "English",
+     "count": 75
+    },
+    {
+     "language": "Pidgin",
+     "count": 47
+    },
+    {
+     "language": "Hausa",
+     "count": 28
+    },
+    {
+     "language": "Yoruba",
+     "count": 18
+    },
+    {
+     "language": "Igbo",
+     "count": 8
+    }
+   ],
+   "recommended_owner": "Mobile app team",
+   "sample_complaints": [
+    {
+     "id": 28868,
+     "language": "Yoruba",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "Eleyi ko dara rara. Mi o ri OTP gba lati pari idunadura."
+    },
+    {
+     "id": 28836,
+     "language": "Yoruba",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "E jowo, Mi o ri OTP gba lati pari idunadura. E tete yanju re."
+    },
+    {
+     "id": 28857,
+     "language": "Pidgin",
+     "channel": "social",
+     "region": "Bayelsa",
+     "text": "Una good morning o, Una OTP no dey land for my phone. Make una fix am. 😡"
+    },
+    {
+     "id": 28828,
+     "language": "Pidgin",
+     "channel": "social",
+     "region": "Kano",
+     "text": "Ehn, OTP no dey come at all, I no fit transfer. !!!"
+    },
+    {
+     "id": 28851,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Anambra",
+     "text": "Good day, I am not receiving the OTP to complete transactions on the app. I have complained twice already."
+    },
+    {
+     "id": 28818,
+     "language": "English",
+     "channel": "app_chat",
+     "region": "Ogun",
+     "text": "This is unacceptable. OTP never arrives, I cannot transfer. I have complained twice already."
+    },
+    {
+     "id": 28760,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "FCT",
+     "text": "Wannan ba daidai ba ne. Ba na samun OTP domin kammala ciniki. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 28742,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Katsina",
+     "text": "Don Allah ku taimaka, OTP never arrives, I cannot transfer. Na kai kara sau biyu."
+    },
+    {
+     "id": 28219,
+     "language": "Igbo",
+     "channel": "call_centre",
+     "region": "Imo",
+     "text": "Nke a adighi mma. Anaghị m enweta OTP iji mechaa azụmahịa. Biko dozie ya ngwa ngwa."
+    },
+    {
+     "id": 28176,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Enugu",
+     "text": "Anaghị m enweta OTP iji mechaa azụmahịa. Achoro m ego m. smh"
+    }
+   ],
+   "customer_facts": {
+    "problem": "otp_not_received / app_login_failure",
+    "cause_attributes": [
+     "app_version=4.2.1"
+    ],
+    "event": "Mobile app 4.2.1 rolled out to Android"
+   }
+  },
+  "brief": {
+   "text": "**Summary:**\nThe incident involved customers complaining about not receiving One-Time Passwords (OTPs) to complete transactions on the app, leading to app login failures. The issue affected 31 regions and 6 channels, with 0 Naira at stake. The vulnerability was highest among retail customers. The Mobile app team is recommended to address the issue.\n\n**Likely cause:**\nThe root cause analysis identified that the app version 4.2.1, particularly for Android users and retail customers, is the primary cause of the issue. The rollout of this app version to Android users has led to a significant spike in complaints.\n\n**Who is affected:**\nCustomers in various regions, including Lagos, Bayelsa, Kano, Anambra, Ogun, FCT, Katsina, Imo, and Enugu, are affected. The complaints were received in English, Pidgin, Hausa, Yoruba, and Igbo languages.\n\n**Recommended owner and first actions:**\nThe Mobile app team is recommended to address the issue. They should investigate the app version 4.2.1 for Android users and take corrective measures to ensure proper OTP delivery. Additionally, they should enhance customer support to assist affected customers.\n\n**Systemic or isolated:**\nThis issue is systemic, as it affects a significant number of customers across various regions and channels. It is essential to address this issue promptly to restore customer trust and service reliability.",
+   "evidence_ids": [
+    "C28868",
+    "C28836",
+    "C28857",
+    "C28828",
+    "C28851",
+    "C28818",
+    "C28760",
+    "C28742",
+    "C28219",
+    "C28176"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "Dear customer, we've noticed an issue with your OTP not received during app login. Our team is working on it. Please try again and we'll refund any funds affected. We apologize for the inconvenience.",
+   "Pidgin speakers (in English)": "Dear customer, we noticed your OTP wasn't received. Our team is on it. Please try again. If issues persist, contact support. Apologies for the inconvenience.",
+   "Hausa": "Sannu abokin ciniki, mun lura da matsalar shiga ta hanyar app. Mun kammala gyara. Don Allah a sake gwadawa. Idan matsalar ta ci gaba, tuntuɓi ɗakin kira."
+  },
+  "seconds": 19.0826855301857
+ },
+ {
+  "evidence": {
+   "incident_id": "I2",
+   "topics": [
+    "reversal_delayed"
+   ],
+   "detected_at_sim_hours": 193.5,
+   "complaints_last_3h": 73,
+   "expected_last_3h": 40.4,
+   "root_cause": [
+    {
+     "attributes": [
+      "switch=Switch C"
+     ],
+     "share_of_spike": 0.56,
+     "share_normally": 0.22,
+     "lift": 2.6,
+     "share_of_excess_explained": 0.99
+    },
+    {
+     "attributes": [
+      "switch=Switch C",
+      "segment=retail"
+     ],
+     "share_of_spike": 0.34,
+     "share_normally": 0.13,
+     "lift": 2.6,
+     "share_of_excess_explained": 0.6
+    },
+    {
+     "attributes": [
+      "language=English",
+      "switch=Switch C"
+     ],
+     "share_of_spike": 0.27,
+     "share_normally": 0.11,
+     "lift": 2.5,
+     "share_of_excess_explained": 0.48
+    }
+   ],
+   "correlated_event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)",
+   "regions_affected": 27,
+   "channels_affected": 6,
+   "money_at_stake_naira": 6303400,
+   "vulnerable_customer_share": 0.25,
+   "languages": [
+    {
+     "language": "English",
+     "count": 36
+    },
+    {
+     "language": "Pidgin",
+     "count": 20
+    },
+    {
+     "language": "Yoruba",
+     "count": 8
+    },
+    {
+     "language": "Hausa",
+     "count": 6
+    },
+    {
+     "language": "Igbo",
+     "count": 3
+    }
+   ],
+   "recommended_owner": "Switch / payments operations",
+   "sample_complaints": [
+    {
+     "id": 64369,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "E jowo, Mi o tii ri reversal 16k gba."
+    },
+    {
+     "id": 64275,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Osun",
+     "text": "Mi o tii ri reversal 91k gba."
+    },
+    {
+     "id": 64366,
+     "language": "English",
+     "channel": "social",
+     "region": "Rivers",
+     "text": "This is unacceptable. My failed transfer of 3,500 naira has not been reversed after three days."
+    },
+    {
+     "id": 64355,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Borno",
+     "text": "I am very disappointed. Still waiting for reversal of ₦43,800."
+    },
+    {
+     "id": 64346,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "Sokoto",
+     "text": "Don Allah, Ba a mayar min da N27,100 ba tun kwana uku. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 64323,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Kano",
+     "text": "Don Allah, Har yanzu ba a dawo min da ₦35,600 da ya fadi ba. Ina son a mayar min da kudina."
+    },
+    {
+     "id": 64331,
+     "language": "Pidgin",
+     "channel": "branch",
+     "region": "Rivers",
+     "text": "Reversal of ₦279,300 never come till now."
+    },
+    {
+     "id": 64302,
+     "language": "Pidgin",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "Una good morning o, Una never reverse my ₦155,600 wey fail since three days. Una no dey try at all."
+    },
+    {
+     "id": 64168,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Cross River",
+     "text": "Biko, Ha alaghachibeghi ₦23,900 m kemgbe ubochi ato. Agwala m unu ugboro abuo."
+    },
+    {
+     "id": 64153,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Ebonyi",
+     "text": "Biko, Reversal nke 24k abiabeghi. 🙄"
+    }
+   ],
+   "customer_facts": {
+    "problem": "reversal_delayed",
+    "cause_attributes": [
+     "switch=Switch C"
+    ],
+    "event": "Switch C settlement queue degraded (failed-NIP rate 4.8%)"
+   }
+  },
+  "brief": {
+   "text": "Summary: The reversal delay has affected 27 regions and 6 channels, with a total stake of N6,343,000. The reversal delay has impacted customers speaking in English, Yoruba, Hausa, and Igbo. The root cause of the issue is attributed to Switch C, with a lift of 2.6 and a share of excess explained of 0.99.\n\nLikely cause: The reversal delay is caused by Switch C, with a lift of 2.6 and a share of excess explained of 0.99. The degradation of the Switch C settlement queue has led to a failed-NIP rate of 4.8%.\n\nWho is affected: Customers in the following regions and channels are affected: Lagos, Osun, Rivers, Borno, Sokoto, Kano, Cross River, Ebonyi. The languages spoken by the affected customers are English, Yoruba, Hausa, and Igbo.\n\nRecommended owner and first actions: The recommended owner is Switch / payments operations. The first actions should focus on resolving the degradation of the Switch C settlement queue and implementing measures to prevent such issues in the future.\n\nSystemic or isolated: This issue is systemic, as it affects multiple regions and channels, and is caused by a specific root cause (degradation of the Switch C settlement queue).",
+   "evidence_ids": [
+    "C64369",
+    "C64275",
+    "C64366",
+    "C64355",
+    "C64346",
+    "C64323",
+    "C64331",
+    "C64302",
+    "C64168",
+    "C64153"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "Dear customer, we're investigating a reversal delay caused by Switch C settlement queue degradation. Your funds will be refunded shortly. Thank you for your patience.",
+   "Pidgin speakers (in English)": "Hi, your reversal is delayed due to Switch C settlement queue issues. We're fixing it. Your funds will be refunded. Sorry for the inconvenience.",
+   "Yoruba": "Ẹ̀rọ ìkànsí yín ti dákẹ́ nítorí ìdákẹ́jẹ́ẹ́ àtúnṣe. A n ṣiṣẹ lori rẹ. Owo rẹ yoo pada. Ma binu fun wahala naa."
+  },
+  "seconds": 17.431258517317474
+ },
+ {
+  "evidence": {
+   "incident_id": "I3",
+   "topics": [
+    "atm_debited_no_cash"
+   ],
+   "detected_at_sim_hours": 250.0,
+   "complaints_last_3h": 120,
+   "expected_last_3h": 81.8,
+   "root_cause": [
+    {
+     "attributes": [
+      "region=Kano"
+     ],
+     "share_of_spike": 0.24,
+     "share_normally": 0.06,
+     "lift": 3.7,
+     "share_of_excess_explained": 0.62
+    },
+    {
+     "attributes": [
+      "language=Hausa"
+     ],
+     "share_of_spike": 0.25,
+     "share_normally": 0.14,
+     "lift": 1.7,
+     "share_of_excess_explained": 0.48
+    }
+   ],
+   "correlated_event": "Cash-recycler firmware pushed to Kano ATM fleet",
+   "regions_affected": 28,
+   "channels_affected": 6,
+   "money_at_stake_naira": 2729100,
+   "vulnerable_customer_share": 0.19,
+   "languages": [
+    {
+     "language": "English",
+     "count": 54
+    },
+    {
+     "language": "Hausa",
+     "count": 30
+    },
+    {
+     "language": "Pidgin",
+     "count": 23
+    },
+    {
+     "language": "Yoruba",
+     "count": 13
+    }
+   ],
+   "recommended_owner": "Regional operations",
+   "sample_complaints": [
+    {
+     "id": 84600,
+     "language": "English",
+     "channel": "email",
+     "region": "Kano",
+     "text": "This is unacceptable. The ATM debite me ₦39,500 but did not dispense cash. Kindly look into it."
+    },
+    {
+     "id": 84592,
+     "language": "English",
+     "channel": "branch",
+     "region": "Kano",
+     "text": "This is unacceptable. ATM did not pay out N5,500 but Iwas debited. I need my money back."
+    },
+    {
+     "id": 84597,
+     "language": "Pidgin",
+     "channel": "app_review",
+     "region": "Ekiti",
+     "text": "ATM debit me ₦24,900 but e no bring money. Una no dey try at all."
+    },
+    {
+     "id": 84565,
+     "language": "Pidgin",
+     "channel": "branch",
+     "region": "Lagos",
+     "text": "Ehn, ATM debit me ₦16,200 but e no bring money. Make una fix am."
+    },
+    {
+     "id": 84591,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Gombe",
+     "text": "Ina kwana, Na cire 34k a ATM, kudin bai fito ba. Ina son a mayar min da kudina."
+    },
+    {
+     "id": 84589,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Kano",
+     "text": "Don Allah ku taimaka, Na cire 30k a ATM, kudin bai fito ba. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 84444,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "FCT",
+     "text": "ATM yo N56,800 lowo mi sugbon ko fun mi lowo. Mo fe owo mi pada."
+    },
+    {
+     "id": 84374,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Ogun",
+     "text": "E ba mi, ATM yo N5,500 lowo mi sugbon ko fun mi lowo. Mo ti so tele."
+    }
+   ],
+   "customer_facts": {
+    "problem": "atm_debited_no_cash",
+    "cause_attributes": [
+     "region=Kano"
+    ],
+    "event": "Cash-recycler firmware pushed to Kano ATM fleet"
+   }
+  },
+  "brief": {
+   "text": "**Summary:**\nThe incident involves a significant spike in complaints related to ATMs debiting customers' accounts without dispensing cash. The root cause analysis indicates that the Kano region and the Hausa language are the primary contributors to this issue. The Cash-recycler firmware push to the Kano ATM fleet is likely the cause of the problem. The incident has affected 28 regions and 6 channels, with a total money stake of N2,729,100 and a vulnerable customer share of 19%.\n\n**Likely cause (with lift numbers):**\nThe likely cause of the incident is the Cash-recycler firmware push to the Kano ATM fleet. This is supported by the fact that the Kano region has a lift of 3.7 and the Hausa language has a lift of 1.7.\n\n**Who is affected:**\nCustomers in the Kano region who speak Hausa are most affected. The incident has resulted in a significant number of complaints from these customers, with many reporting that their accounts were debited but no cash was dispensed.\n\n**Recommended owner and first actions:**\nThe recommended owner is the Regional operations team. They should immediately investigate the impact of the Cash-recycler firmware push and take corrective action to restore normal ATM functionality. They should also implement measures to communicate with affected customers and provide compensation for any losses incurred.\n\n**Systemic or isolated:**\nThis incident is systemic, as it involves a malfunctioning software update affecting a specific region and language. It is essential to address the root cause to prevent future occurrences.",
+   "evidence_ids": [
+    "C84600",
+    "C84592",
+    "C84597",
+    "C84565",
+    "C84591",
+    "C84589",
+    "C84444",
+    "C84374"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "Hi, we're fixing the issue at your ATM. Your money has been debited but cash isn't dispensed. We're working on resolving it. Your funds will be refunded. Thank you for your patience.",
+   "Hausa": "Kuna da matsala wajen fitar da kudi daga ATM. Mun san matsalar kuma muna aiki tukuru don gyara ta. Kudin ku za su dawo muku nan ba da jimawa ba. Don Allah a jira.",
+   "Pidgin speakers (in English)": "\"Dear customer, our Kano ATMs are updating to fix cash issues. Your card was debited but no cash was dispensed. We're working on resolving this. Your funds will be refunded as soon as possible. Thank you for your patience.\""
+  },
+  "seconds": 20.527473716065288
+ },
+ {
+  "evidence": {
+   "incident_id": "I4",
+   "topics": [
+    "ussd_session_timeout"
+   ],
+   "detected_at_sim_hours": 332.5,
+   "complaints_last_3h": 178,
+   "expected_last_3h": 95.1,
+   "root_cause": [
+    {
+     "attributes": [
+      "telco=Telco 2"
+     ],
+     "share_of_spike": 0.73,
+     "share_normally": 0.27,
+     "lift": 2.7,
+     "share_of_excess_explained": 1.0
+    },
+    {
+     "attributes": [
+      "language=English",
+      "telco=Telco 2"
+     ],
+     "share_of_spike": 0.44,
+     "share_normally": 0.14,
+     "lift": 3.3,
+     "share_of_excess_explained": 0.8
+    },
+    {
+     "attributes": [
+      "telco=Telco 2",
+      "segment=retail"
+     ],
+     "share_of_spike": 0.45,
+     "share_normally": 0.16,
+     "lift": 2.7,
+     "share_of_excess_explained": 0.78
+    }
+   ],
+   "correlated_event": "USSD gateway link to Telco 2 flapping",
+   "regions_affected": 37,
+   "channels_affected": 6,
+   "money_at_stake_naira": 0,
+   "vulnerable_customer_share": 0.2,
+   "languages": [
+    {
+     "language": "English",
+     "count": 97
+    },
+    {
+     "language": "Hausa",
+     "count": 25
+    },
+    {
+     "language": "Pidgin",
+     "count": 24
+    },
+    {
+     "language": "Yoruba",
+     "count": 22
+    },
+    {
+     "language": "Igbo",
+     "count": 10
+    }
+   ],
+   "recommended_owner": "Digital channels (USSD)",
+   "sample_complaints": [
+    {
+     "id": 111709,
+     "language": "English",
+     "channel": "social",
+     "region": "Anambra",
+     "text": "I am very disappointed. The USSD code shows session ended every time. I have complained twice already."
+    },
+    {
+     "id": 111707,
+     "language": "English",
+     "channel": "email",
+     "region": "Imo",
+     "text": "This is unacceptable. The USSD code shows session ended every time. I have complained twice already."
+    },
+    {
+     "id": 111705,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Kaduna",
+     "text": "Don Allah, Lambar USSD tana cewa session ya kare. Na kai kara sau biyu."
+    },
+    {
+     "id": 111699,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Kano",
+     "text": "Ina kwana, Lambar USSD tana cewa session ya kare. Na kai kara sau biyu."
+    },
+    {
+     "id": 111704,
+     "language": "Igbo",
+     "channel": "app_review",
+     "region": "Rivers",
+     "text": "Biko, USSD na-ekwu na session agwula."
+    },
+    {
+     "id": 111632,
+     "language": "Igbo",
+     "channel": "email",
+     "region": "Rivers",
+     "text": "Biko, USSD na-akwusi tupu m mechaa. Agwala m unu ugboro abuo."
+    },
+    {
+     "id": 111679,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Kogi",
+     "text": "Abeg una help me, Una USSD no dey work, e just dey timeout. Una no dey try at all."
+    },
+    {
+     "id": 111669,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Ogun",
+     "text": "Abeg, USSD dey cut before I finish, e dey talk session ended. Make una fix am."
+    },
+    {
+     "id": 111665,
+     "language": "Yoruba",
+     "channel": "social",
+     "region": "Osun",
+     "text": "Eleyi ko dara rara. Koodu USSD n so pe session ti pari. E tete yanju re."
+    },
+    {
+     "id": 111663,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Ondo",
+     "text": "E jowo, Koodu USSD n so pe session ti pari."
+    }
+   ],
+   "customer_facts": {
+    "problem": "ussd_session_timeout",
+    "cause_attributes": [
+     "telco=Telco 2"
+    ],
+    "event": "USSD gateway link to Telco 2 flapping"
+   }
+  },
+  "brief": {
+   "text": "Summary: The USSD session timeout issue has affected customers across various regions and channels, with a significant number of complaints in English, Hausa, Igbo, Pidgin, and Yoruba. The problem has been linked to the USSD gateway link to Telco 2 flapping, causing a spike in complaints.\n\nLikely cause: The issue is primarily caused by the USSD gateway link to Telco 2 flapping, which has led to a 2.7 to 3.3 times increase in complaints. The problem is more pronounced for customers using English and Telco 2, and it has also affected retail customers.\n\nWho is affected: The issue has affected customers in 37 regions and across 6 channels, with a vulnerable customer share of 0.2. The majority of complaints have been received in English, followed by Hausa, Pidgin, Yoruba, and Igbo.\n\nRecommended owner and first actions: The recommended owner is the Digital channels (USSD). To address the issue, the team should investigate the cause of the USSD gateway link flapping and ensure that the service is restored as soon as possible. Additionally, the team should work on improving the stability of the USSD service and providing better support to affected customers.\n\nSystemic or isolated: The issue appears to be systemic, as it has affected a significant number of customers across various regions and channels. The team should conduct a thorough analysis to identify the root cause and implement measures to prevent such issues in the future.",
+   "evidence_ids": [
+    "C111709",
+    "C111707",
+    "C111705",
+    "C111699",
+    "C111704",
+    "C111632",
+    "C111679",
+    "C111669",
+    "C111665",
+    "C111663"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "\"Hi, we're fixing the issue with your USSD session. Your account is safe & funds will be refunded. We'll notify you when resolved. Thanks for your patience.\"",
+   "Hausa": "Sannu abokina, mun samu matsala da aikin USSD naka. Muna gyara shi. Kada ku damu, za a mayar muku da kudin ku lafiya.",
+   "Pidgin speakers (in English)": "Dear customer, we've noticed an issue with your USSD session. We're working on it, please be assured your funds will be refunded shortly. Thank you for your patience."
+  },
+  "seconds": 19.934384279884398
+ },
+ {
+  "evidence": {
+   "incident_id": "I5",
+   "topics": [
+    "card_declined"
+   ],
+   "detected_at_sim_hours": 396.0,
+   "complaints_last_3h": 160,
+   "expected_last_3h": 84.2,
+   "root_cause": [
+    {
+     "attributes": [
+      "card_scheme=Card scheme B"
+     ],
+     "share_of_spike": 0.65,
+     "share_normally": 0.35,
+     "lift": 1.8,
+     "share_of_excess_explained": 0.98
+    },
+    {
+     "attributes": [
+      "card_scheme=Card scheme B",
+      "segment=retail"
+     ],
+     "share_of_spike": 0.4,
+     "share_normally": 0.21,
+     "lift": 1.9,
+     "share_of_excess_explained": 0.61
+    },
+    {
+     "attributes": [
+      "language=English",
+      "card_scheme=Card scheme B"
+     ],
+     "share_of_spike": 0.33,
+     "share_normally": 0.18,
+     "lift": 1.8,
+     "share_of_excess_explained": 0.5
+    }
+   ],
+   "correlated_event": "Card scheme B planned maintenance window",
+   "regions_affected": 33,
+   "channels_affected": 6,
+   "money_at_stake_naira": 0,
+   "vulnerable_customer_share": 0.16,
+   "languages": [
+    {
+     "language": "English",
+     "count": 84
+    },
+    {
+     "language": "Hausa",
+     "count": 29
+    },
+    {
+     "language": "Pidgin",
+     "count": 28
+    },
+    {
+     "language": "Yoruba",
+     "count": 17
+    },
+    {
+     "language": "Igbo",
+     "count": 2
+    }
+   ],
+   "recommended_owner": "Card operations",
+   "sample_complaints": [
+    {
+     "id": 132138,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Card no gree work, e dey talk declined. Abeg make una sort am quick quick."
+    },
+    {
+     "id": 131963,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "FCT",
+     "text": "Card no gree work, e dey talk declined. I want my money back o."
+    },
+    {
+     "id": 132137,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Kano",
+     "text": "Wannan ba daidai ba ne. Katina ana kin karbarsa ko ina. Ku gyara wannan da sauri."
+    },
+    {
+     "id": 132135,
+     "language": "Hausa",
+     "channel": "email",
+     "region": "FCT",
+     "text": "Ina kwana, Katina bata aiki duk da ina da kudi. Ina son a mayar min da kudina."
+    },
+    {
+     "id": 132134,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Rivers",
+     "text": "I am very disappointed. My card keeps getting declined online and at POS. Fix this now!"
+    },
+    {
+     "id": 132132,
+     "language": "English",
+     "channel": "email",
+     "region": "Lagos",
+     "text": "This is unacceptable. Card declined even though I have funds. Kindly look into it."
+    },
+    {
+     "id": 132085,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "Osun",
+     "text": "E jowo, Kaadi mi ko sise bo tile je pe mo ni owo. Mo fe owo mi pada."
+    },
+    {
+     "id": 131976,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "Lagos",
+     "text": "E jowo e ran mi lowo, Kaadi mi ko sise bo tile je pe mo ni owo. Mo fe owo mi pada."
+    },
+    {
+     "id": 131720,
+     "language": "Igbo",
+     "channel": "email",
+     "region": "Anambra",
+     "text": "Kaadị m anaghi aru oru."
+    },
+    {
+     "id": 130846,
+     "language": "Igbo",
+     "channel": "call_centre",
+     "region": "Anambra",
+     "text": "Ndewo, A na-ajụ kaadị m ebe niile. Achoro m ego m."
+    }
+   ],
+   "customer_facts": {
+    "problem": "card_declined",
+    "cause_attributes": [
+     "card_scheme=Card scheme B"
+    ],
+    "event": "Card scheme B planned maintenance window"
+   }
+  },
+  "brief": {
+   "text": "Summary: The card_declined complaints have increased significantly, with a spike of 65% caused by Card scheme B. The root cause analysis indicates that Card scheme B planned maintenance window is likely to be the cause of the issue. The affected customers are mostly from the retail segment, speaking English or Hausa, and located in various regions of Nigeria. The recommended owner is Card operations, which should take immediate action to resolve the issue and prevent further complaints.\n\nLikely cause: The root cause analysis shows that Card scheme B planned maintenance window is the main cause of the card_declined complaints, with a lift of 1.8, 1.9, and 1.8 respectively. The maintenance window has affected 65% of the complaints, with a share of excess explained of 98%, 61%, and 50% respectively.\n\nWho is affected: The complaints have affected customers from various regions and channels, with a vulnerable customer share of 16%. The affected customers are mostly from the retail segment, speaking English or Hausa, and located in various regions of Nigeria.\n\nRecommended owner and first actions: The recommended owner is Card operations, which should take immediate action to resolve the issue and prevent further complaints. They should investigate the cause of the card_declined complaints, communicate with the affected customers, and take necessary steps to restore their card functionality. Additionally, they should review their maintenance windows to minimize the impact on customers.\n\nSystemic or isolated: The issue is systemic as it has affected a significant number of customers across various regions and channels. However, the root cause analysis indicates that the problem is isolated to Card scheme B planned maintenance window.",
+   "evidence_ids": [
+    "C132138",
+    "C131963",
+    "C132137",
+    "C132135",
+    "C132134",
+    "C132132",
+    "C132085",
+    "C131976",
+    "C131720",
+    "C130846"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "Card scheme B is undergoing planned maintenance. Your card may not work. We're fixing this. Your funds will be refunded. Sorry for the inconvenience.",
+   "Hausa": "An gano matsalar cikin tsarin biyan kuɗi. Ana magance matsalar, za a mayar da kuɗin ku cikin gaggawa. Da fatan za a yi hakuri.",
+   "Pidgin speakers (in English)": "Dear customer, your card (Card scheme B) is currently not working due to planned maintenance. We're working on fixing it. Your funds will be refunded. Thank you for your patience."
+  },
+  "seconds": 19.923101955093443
+ },
+ {
+  "evidence": {
+   "incident_id": "I6",
+   "topics": [
+    "pos_debited_no_value"
+   ],
+   "detected_at_sim_hours": 468.5,
+   "complaints_last_3h": 132,
+   "expected_last_3h": 83.5,
+   "root_cause": [
+    {
+     "attributes": [
+      "region=Lagos",
+      "switch=Switch E"
+     ],
+     "share_of_spike": 0.45,
+     "share_normally": 0.02,
+     "lift": 18.1,
+     "share_of_excess_explained": 1.0
+    },
+    {
+     "attributes": [
+      "switch=Switch E"
+     ],
+     "share_of_spike": 0.5,
+     "share_normally": 0.1,
+     "lift": 5.1,
+     "share_of_excess_explained": 1.0
+    },
+    {
+     "attributes": [
+      "language=English",
+      "switch=Switch E"
+     ],
+     "share_of_spike": 0.3,
+     "share_normally": 0.05,
+     "lift": 6.3,
+     "share_of_excess_explained": 0.74
+    }
+   ],
+   "correlated_event": "Switch E acquiring host latency alarm",
+   "regions_affected": 27,
+   "channels_affected": 6,
+   "money_at_stake_naira": 4817700,
+   "vulnerable_customer_share": 0.14,
+   "languages": [
+    {
+     "language": "English",
+     "count": 68
+    },
+    {
+     "language": "Pidgin",
+     "count": 32
+    },
+    {
+     "language": "Yoruba",
+     "count": 17
+    },
+    {
+     "language": "Hausa",
+     "count": 12
+    },
+    {
+     "language": "Igbo",
+     "count": 3
+    }
+   ],
+   "recommended_owner": "Switch / payments operations",
+   "sample_complaints": [
+    {
+     "id": 158422,
+     "language": "English",
+     "channel": "app_review",
+     "region": "Lagos",
+     "text": "Good day, I paid 5,600 naira at a POS terminal, I was debited but the merchant did not get value. I have complained twice already."
+    },
+    {
+     "id": 158398,
+     "language": "English",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "This is unacceptable. I paid 5,800 naira at a POS terminal, I was debited but the merchant did not get value. I need my money back."
+    },
+    {
+     "id": 158407,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Kano",
+     "text": "Na biya 32k ta POS, an cire amma dan kasuwa bai samu ba."
+    },
+    {
+     "id": 158180,
+     "language": "Hausa",
+     "channel": "social",
+     "region": "Kaduna",
+     "text": "Don Allah ku taimaka, Na biya 2k ta POS, an cire amma dan kasuwa bai samu ba."
+    },
+    {
+     "id": 158392,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "Una good morning o, I pay ₦14,500 for POS, dem debit me but the merchant no see am. I want my money back o."
+    },
+    {
+     "id": 158378,
+     "language": "Pidgin",
+     "channel": "call_centre",
+     "region": "Edo",
+     "text": "Wetin dey happen? I pay 99k for POS, dem debit me but the merchant no see am. Una no dey try at all."
+    },
+    {
+     "id": 158310,
+     "language": "Yoruba",
+     "channel": "call_centre",
+     "region": "Lagos",
+     "text": "E jowo, Mo san N8,100 lori POS, won yo owo sugbon onisowo ko ri i gba. Mo ti so tele."
+    },
+    {
+     "id": 158308,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "Mo san N8,300 lori POS, won yo owo sugbon onisowo ko ri i gba. Mo ti so tele."
+    },
+    {
+     "id": 157731,
+     "language": "Igbo",
+     "channel": "call_centre",
+     "region": "Enugu",
+     "text": "Ndewo, I pay 39k for POS, dem debit me but the mercant no see am. Agwala m unu ugboro abuo."
+    },
+    {
+     "id": 157598,
+     "language": "Igbo",
+     "channel": "social",
+     "region": "Abia",
+     "text": "Nke a adighi mma. Akwuru m N28,800 na POS, ewepuru ego ma onye ahia enwetaghi ya. Achoro m ego m. !!!"
+    }
+   ],
+   "customer_facts": {
+    "problem": "pos_debited_no_value",
+    "cause_attributes": [
+     "region=Lagos",
+     "switch=Switch E"
+    ],
+    "event": "Switch E acquiring host latency alarm"
+   }
+  },
+  "brief": {
+   "text": "Summary:\nOn [I6], we have a significant issue with customers complaining about debits at POS terminals without value. The root cause analysis shows that Lagos and Switch E are the main contributors to this problem, with a lift of 18.1 and 5.1 respectively. The money at stake is N4,817,000, and 14% of vulnerable customers are affected. The recommended owner is Switch/payments operations.\n\nLikely cause:\n- Region Lagos: 18.1 lift\n- Switch E: 5.1 lift\n\nWho is affected:\n- 27 regions\n- 6 channels\n- 481,700 naira at stake\n- 14% of vulnerable customers\n\nRecommended owner and first actions:\n- Switch/payments operations: Investigate the issue in Lagos and Switch E, identify the root cause, and implement a solution to prevent debits without value.\n\nSystemic or isolated:\n- Systemic, as it affects multiple regions and channels.",
+   "evidence_ids": [
+    "C158422",
+    "C158398",
+    "C158407",
+    "C158180",
+    "C158392",
+    "C158378",
+    "C158310",
+    "C158308",
+    "C157731",
+    "C157598"
+   ],
+   "unsupported_numbers": [
+    481700.0
+   ],
+   "unknown_ids": [],
+   "grounded": false
+  },
+  "customer_messages": {
+   "English": "Hi Customer, we've noticed a problem with your debit transaction. We're fixing it. Your funds will be refunded shortly. Thank you for your patience.",
+   "Pidgin speakers (in English)": "Hi, a problem occurred with your recent transaction. We're fixing it. Your funds will be refunded shortly. Thank you for your patience.",
+   "Yoruba": "Ẹ̀bùn: {\"problem\": \"pos_debited_no_value\", \"cause_attributes\": [\"region=Lagos\", \"switch=Switch E\"], \"event\": \"Switch E acquiring host latency alarm\"}"
+  },
+  "seconds": 14.775647844187915
+ },
+ {
+  "evidence": {
+   "incident_id": "I7",
+   "topics": [
+    "unauthorised_debit"
+   ],
+   "detected_at_sim_hours": 561.8,
+   "complaints_last_3h": 69,
+   "expected_last_3h": 27.1,
+   "root_cause": [
+    {
+     "attributes": [
+      "channel=app_chat",
+      "region=Rivers"
+     ],
+     "share_of_spike": 0.55,
+     "share_normally": 0.04,
+     "lift": 12.9,
+     "share_of_excess_explained": 0.88
+    },
+    {
+     "attributes": [
+      "region=Rivers"
+     ],
+     "share_of_spike": 0.58,
+     "share_normally": 0.09,
+     "lift": 6.7,
+     "share_of_excess_explained": 0.9
+    },
+    {
+     "attributes": [
+      "region=Rivers",
+      "device_os=Android"
+     ],
+     "share_of_spike": 0.43,
+     "share_normally": 0.04,
+     "lift": 11.3,
+     "share_of_excess_explained": 0.69
+    }
+   ],
+   "correlated_event": null,
+   "regions_affected": 14,
+   "channels_affected": 6,
+   "money_at_stake_naira": 6320000,
+   "vulnerable_customer_share": 0.13,
+   "languages": [
+    {
+     "language": "English",
+     "count": 33
+    },
+    {
+     "language": "Pidgin",
+     "count": 26
+    },
+    {
+     "language": "Hausa",
+     "count": 5
+    },
+    {
+     "language": "Igbo",
+     "count": 3
+    },
+    {
+     "language": "Yoruba",
+     "count": 2
+    }
+   ],
+   "recommended_owner": "Fraud & digital channels",
+   "sample_complaints": [
+    {
+     "id": 186517,
+     "language": "English",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Good day, N409,100 was debited from my account without my authorisation. Kindly look into it."
+    },
+    {
+     "id": 186468,
+     "language": "English",
+     "channel": "email",
+     "region": "Lagos",
+     "text": "₦18,700 was debited from my account without my authorisation. Kindly look into it."
+    },
+    {
+     "id": 186497,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Una good morning o, Somebody remove ₦15,600 from my account, no be me do am. Una no dey try at all."
+    },
+    {
+     "id": 186495,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Na wa for una o. Somebody remove 8k from my account, no be me do am. Una no dey try at all."
+    },
+    {
+     "id": 186397,
+     "language": "Igbo",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Biko, Ewepuru N318,900 n'akaụntụ m n'enyeghi m ikike. Biko dozie ya ngwa ngwa."
+    },
+    {
+     "id": 186059,
+     "language": "Igbo",
+     "channel": "app_chat",
+     "region": "Rivers",
+     "text": "Ewepuru 88k n'akaụntụ m n'enyeghi m ikike."
+    },
+    {
+     "id": 186362,
+     "language": "Hausa",
+     "channel": "app_chat",
+     "region": "Zamfara",
+     "text": "An cire ₦43,500 daga asusuna ba tare da izinina ba."
+    },
+    {
+     "id": 186299,
+     "language": "Hausa",
+     "channel": "branch",
+     "region": "Kaduna",
+     "text": "I see a debit of 303,200 naira I did not make. Na kai kara sau biyu."
+    },
+    {
+     "id": 186069,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Oyo",
+     "text": "Won yo 210k lati inu account mi lai fi ase mi. Mo ti so tele."
+    },
+    {
+     "id": 186027,
+     "language": "Yoruba",
+     "channel": "branch",
+     "region": "Lagos",
+     "text": "E ba mi, Won yo ₦171,700 lati inu account mi lai fi ase mi."
+    }
+   ],
+   "customer_facts": {
+    "problem": "unauthorised_debit",
+    "cause_attributes": [
+     "channel=app_chat",
+     "region=Rivers"
+    ],
+    "event": null
+   }
+  },
+  "brief": {
+   "text": "Summary: The incident involves unauthorized debits from customers' accounts, with a total of N63.2 million affected. The majority of complaints are from customers in Rivers, and the unauthorized debits have been reported through various channels including app chats, emails, and branch visits.\n\nLikely cause: The likely cause of the issue is linked to app chats, with a lift of 12.9, and the Rivers region, with a lift of 6.7. The issue is also more prevalent among Android users in Rivers, with a lift of 11.3.\n\nWho is affected: Customers in Rivers, Lagos, Zamfara, Kaduna, Oyo, and other regions. The majority of complaints have been received in English, followed by Pidgin, Hausa, Igbo, and Yoruba.\n\nRecommended owner and first actions: The recommended owner is Fraud & Digital Channels. The first actions should involve investigating the cause of the unauthorized debits and taking steps to prevent future occurrences.\n\nSystemic or isolated: The incident is systemic in nature, as it involves a large number of customers across various regions and channels.",
+   "evidence_ids": [
+    "C186517",
+    "C186468",
+    "C186497",
+    "C186495",
+    "C186397",
+    "C186059",
+    "C186362",
+    "C186299",
+    "C186069",
+    "C186027"
+   ],
+   "unsupported_numbers": [
+    63.2
+   ],
+   "unknown_ids": [],
+   "grounded": false
+  },
+  "customer_messages": {
+   "English": "Dear customer, we've noticed an unauthorized debit from your account. We're investigating this issue. Your funds will be refunded as soon as possible. Thank you for your patience.",
+   "Pidgin speakers (in English)": "Dear customer, we've noticed an unauthorised debit from your account. We're investigating this issue. Your funds will be refunded. Thank you for your patience.",
+   "Hausa": "An yi watsi da katin ku na banki. Muna aiki kan matsalar. Za a mayar muku da kuɗin ku. Don Allah a jira."
+  },
+  "seconds": 17.01689960807562
+ },
+ {
+  "evidence": {
+   "incident_id": "I8",
+   "topics": [
+    "sms_charges"
+   ],
+   "detected_at_sim_hours": 633.5,
+   "complaints_last_3h": 52,
+   "expected_last_3h": 29.6,
+   "root_cause": [
+    {
+     "attributes": [
+      "segment=student"
+     ],
+     "share_of_spike": 0.5,
+     "share_normally": 0.13,
+     "lift": 3.7,
+     "share_of_excess_explained": 0.98
+    },
+    {
+     "attributes": [
+      "language=English",
+      "segment=student"
+     ],
+     "share_of_spike": 0.29,
+     "share_normally": 0.06,
+     "lift": 4.5,
+     "share_of_excess_explained": 0.58
+    }
+   ],
+   "correlated_event": "SMS alert billing rule updated",
+   "regions_affected": 27,
+   "channels_affected": 6,
+   "money_at_stake_naira": 40000,
+   "vulnerable_customer_share": 0.52,
+   "languages": [
+    {
+     "language": "English",
+     "count": 29
+    },
+    {
+     "language": "Pidgin",
+     "count": 10
+    },
+    {
+     "language": "Hausa",
+     "count": 7
+    },
+    {
+     "language": "Yoruba",
+     "count": 4
+    },
+    {
+     "language": "Igbo",
+     "count": 2
+    }
+   ],
+   "recommended_owner": "Product & billing",
+   "sample_complaints": [
+    {
+     "id": 217332,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "Ehn, Una charge me N470 for SMS alert, e too much."
+    },
+    {
+     "id": 217312,
+     "language": "Pidgin",
+     "channel": "app_chat",
+     "region": "Delta",
+     "text": "Abeg una help me, Una charge me N340 for SMS alert, e too much. Abeg make una sort am quick quick."
+    },
+    {
+     "id": 217309,
+     "language": "English",
+     "channel": "branch",
+     "region": "Lagos",
+     "text": "Good day, You charged me ₦810 for SMS alerts this month, it is too much. Please resolve urgently."
+    },
+    {
+     "id": 217282,
+     "language": "English",
+     "channel": "call_centre",
+     "region": "Abia",
+     "text": "You charged me 360 naira for SMS alerts this month, it is too much. Fix this now!"
+    },
+    {
+     "id": 217113,
+     "language": "Hausa",
+     "channel": "email",
+     "region": "Nasarawa",
+     "text": "Don Allah, An caje ni N260 na sakon SMS a wannan wata."
+    },
+    {
+     "id": 217081,
+     "language": "Hausa",
+     "channel": "call_centre",
+     "region": "Adamawa",
+     "text": "Sannu, An caje ni ₦1,000 na sakon SMS a wannan wata. Na kai kara sau biyu."
+    },
+    {
+     "id": 216629,
+     "language": "Yoruba",
+     "channel": "branch",
+     "region": "Ogun",
+     "text": "Eleyi ko dara rara. Won gba 1k fun SMS alert losu yii. E tete ynju re."
+    },
+    {
+     "id": 216615,
+     "language": "Yoruba",
+     "channel": "app_chat",
+     "region": "Lagos",
+     "text": "E ba mi, Won gba ₦1,400 fun SMS alert losu yi. Mo fe owo mi pada."
+    },
+    {
+     "id": 216557,
+     "language": "Igbo",
+     "channel": "branch",
+     "region": "Anambra",
+     "text": "Biko, Ha chajara m N470 maka SMS n'onwa a."
+    },
+    {
+     "id": 216524,
+     "language": "Igbo",
+     "channel": "call_centre",
+     "region": "Delta",
+     "text": "Biko, Ha chajara m 1k maka SMS n'onwa a. Agwala m unu ugboro abuo."
+    }
+   ],
+   "customer_facts": {
+    "problem": "sms_charges",
+    "cause_attributes": [
+     "segment=student"
+    ],
+    "event": "SMS alert billing rule updated"
+   }
+  },
+  "brief": {
+   "text": "**Summary:**\nThe incident involves a spike in complaints related to SMS charges, with 52 complaints received in the last 3 hours, which is higher than the expected 29.6. The root cause analysis indicates that students and English-speaking customers are disproportionately affected. The money at stake is estimated at N40,000, and 52% of vulnerable customers are impacted. The recommended owner for this issue is the \"Product & Billing\" team.\n\n**Likely cause:**\nThe analysis suggests that the likely cause is related to the billing rules for SMS alerts, which may have been updated, leading to higher charges for customers. This has resulted in a significant spike in complaints from students and English-speaking customers.\n\n**Who is affected:**\nCustomers in regions 27 and through channels 6 are affected. The languages spoken by the affected customers include English, Pidgin, Hausa, Yoruba, and Igbo.\n\n**Recommended owner and first actions:**\nThe recommended owner is the \"Product & Billing\" team. The first actions should focus on investigating the impact of the updated billing rule on customers, reviewing the complaints to identify any patterns or common issues, and assessing the systemic or isolated nature of the problem.\n\n**Systemic or isolated:**\nThe incident may be systemic in nature, as the spike in complaints suggests a widespread issue related to the billing rules for SMS alerts. Further investigation is required to determine if this is an isolated issue or a systemic problem affecting all customers.",
+   "evidence_ids": [
+    "C217332",
+    "C217312",
+    "C217309",
+    "C217282",
+    "C217113",
+    "C217081",
+    "C216629",
+    "C216615",
+    "C216557",
+    "C216524"
+   ],
+   "unsupported_numbers": [],
+   "unknown_ids": [],
+   "grounded": true
+  },
+  "customer_messages": {
+   "English": "Dear customer, we've noticed an issue with your SMS charges. Your account has been flagged as a student segment. We're fixing this. You'll be refunded for any extra charges. We'll notify you once resolved. Thank you for your patience.",
+   "Pidgin speakers (in English)": "Hi Student, we're fixing the SMS issue. You'll be charged for recent SMS, but we'll refund you. Thanks for your patience.",
+   "Hausa": "Sannu, mai amfani! Mun gano matsalar cajin SMS a cikin asusu. Ana magance matsalar kuma za a mayar da kuɗin ku nan ba da jimawa ba. Don Allah ku yi hakuri da duk wani rashin jin daɗi."
+  },
+  "seconds": 20.059987856075168
+ }
+]

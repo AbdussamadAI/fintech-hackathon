@@ -212,7 +212,9 @@ async function openIncident(id, gen=false) {
         <div class="samples">${r.samples.slice(0, 6).map(x => `<div class="fi"><span class="tag">${esc(x.language)}</span><span>${esc(x.text)}</span><span></span><span class="meta mono">C${x.id} · ${esc(CH[x.channel] || x.channel)} · ${esc(x.region)}</span></div>`).join('')}</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
-        <div class="row"><h3>Incident brief · N-ATLaS</h3>${r.brief ? `<span class="chip">${r.brief.grounded ? 'Every citation checked against the evidence' : 'Check citations'}</span>` : ''}</div>
+        <div class="row"><h3>Incident brief · N-ATLaS</h3>${r.brief ? `<span class="chip" style="${r.brief.grounded ? '' : 'color:var(--crit);border-color:var(--crit)'}">${r.brief.grounded
+            ? 'Every number checked against the evidence'
+            : 'Held for analyst review: ' + esc([...(r.brief.unsupported_numbers || []).map(n => fmt(n, 0)), ...(r.brief.unknown_ids || [])].join(', ')) + ' not in evidence'}</span>` : ''}</div>
         ${r.brief ? `<div class="brief">${esc(r.brief.text)}</div>` : `<div class="row" style="justify-content:flex-start"><button class="btn primary" id="gen">Write brief and customer messages</button><span class="muted" id="genmsg" style="font-size:13px"></span></div>`}
         <h3>Proactive customer message, in their languages</h3>
         ${Object.keys(r.messages).length ? Object.entries(r.messages).map(([k, v]) => `<div class="msg"><b>${esc(k)}</b>${esc(v)}</div>`).join('') : '<span class="muted" style="font-size:13px">Generated together with the brief.</span>'}
