@@ -55,11 +55,13 @@ transfer stream ─▶ GPU sliding-window graph ─▶ 4 custom CUDA detectors �
 3. **AI risk scoring.** Gradient-boosted trees (XGBoost on GPU) score each transfer; alerted transfers are
    joined into **rings** (connected components), and every alert carries **reason codes** derived from the
    model's per-feature contributions (SHAP), e.g. *"receiver collected from 19 different accounts in 72h"*.
-4. **GenAI analyst copilot.** For each ring an LLM drafts the **Suspicious Transaction Report narrative for
-   the NFIU** from the ring's evidence only (accounts, transfers with IDs, timeline, reason codes). A validator
-   rejects any draft that cites a transaction or account not in the evidence, and the LLM never makes the
-   hold/clear decision. It runs against an open-weight model served on the bank's own GPU (OpenAI-compatible
-   endpoint such as vLLM), so no customer data leaves the bank; a deterministic grounded draft is the fallback.
+4. **GenAI analyst copilot.** For each ring, a large language model drafts the **Suspicious Transaction
+   Report narrative for the NFIU** from the ring's evidence only (accounts, transfers with IDs, timeline,
+   reason codes). A validator rejects any draft that cites a transaction or account that is not in the
+   evidence, and the LLM never makes the hold/clear decision. In production it calls an open-weight model
+   served on the bank's own GPU (an OpenAI-compatible endpoint such as vLLM), so no customer data leaves the
+   bank. If no model is available, a deterministic, evidence-grounded draft is produced instead; that is the
+   version shown in our current prototype (see Feasibility).
 5. **Proportionate actions** instead of blanket freezes: monitor → step-up verification (BVN selfie /
    in-app confirmation) → hold outbound on ring members → escalate with STR.
 
@@ -76,7 +78,7 @@ seen during training.
 
 | Result | MuleRadar | Reference |
 |---|---|---|
-| Laundering-transaction F1 (minority class) | **66.6% ± 0.3 (3 seeds)** | IBM Graph Feature Preprocessor + XGBoost (ICAIF'24): 63.2–64.8%; PNA graph neural network: 56.8%; GIN: 28.7%; plain XGBoost: 19.8% |
+| Laundering-transaction F1 (minority class) | **66.7% ± 0.3 (3 seeds)** | IBM Graph Feature Preprocessor + XGBoost (ICAIF'24): 63.2–64.8%; PNA graph neural network: 56.8%; GIN: 28.7%; plain XGBoost: 19.8% |
 | Precision of alerts | **84.8% (recall 54.9%)** | |
 | Known laundering rings flagged (test period) | **90 of 95 (95%)**; all cycle, scatter-gather, gather-scatter and stack rings | |
 | Innocent accounts flagged per 10,000 active accounts | **7.6** | 1,950 for a "24h outbound ≥ $4,754" rule at the *same* recall → **99.6% fewer wrongful flags** |
@@ -91,7 +93,7 @@ Ablation (each detector family adds accuracy):
 | + account velocity | 63.4 ± 0.2 |
 | + pass-through | 65.7 ± 0.5 |
 | + scatter-gather | 66.5 ± 0.1 |
-| + temporal cycles (full) | **66.6 ± 0.3** |
+| + temporal cycles (full) | **66.7 ± 0.3** |
 
 **What this means for a Nigerian bank**
 
@@ -109,7 +111,7 @@ mostly generated as one payment format, which lets every model, ours included, a
 transfer; our measured "95% of ring value still stoppable at first alert" is therefore an upper bound. On
 real data the first alert will come a few hops in; the network detectors (velocity, pass-through,
 scatter-gather, cycles) are what carry detection once that shortcut is gone, and the ablation shows they lift
-F1 from 21.7% to 66.6%.
+F1 from 21.7% to 66.7%.
 
 ## 4. Target Users & Implementation
 
@@ -131,9 +133,13 @@ smaller teams. Customers benefit directly through fewer wrongful freezes and fas
 3. *Analyst-in-the-loop holds* on tier-3/4 rings.
 4. *Automated step-up verification* for tier-2 accounts.
 
-**Feasibility today.** Everything in Section 3 runs end-to-end now: data pipeline, CUDA engine, CPU
-reference, model training, ring evaluation, STR drafting and the analyst console. Built in Python with CuPy
-(custom CUDA C++ kernels), Numba, XGBoost and Polars; reproducible with one script per step.
+**Feasibility today.** Everything in Section 3 was produced by a working prototype: data pipeline, CUDA
+engine, CPU reference, model training, ring evaluation, STR drafting and the analyst console. A live mode
+replays the held-out transfer stream through the engine on the A100 and streams alerts and rings to the
+analyst console in the browser, with a switch to run the same detectors on the CPU for comparison. Built in
+Python with CuPy (custom CUDA C++ kernels), Numba, XGBoost, Polars and FastAPI, and reproducible with one
+script per step. The STR module is wired for an on-premises LLM endpoint; in the prototype the drafts come
+from the grounded template, because our GPU cluster could not download model weights during the build.
 
 **Business model.** Annual licence per institution, tiered by transaction volume; managed appliance option
 for MFBs that have no GPU infrastructure.

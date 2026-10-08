@@ -20,7 +20,7 @@ money-mule rings in milliseconds — not after the money is gone — while freez
 6. **Draft & explain with GenAI:** an on-prem LLM writes STR narratives and answers analyst questions from the evidence.
 
 ## Results (IBM AML HI-Small, time-ordered 60/20/20 split, test = last 20% of the stream)
-See [SUBMISSION.md](SUBMISSION.md) for the full table. Laundering-transaction F1 66.6% ± 0.3 (best published 64.8%),
+See [SUBMISSION.md](SUBMISSION.md) for the full table. Laundering-transaction F1 66.7% ± 0.3 (best published 64.8%),
 90/95 known rings flagged, 99.6% fewer innocent accounts flagged than a threshold rule at equal recall,
 GPU features bit-identical to the CPU reference.
 
