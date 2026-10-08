@@ -1,0 +1,672 @@
+{
+ "metrics": {
+  "n_topics": 29,
+  "bootstrap_topics": 27,
+  "purity": 0.9566785412317224,
+  "nmi": 0.9002613340810227,
+  "by_language": {
+   "English": {
+    "n": 125377,
+    "same_topic_as_majority": 0.9110682182537467
+   },
+   "Hausa": {
+    "n": 37336,
+    "same_topic_as_majority": 0.769980715663167
+   },
+   "Igbo": {
+    "n": 8474,
+    "same_topic_as_majority": 0.7059240028321926
+   },
+   "Pidgin": {
+    "n": 54067,
+    "same_topic_as_majority": 0.8575841086059889
+   },
+   "Yoruba": {
+    "n": 24299,
+    "same_topic_as_majority": 0.7828717231161776
+   }
+  },
+  "embed_seconds": 62.181925357319415,
+  "distinct_texts": 7485
+ },
+ "topics": {
+  "T00": {
+   "size": 40726,
+   "keywords": [
+    "beneficiary",
+    "recipient",
+    "received",
+    "transfer",
+    "it.",
+    "was",
+    "but",
+    "debited"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.9349310023081079,
+   "samples": [
+    "The customer's transfer has been debited but the recipient has not received the funds.",
+    "Customer wants to transfer money but it has not been debited",
+    "Customer claims they have been waiting since morning for a transfer to be debited but the beneficiary has not received it.",
+    "Customer reports that a transfer of an undisclosed amount was debited but the recipient has not received it, and that they have already complained twice.",
+    "Customer is complaining about a transfer being debited but not received."
+   ]
+  },
+  "T01": {
+   "size": 7638,
+   "keywords": [
+    "kyc.",
+    "incomplete",
+    "shows",
+    "still",
+    "updated",
+    "nin",
+    "bvn",
+    "updating"
+   ],
+   "majority_issue": "bvn_nin_update",
+   "purity": 1.0,
+   "samples": [
+    "Customer has updated BVN and NIN but their account still shows incomplete KYC and wants it fixed immediately.",
+    "Account verification is not updated after updating BVN and NIN",
+    "Customer has updated BVN and NIN but their account still shows incomplete KYC.",
+    "Customer has updated BVN and NIN, but account still shows incomplete KYC. Customer is requesting the issue to be fixed immediately.",
+    "Customer has updated BVN and NIN, but account still shows incomplete KYC and has already complained twice."
+   ]
+  },
+  "T02": {
+   "size": 19736,
+   "keywords": [
+    "dispense",
+    "cash.",
+    "atm",
+    "cash",
+    "dispensing",
+    "dispensed",
+    "no",
+    "without"
+   ],
+   "majority_issue": "atm_debited_no_cash",
+   "purity": 0.9688386704499392,
+   "samples": [
+    "Customer debited for ATM withdrawal but no cash dispensed, previously complained twice.",
+    "Customer debited for ATM withdrawal but no cash was dispensed.",
+    "Customer tried to withdraw money from ATM, but no cash was dispensed and received an alert. They want their money back.",
+    "Customer debited at ATM but no cash was dispensed",
+    "Customer's ATM was debited but did not dispense cash"
+   ]
+  },
+  "T03": {
+   "size": 11819,
+   "keywords": [
+    "though",
+    "even",
+    "declined",
+    "online",
+    "getting",
+    "working",
+    "card",
+    "keeps"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 1.0,
+   "samples": [
+    "Customer's card was declined even though they have funds and is requesting immediate resolution.",
+    "Customer complains about card declined even though they have funds and has previously complained twice.",
+    "Card declined, need help quickly",
+    "Card not working",
+    "Customer's card is declined and they are unable to resolve the issue."
+   ]
+  },
+  "T04": {
+   "size": 453,
+   "keywords": [
+    "repayment",
+    "authorization",
+    "deduction",
+    "loan",
+    "deducted",
+    "from",
+    "amount",
+    "without"
+   ],
+   "majority_issue": "loan_deduction",
+   "purity": 0.9867549668874173,
+   "samples": [
+    "Loan deduction without payment completion",
+    "Loan deduction without prior payment",
+    "Loan repayment amount deducted from account without authorization",
+    "Loan deduction without prior payment",
+    "Incorrect loan deduction from account"
+   ]
+  },
+  "T05": {
+   "size": 11619,
+   "keywords": [
+    "keep",
+    "before",
+    "timing",
+    "completion",
+    "out",
+    "due",
+    "timed",
+    "timeout"
+   ],
+   "majority_issue": "ussd_session_timeout",
+   "purity": 0.9533522678371633,
+   "samples": [
+    "USSD transaction failed due to session timeout.",
+    "USSD transaction session timed out",
+    "USSD transaction failed due to timeout",
+    "USSD transactions keep timing out before completion",
+    "USSD transaction times out before completion"
+   ]
+  },
+  "T06": {
+   "size": 12135,
+   "keywords": [
+    "days.",
+    "three",
+    "or",
+    "reversed",
+    "days",
+    "refunded",
+    "failed",
+    "been"
+   ],
+   "majority_issue": "reversal_delayed",
+   "purity": 0.9793984342810054,
+   "samples": [
+    "Failed transaction not yet reversed/refunded",
+    "Customer is complaining about a failed transaction that has not been reversed or refunded",
+    "Customer is complaining about a failed transaction not yet reversed or refunded.",
+    "Customer is requesting a failed transaction reversal that has not been processed for three days.",
+    "Failed transaction not yet reversed/refunded"
+   ]
+  },
+  "T07": {
+   "size": 5093,
+   "keywords": [
+    "repaid",
+    "loan",
+    "deduction",
+    "deducted",
+    "already",
+    "amount",
+    "an",
+    "have"
+   ],
+   "majority_issue": "loan_deduction",
+   "purity": 0.9996073041429413,
+   "samples": [
+    "The customer wants their loan repayment amount returned as they have already paid it.",
+    "Customer complains about delayed loan repayment",
+    "Customer complains about unauthorized loan deduction and asks for quick resolution.",
+    "Customer complains that their loan repayment amount has been deducted twice.",
+    "Customer complains about a loan deduction they already repaid"
+   ]
+  },
+  "T08": {
+   "size": 1905,
+   "keywords": [
+    "process",
+    "response.",
+    "complete",
+    "one",
+    "waited",
+    "hour",
+    "timed",
+    "no"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 0.7448818897637796,
+   "samples": [
+    "USSD transaction failed, no response",
+    "USSD transaction failed, no response",
+    "Customer waited for one hour for a USSD transaction to process, but it timed out without success.",
+    "USSD transaction failed, no response",
+    "Customer waited for one hour for USSD transaction to complete but did not receive confirmation."
+   ]
+  },
+  "T09": {
+   "size": 16522,
+   "keywords": [
+    "mobile",
+    "log",
+    "update",
+    "in",
+    "app",
+    "unable",
+    "cannot",
+    "to"
+   ],
+   "majority_issue": "app_login_failure",
+   "purity": 0.9992736956784893,
+   "samples": [
+    "Customer cannot log in to mobile app after update",
+    "Cannot log in to app after update",
+    "Customer cannot log in to mobile app after update",
+    "Customer cannot log in to the app after the update",
+    "Customer is unable to log in to the app"
+   ]
+  },
+  "T10": {
+   "size": 14833,
+   "keywords": [
+    "otp",
+    "receiving",
+    "transactions",
+    "unable",
+    "have",
+    "for",
+    "receive",
+    "app"
+   ],
+   "majority_issue": "otp_not_received",
+   "purity": 1.0,
+   "samples": [
+    "Customer did not receive OTP",
+    "One-time password not received, unable to transfer.",
+    "Customer did not receive OTP for transaction confirmation",
+    "Customer has not received the OTP",
+    "Customer did not receive OTP for transaction"
+   ]
+  },
+  "T11": {
+   "size": 6783,
+   "keywords": [
+    "experiencing",
+    "timeouts",
+    "code",
+    "repeated",
+    "session",
+    "timeout",
+    "timed",
+    "ussd"
+   ],
+   "majority_issue": "ussd_session_timeout",
+   "purity": 0.8071649712516585,
+   "samples": [
+    "Customer is complaining about USSD session timeout",
+    "Customer is complaining about the USSD session timeout and requests immediate resolution.",
+    "Customer is complaining about USSD session timeout and wants their money back",
+    "Customer is complaining about USSD session timeout",
+    "The customer experienced a USSD session timeout."
+   ]
+  },
+  "T12": {
+   "size": 10914,
+   "keywords": [
+    "restricted",
+    "withdraw",
+    "funds.",
+    "cannot",
+    "money.",
+    "account",
+    "they",
+    "and"
+   ],
+   "majority_issue": "account_restricted",
+   "purity": 0.9802089059923035,
+   "samples": [
+    "Customer's account is restricted and they cannot withdraw money. They need their money back.",
+    "Customer's account is restricted and they cannot withdraw money. They want their money back.",
+    "Customer's account is frozen and cannot access their money. They want their money back.",
+    "The customer's account has been restricted and they cannot withdraw funds.",
+    "Customer's account is restricted and they cannot withdraw funds."
+   ]
+  },
+  "T13": {
+   "size": 8068,
+   "keywords": [
+    "alerts",
+    "sms",
+    "excessive",
+    "alert",
+    "charges",
+    "charged",
+    "being",
+    "complaining"
+   ],
+   "majority_issue": "sms_charges",
+   "purity": 1.0,
+   "samples": [
+    "Customer is complaining about being charged for SMS alerts",
+    "Customer is complaining about excessive SMS alert charges",
+    "Customer is complaining about excessive SMS alert charges",
+    "Customer is complaining about excessive SMS alert charges",
+    "Customer is complaining about excessive SMS alert charges"
+   ]
+  },
+  "T14": {
+   "size": 5884,
+   "keywords": [
+    "sessions",
+    "charged",
+    "being",
+    "ussd",
+    "failed",
+    "for",
+    "about",
+    "transaction"
+   ],
+   "majority_issue": "ussd_wrong_charges",
+   "purity": 0.8016655336505778,
+   "samples": [
+    "Customer complains about being charged for failed USSD sessions",
+    "Customer complains about being charged for failed USSD sessions",
+    "Charged for USSD transaction that did not go through",
+    "Customer complains about being charged for failed USSD sessions",
+    "Customer is complaining about being charged for failed USSD sessions"
+   ]
+  },
+  "T15": {
+   "size": 8755,
+   "keywords": [
+    "authorisation",
+    "debit",
+    "claims",
+    "without",
+    "from",
+    "account",
+    "resolution.",
+    "their"
+   ],
+   "majority_issue": "unauthorised_debit",
+   "purity": 0.9215305539691605,
+   "samples": [
+    "Customer complains about a debit without their consent",
+    "Customer complains about a debit without a corresponding transaction and wants a refund.",
+    "Customer claims their account was debited without their authorisation",
+    "Customer claims their account was debited an amount without their authorization and requests immediate resolution.",
+    "Customer claims their account was debited without their authorisation, and they have contacted the bank multiple times."
+   ]
+  },
+  "T16": {
+   "size": 3238,
+   "keywords": [
+    "kyc",
+    "processed",
+    "updating",
+    "bvn",
+    "nin",
+    "updated",
+    "shows",
+    "still"
+   ],
+   "majority_issue": "bvn_nin_update",
+   "purity": 1.0,
+   "samples": [
+    "Customer complains that their BVN/NIN/KYC update has not been processed, and wants their money back",
+    "Customer complains that their BVN and NIN have been updated but their KYC is not complete and wants their money returned.",
+    "Customer has updated BVN and NIN, but their KYC is not complete and wants their money back.",
+    "Customer is asking for help with their BVN, NIN, and KYC updates.",
+    "Customer wants their money back because their account still shows incomplete KYC after updating BVN and NIN."
+   ]
+  },
+  "T17": {
+   "size": 5325,
+   "keywords": [
+    "mistakenly",
+    "recover",
+    "wrong",
+    "sent",
+    "assistance",
+    "help",
+    "requesting",
+    "account"
+   ],
+   "majority_issue": "wrong_beneficiary",
+   "purity": 0.8856338028169014,
+   "samples": [
+    "Customer claims they sent money to the wrong account and has already complained twice.",
+    "Customer wants their money transferred to the wrong account and is in urgent need of their funds.",
+    "Customer mistakenly sent money to the wrong account and wants it back quickly.",
+    "The customer sent money to the wrong account and is requesting immediate assistance to recover the funds.",
+    "The customer sent money to the wrong account and is requesting assistance to recover the funds."
+   ]
+  },
+  "T18": {
+   "size": 5931,
+   "keywords": [
+    "blocked",
+    "notice",
+    "consent",
+    "card",
+    "without",
+    "requesting",
+    "was",
+    "and"
+   ],
+   "majority_issue": "card_blocked",
+   "purity": 0.8900691283088855,
+   "samples": [
+    "Customer's card was blocked without their consent and requests a resolution quickly.",
+    "Customer's card was blocked without their consent and they request assistance to resolve the issue.",
+    "Customer's account is blocked without notice and they want their money back.",
+    "Customer's card was blocked without notice",
+    "Customer's account is restricted without prior notice."
+   ]
+  },
+  "T19": {
+   "size": 6984,
+   "keywords": [
+    "opened",
+    "crashes",
+    "open",
+    "crashing",
+    "soon",
+    "when",
+    "immediately",
+    "as"
+   ],
+   "majority_issue": "app_crash",
+   "purity": 0.9995704467353952,
+   "samples": [
+    "App crashes immediately after opening",
+    "The app keeps crashing when opened",
+    "App crashes when opened",
+    "The app crashes immediately after opening.",
+    "Customer is complaining about the app crashing every time they open it, and this is the third time they are complaining about it."
+   ]
+  },
+  "T20": {
+   "size": 4335,
+   "keywords": [
+    "maintenance",
+    "fee",
+    "savings",
+    "account.",
+    "unauthorized",
+    "on",
+    "charged",
+    "being"
+   ],
+   "majority_issue": "maintenance_fee",
+   "purity": 1.0,
+   "samples": [
+    "Customer complains about a maintenance fee charged on their savings account.",
+    "Customer complains about a maintenance fee charged on their savings account.",
+    "Customer is complaining about a maintenance fee on their savings account.",
+    "Customer complains about a maintenance fee charged on their savings account.",
+    "The customer was charged a maintenance fee on their savings account."
+   ]
+  },
+  "T21": {
+   "size": 2513,
+   "keywords": [
+    "couldn",
+    "get",
+    "through",
+    "needs",
+    "phone",
+    "over",
+    "waited",
+    "hour"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 0.9880620771985674,
+   "samples": [
+    "Customer waited over an hour on the phone and was not attended to, needs money back",
+    "Customer waited over an hour on the phone and was not attended to, needs money back",
+    "Customer waited over an hour on the phone but was not attended to",
+    "Customer waited over an hour on the phone and couldn't get through; needs money back",
+    "Customer waited over an hour on the phone and couldn't get through, despite multiple complaints."
+   ]
+  },
+  "T22": {
+   "size": 9723,
+   "keywords": [
+    "delayed",
+    "reversal",
+    "waiting",
+    "transaction.",
+    "of",
+    "transaction",
+    "complaining",
+    "is"
+   ],
+   "majority_issue": "reversal_delayed",
+   "purity": 0.9754191093283966,
+   "samples": [
+    "Customer is complaining that the reversal of a transaction has not been processed yet.",
+    "Customer is waiting for a transaction reversal and wants it resolved urgently",
+    "Customer wants a delayed reversal of a transaction and is requesting help.",
+    "Customer is waiting for a transaction reversal and wants it resolved urgently",
+    "Customer is waiting for a transaction reversal."
+   ]
+  },
+  "T23": {
+   "size": 6175,
+   "keywords": [
+    "nobody",
+    "answered",
+    "phone",
+    "over",
+    "attended",
+    "waited",
+    "hour",
+    "on"
+   ],
+   "majority_issue": "long_wait_time",
+   "purity": 1.0,
+   "samples": [
+    "Customer waited over an hour on phone for assistance, no one answered.",
+    "Customer waited for one hour in line, no one attended to them, want their money back",
+    "Customer waited for one hour in line, no one attended to them.",
+    "Customer waited for one hour in line, no staff attended to them.",
+    "Customer waited over an hour on the phone and nobody answered."
+   ]
+  },
+  "T24": {
+   "size": 13919,
+   "keywords": [
+    "value",
+    "merchant",
+    "paid",
+    "value.",
+    "terminal",
+    "credited",
+    "pos",
+    "at"
+   ],
+   "majority_issue": "pos_debited_no_value",
+   "purity": 1.0,
+   "samples": [
+    "Customer paid money at POS, debited but merchant did not receive value",
+    "Customer paid money at POS, debited but merchant did not receive value, wants refund.",
+    "Money debited from POS but merchant did not receive",
+    "Customer paid for POS but the merchant did not receive the money",
+    "Customer paid money at POS terminal, debited but merchant did not receive value, wants money back"
+   ]
+  },
+  "T25": {
+   "size": 6063,
+   "keywords": [
+    "branch.",
+    "branch",
+    "rude",
+    "staff",
+    "bank",
+    "service",
+    "at",
+    "about"
+   ],
+   "majority_issue": "staff_attitude",
+   "purity": 0.8809170377700808,
+   "samples": [
+    "Customer complains about rude staff at the bank branch",
+    "Customer complains about rude staff at the bank branch",
+    "Customer complains about rude staff at the bank branch",
+    "Customer complains about rude staff at the bank branch",
+    "Customer complains about rude staff at a bank branch"
+   ]
+  },
+  "T26": {
+   "size": 938,
+   "keywords": [
+    "closes",
+    "opening.",
+    "immediately",
+    "opening",
+    "after",
+    "app",
+    "it.",
+    "the"
+   ],
+   "majority_issue": "app_crash",
+   "purity": 1.0,
+   "samples": [
+    "The app closes immediately after opening.",
+    "The app closes immediately after opening it. I want my money back.",
+    "The app closes immediately after opening.",
+    "The app closes immediately after opening.",
+    "The app closes immediately after opening. I want my money back."
+   ]
+  },
+  "T27": {
+   "size": 1247,
+   "keywords": [
+    "reflected",
+    "password",
+    "time",
+    "one",
+    "funds",
+    "of",
+    "received",
+    "transfer"
+   ],
+   "majority_issue": "transfer_debited_not_received",
+   "purity": 0.541299117882919,
+   "samples": [
+    "Account debit without deposit",
+    "Customer support not responsive",
+    "Account not credited after multiple deposits",
+    "Account not credited",
+    "Transfer of funds not reflected in account"
+   ]
+  },
+  "T28": {
+   "size": 279,
+   "keywords": [
+    "working",
+    "no",
+    "card",
+    "account",
+    "not",
+    "without",
+    "debited",
+    "money"
+   ],
+   "majority_issue": "card_declined",
+   "purity": 0.8458781362007168,
+   "samples": [
+    "Staff in the department did not treat me well. They resolved the issue quickly.",
+    "Account debit without deposit",
+    "Account debit without deposit",
+    "Customer's car is declining everywhere.",
+    "Account debit without deposit"
+   ]
+  }
+ }
+}

@@ -28,21 +28,28 @@ def llm_table():
     n, ev = load("normalize.json"), load("llm_eval.json")
     if not n and not ev:
         return "(N-ATLaS evaluation pending)"
-    langs = ["English", "Pidgin", "Hausa", "Yoruba", "Igbo"]
-    lines = ["", "", "| Language | Issue accuracy, all complaints | Issue macro-F1 | Language identified | Issue accuracy on N-ATLaS-rewritten complaints |",
-             "|---|---|---|---|---|"]
-    for L in langs:
-        a = n["by_language"][L] if n else {}
-        rw = ev["rewritten"][L] if ev else {}
-        f = lambda x: f"{x * 100:.1f}%" if isinstance(x, (int, float)) else "–"  # noqa: E731
-        lines.append(f"| {L} | {f(a.get('issue_accuracy'))} | {f(a.get('issue_macro_f1'))} | {f(a.get('language_id_accuracy'))} | {f(rw.get('issue_accuracy'))} |")
-    extra = []
+    langs = ["English", "Pidgin", "Hausa", "Yoruba", "Igbo", "ALL"]
+    f = lambda x: f"{x * 100:.0f}%" if isinstance(x, (int, float)) else "–"  # noqa: E731
+    head = "| Language | Bank-style complaints | Complaints freely rewritten by N-ATLaS |"
+    sep = "|---|---|---|"
     if n:
-        extra.append(f"N-ATLaS read {n['distinct']:,} distinct redacted complaints (covering all 249,553) at "
-                     f"{n['per_second']:.1f} per second on one A100, with {n['parse_errors']} unparseable outputs.")
-    if ev:
-        extra.append(f"The rewritten set ({ev['n']} complaints, {ev['n'] // 5} per language) was paraphrased freely by N-ATLaS "
-                     "to test robustness beyond our templates.")
+        head = head[:-1] + "| All 249,553 complaints (macro-F1) |"; sep += "---|"
+    lines = ["", "", head, sep]
+    for L in langs:
+        row = f"| {'All languages' if L == 'ALL' else L} | {f(ev['template'][L]['issue_accuracy'])} | {f(ev['rewritten'][L]['issue_accuracy'])} |"
+        if n:
+            if L == "ALL":                       # complaint-weighted over the five languages
+                bl = n["by_language"].values(); tot = sum(v["n"] for v in bl)
+                nl = {"issue_accuracy": sum(v["issue_accuracy"] * v["n"] for v in bl) / tot,
+                      "issue_macro_f1": sum(v["issue_macro_f1"] * v["n"] for v in bl) / tot}
+            else:
+                nl = n["by_language"].get(L)
+            row += f" {f(nl['issue_accuracy']) + ' (' + f(nl['issue_macro_f1']) + ')' if nl else '–'} |"
+        lines.append(row)
+    extra = [f"Sample: {ev['n']} complaints, {ev['n'] // 5} per language. Rewritten complaints are a harder, freer test "
+             "(and a lower bound, since a rewrite can drift from the original meaning)."]
+    if n:
+        extra.append(f"N-ATLaS read all {n['distinct']:,} distinct redacted complaints at {n['per_second']:.1f} per second on one A100.")
     return "\n".join(lines) + "\n\n" + " ".join(extra)
 
 
@@ -66,7 +73,8 @@ def main():
     md = md.replace("- **Repost storm:**", "![Figure 2. Time to alert on the held-out stream: ComplaintPulse vs the daily-count rule.](fig/timeline.png){width=92%}\n\n- **Repost storm:**")
     md = md.replace("K2 is what makes it possible", "![Figure 3. Same algorithms on CPU and A100 GPU; outputs identical.](fig/kernels.png){width=100%}\n\nK2 is what makes it possible")
     if (HERE / "fig" / "console.png").exists():
-        md = md.replace("**Business model.**", "![Figure 4. ComplaintPulse live console on the A100: issue radar, volume, multilingual feed.](fig/console.png){width=100%}\n\n**Business model.**")
+        md = md.replace("**Business model.**", "![Figure 4. ComplaintPulse live console on the A100: issue radar, volume, multilingual feed.](fig/console.png){width=100%}\n\n"
+                        "![Figure 5. One incident: K2 root cause, linked operational event, routed owner, evidence, and the N-ATLaS brief that passed number verification.](fig/console_incident.png){width=100%}\n\n**Business model.**")
     md = re.sub(r"^# (.+)$", r"% \1", md, count=1, flags=re.M)        # title block
     src = HERE / "report.md"
     src.write_text(md)

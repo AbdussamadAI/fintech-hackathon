@@ -16,7 +16,7 @@
   --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){
-  :root{color-scheme:dark;
+  :root:not([data-theme="light"]){color-scheme:dark;
     --bg:#0D1119; --surface:#141A26; --sunk:#10151F; --ink:#E6EAF2; --muted:#98A2B6; --line:#262F40;
     --accent:#8C9BFF; --accent-soft:#1F2650; --bar:#5D6780; --warn:#E0A23B; --hot:#F07A3C; --crit:#F05252; --good:#4CC38A;}
 }
@@ -126,6 +126,7 @@ select{font:500 13px var(--body);padding:6px 8px;border-radius:6px;border:1px so
 </div>
 
 <script>
+if (location.hash === '#light') document.documentElement.dataset.theme = 'light';   // printable view
 const $ = s => document.querySelector(s);
 const fmt = (n, d=0) => Number(n).toLocaleString('en-US', {maximumFractionDigits:d, minimumFractionDigits:d});
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

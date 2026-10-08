@@ -56,8 +56,10 @@ all channels ─▶ PII redaction ─▶ N-ATLaS understanding ─▶ topics ─
    **not escalated**. A concentrated one becomes an incident with an owner (app team, switch operations, ATM
    operations, card operations, billing, fraud).
 7. **GenAI brief and customer message (N-ATLaS).** For each incident, N-ATLaS writes a brief for the owning team from
-   the evidence only, citing complaint IDs; a validator rejects any citation not in the evidence. It also drafts a
-   proactive message to affected customers **in Hausa, Pidgin, Yoruba, Igbo or English**.
+   the evidence only. A verifier checks **every number and complaint ID in the brief against the evidence**; errors
+   are sent back to the model for correction, and a brief that still fails is held for analyst review instead of being
+   sent. N-ATLaS also drafts a proactive message to affected customers **in Hausa, Yoruba, Igbo or English**; every
+   message is approved by a person before it goes out.
 
 ## 3. Impact & Value (measured)
 
@@ -79,10 +81,10 @@ times shifted by up to ±1.5 days, no retuning).
 
 - **Repost storm:** K3 collapsed 895 of the 900 viral copies. Without it, the storm raises a false incident.
 - **Salary-week surge and other blips:** 6 volume rises were checked and correctly not escalated.
-- **Fully unsupervised topics** (no labels at all, topics discovered from embeddings): on the held-out stream
-  **8 of 8 incidents, 0 false alarms**, root cause and event correct for all 8 (the daily-count rule on the same topics:
-  35 false alarms out of 57 alerts). On the main stream 7 of 8 with 1 false alarm; the miss is the smallest incident,
-  a fraud campaign, which the language finding below explains.
+- **Fully unsupervised topics** (no labels used anywhere; topics discovered from N-ATLaS's English summaries of each
+  complaint): **8 of 8 incidents, 0 false alarms, root cause and event correct for all 8**, median 5.5 h to alert; the
+  daily-count rule on the same topics raises 21 false alarms out of 33 alerts. Topics discovered from raw multilingual
+  text also caught 8 of 8 on the held-out stream but missed the fraud campaign on the main stream, for the reason below.
 
 **GPU acceleration (A100 vs the same algorithms on CPU, outputs identical):**
 
@@ -94,12 +96,36 @@ times shifted by up to ±1.5 days, no retuning).
 
 K2 is what makes it possible to test every pair of attributes for every alert, across every topic, in real time.
 
-**Inclusion finding.** Multilingual embeddings alone group complaints by language as well as by problem: only
-17–37% of Hausa, Pidgin, Igbo and Yoruba complaints landed in the same topic as English complaints about the same
-problem. That silently splits local-language customers' signal. Normalising each complaint with N-ATLaS first fixes
-this: __LLM_TOPIC_RESULT__.
+**Inclusion finding: N-ATLaS is what makes local-language customers count.** Grouping complaints by their raw text,
+even with a strong multilingual embedding model, groups them by *language* as much as by *problem*: only 18–37% of
+Pidgin, Hausa, Yoruba and Igbo complaints joined the topic where English complaints about the same problem sat, so a
+local-language customer's complaint was split off into a small topic of its own and could not raise an alarm. Having
+N-ATLaS first restate each complaint as a short English summary fixes this:
 
-**N-ATLaS understanding, per language:** __LLM_TABLE__
+| Language | Joins the right topic, raw text | Joins the right topic, after N-ATLaS |
+|---|---|---|
+| Pidgin | 33% | **86%** |
+| Hausa | 37% | **77%** |
+| Yoruba | 18% | **78%** |
+| Igbo | 24% | **71%** |
+| English | 97% | 91% |
+
+Topic purity rose from 0.89 to 0.96 (NMI 0.81 → 0.90), and the fraud campaign, whose complaints had been split by
+language, is now detected.
+
+**N-ATLaS understanding, per language** (issue classified correctly, on the A100): __LLM_TABLE__
+
+**N-ATLaS briefs.** 7 of the 8 incident briefs passed automatic verification of every number against the evidence.
+The 8th repeatedly wrote the money at stake ten times too small and was **held for analyst review**, which is exactly
+what the verifier is for: an 8-billion-parameter model will occasionally get a number wrong, and the bank must never
+send that number to an owner or a customer unchecked.
+
+**What we learned about local languages.** N-ATLaS understands *what* customers complain about in every language
+(issue accuracy 75–97% across all 249,553 complaints, with zero unparseable outputs). Three limits are worth stating:
+it is not trained on **Nigerian Pidgin**, and its Pidgin customer messages were unusable, so Pidgin speakers receive
+simple English messages; it cannot reliably tell *which* language a complaint is in (Igbo and Pidgin were mostly
+labelled Yoruba), so the reply language should come from the customer's profile or a dedicated language-ID model,
+not from the LLM; and Yoruba and Igbo messages must be checked by native speakers, which the approval step provides.
 
 ## 4. Target Users & Implementation
 

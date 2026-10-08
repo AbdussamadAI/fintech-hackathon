@@ -58,7 +58,7 @@ function image(alt, file, widthPct) {
   const w0 = buf.readUInt32BE(16), h0 = buf.readUInt32BE(20);
   const wpx = Math.round(640 * widthPct / 100);
   return [
-    new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 120, after: 60 },
+    new Paragraph({ alignment: AlignmentType.CENTER, spacing: { before: 120, after: 60 }, keepNext: true, keepLines: true,
       children: [new ImageRun({ type: "png", data: buf, transformation: { width: wpx, height: Math.round(wpx * h0 / w0) },
         altText: { title: alt, description: alt, name: path.basename(file) } })] }),
     new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 200 }, children: [t(alt, { italics: true, size: 18, color: MUTED })] }),

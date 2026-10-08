@@ -1,0 +1,38 @@
+{
+ "distinct": 27511,
+ "seconds": 2747.2951715225354,
+ "per_second": 10.013849361790113,
+ "parse_errors": 0,
+ "by_language": {
+  "English": {
+   "n": 125377,
+   "issue_accuracy": 0.9725547747992056,
+   "issue_macro_f1": 0.9650120126354695,
+   "language_id_accuracy": 0.9999548497059587
+  },
+  "Pidgin": {
+   "n": 54067,
+   "issue_accuracy": 0.8868071096972275,
+   "issue_macro_f1": 0.8440548208576416,
+   "language_id_accuracy": 0.0
+  },
+  "Hausa": {
+   "n": 37336,
+   "issue_accuracy": 0.8225573173344761,
+   "issue_macro_f1": 0.7747858968150486,
+   "language_id_accuracy": 0.8505277707966826
+  },
+  "Yoruba": {
+   "n": 24299,
+   "issue_accuracy": 0.8554261492242479,
+   "issue_macro_f1": 0.7743238676722861,
+   "language_id_accuracy": 0.969794933655006
+  },
+  "Igbo": {
+   "n": 8474,
+   "issue_accuracy": 0.7523011564786406,
+   "issue_macro_f1": 0.6813692446107519,
+   "language_id_accuracy": 0.0
+  }
+ }
+}
